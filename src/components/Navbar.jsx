@@ -16,10 +16,10 @@ const Navbar = () => {
 
       {/* CENTER - Nav Links */}
       <div className="flex-1 flex justify-center items-center space-x-8">
-        <Link href="/about" className="text-sm font-medium text-black-700">
+        <Link href="/#problem" className="text-sm font-medium text-black-700">
           Problem
         </Link>
-        <Link href="/solution" className="text-sm font-medium text-black-700">
+        <Link href="/#solution" className="text-sm font-medium text-black-700">
           Solution
         </Link>
       </div>
@@ -27,7 +27,7 @@ const Navbar = () => {
       {/* RIGHT - CTA */}
       <div className="flex-1 flex justify-end">
         <Link 
-          href="/get-started" className="mt-8 inline-block px-8 py-3 text-white text-base font-medium rounded-md" style={{ backgroundColor: '#485C11' }}>
+          href="/monitor" className="mt-8 inline-block px-8 py-3 text-white text-base font-medium rounded-md" style={{ backgroundColor: '#485C11' }}>
           Get Started
         </Link>
       </div>

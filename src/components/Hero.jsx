@@ -143,7 +143,7 @@ const Hero = () => {
       </div>
 
       {/* Benefits */}
-      <div className="w-full max-w-6xl px-6 mt-24">
+      <div id="problem" className="w-full max-w-6xl px-6 mt-24 scroll-mt-24">
         <p className="benefits-label text-sm font-mono tracking-widest mb-10" style={{ color: '#4a5e1a' }}>Benefits</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
@@ -168,7 +168,7 @@ const Hero = () => {
       </div>
 
       {/* How it works */}
-      <div className="w-full max-w-6xl px-6 mt-32">
+      <div id="solution" className="w-full max-w-6xl px-6 mt-32 scroll-mt-24">
         <h2 className="text-4xl font-serif font-light text-gray-900 mb-16">How it works</h2>
         <div className="w-full border-t border-gray-200 mb-12" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
@@ -192,7 +192,7 @@ const Hero = () => {
       </div>
 
       {/* CTA */}
-      <div className="cta-section w-full mt-32 border-t border-b border-gray-200 py-20 flex flex-col items-center gap-8">
+      <div id="get-started" className="cta-section w-full mt-32 border-t border-b border-gray-200 py-20 flex flex-col items-center gap-8 scroll-mt-24">
         <h2 className="text-5xl font-serif font-light text-gray-900">Get started here</h2>
         <Link href="/monitor" className="w-full max-w-xl text-center py-4 text-white text-sm font-medium rounded-full" style={{ backgroundColor: '#4a5e1a' }}>
           Get started ↗

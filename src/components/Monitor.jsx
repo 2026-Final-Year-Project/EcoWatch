@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 const INCIDENTS = [
@@ -37,6 +36,7 @@ export default function Monitor() {
   const mapRef         = useRef(null)
   const mapInstanceRef = useRef(null)
   const userMarkerRef  = useRef(null)
+  const leafletRef     = useRef(null)
 
   const [selected,    setSelected]    = useState(INCIDENTS[0])
   const [darkMode,    setDarkMode]    = useState(false)
@@ -48,45 +48,55 @@ export default function Monitor() {
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return
 
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-      iconUrl:       'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-      shadowUrl:     'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-    })
+    let cancelled = false
 
-    const map = L.map(mapRef.current, {
-      center: [5.8, -2.1],
-      zoom: 12,
-      zoomControl: false,
-    })
+    import('leaflet').then((leafletModule) => {
+      const L = leafletModule.default
+      if (cancelled || !mapRef.current || mapInstanceRef.current) return
 
-    L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      { attribution: 'Esri', maxZoom: 19 }
-    ).addTo(map)
+      leafletRef.current = L
 
-    L.control.zoom({ position: 'bottomleft' }).addTo(map)
-
-    INCIDENTS.forEach((inc) => {
-      const icon = L.divIcon({
-        className: '',
-        html: `<div style="
-          width:14px;height:14px;border-radius:9999px;
-          background:${inc.color};border:2px solid white;
-          box-shadow:0 0 0 4px ${inc.color}44;
-        "></div>`,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7],
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+        iconUrl:       'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        shadowUrl:     'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
       })
-      L.marker([inc.lat, inc.lng], { icon })
-        .addTo(map)
-        .on('click', () => setSelected(inc))
-    })
 
-    mapInstanceRef.current = map
+      const map = L.map(mapRef.current, {
+        center: [5.8, -2.1],
+        zoom: 12,
+        zoomControl: false,
+      })
+
+      L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        { attribution: 'Esri', maxZoom: 19 }
+      ).addTo(map)
+
+      L.control.zoom({ position: 'bottomleft' }).addTo(map)
+
+      INCIDENTS.forEach((inc) => {
+        const icon = L.divIcon({
+          className: '',
+          html: `<div style="
+            width:14px;height:14px;border-radius:9999px;
+            background:${inc.color};border:2px solid white;
+            box-shadow:0 0 0 4px ${inc.color}44;
+          "></div>`,
+          iconSize: [14, 14],
+          iconAnchor: [7, 7],
+        })
+        L.marker([inc.lat, inc.lng], { icon })
+          .addTo(map)
+          .on('click', () => setSelected(inc))
+      })
+
+      mapInstanceRef.current = map
+    })
 
     return () => {
-      map.remove()
+      cancelled = true
+      mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
     }
   }, [])
@@ -105,7 +115,8 @@ export default function Monitor() {
       (position) => {
         const { latitude: lat, longitude: lng, accuracy } = position.coords
         const map = mapInstanceRef.current
-        if (!map) return
+        const L = leafletRef.current
+        if (!map || !L) return
 
         // Fly to user location
         map.flyTo([lat, lng], 14, { animate: true, duration: 1.5 })
@@ -221,7 +232,7 @@ export default function Monitor() {
         <div className="relative flex-1">
 
           {/* Legend */}
-          <div className={`absolute top-4 left-4 z-[1000] rounded-2xl px-5 py-4 shadow-lg text-sm backdrop-blur ${
+          <div className={`absolute top-4 left-4 z-1000 rounded-2xl px-5 py-4 shadow-lg text-sm backdrop-blur ${
             darkMode ? 'bg-[#1a2a10]/90 text-white' : 'bg-white/90 text-slate-700'
           }`}>
             <p className="text-[10px] font-mono uppercase tracking-widest mb-3 text-slate-400">Legend</p>
@@ -239,7 +250,7 @@ export default function Monitor() {
           </div>
 
           {/* My Location button */}
-          <div className="absolute bottom-24 left-4 z-[1000] flex flex-col gap-2">
+          <div className="absolute bottom-24 left-4 z-1000 flex flex-col gap-2">
             <button
               onClick={goToMyLocation}
               disabled={locating}
@@ -270,7 +281,7 @@ export default function Monitor() {
 
           {/* Error toast */}
           {locError && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-[1000] bg-red-600 text-white text-xs px-4 py-2 rounded-xl shadow-lg max-w-xs text-center">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-1000 bg-red-600 text-white text-xs px-4 py-2 rounded-xl shadow-lg max-w-xs text-center">
               {locError}
               <button onClick={() => setLocError(null)} className="ml-2 underline">dismiss</button>
             </div>
@@ -278,7 +289,7 @@ export default function Monitor() {
 
           {/* User coords badge */}
           {userCoords && (
-            <div className={`absolute top-4 right-4 z-[1000] rounded-2xl px-4 py-3 shadow-lg text-xs backdrop-blur ${
+            <div className={`absolute top-4 right-4 z-1000 rounded-2xl px-4 py-3 shadow-lg text-xs backdrop-blur ${
               darkMode ? 'bg-[#1a2a10]/90 text-white' : 'bg-white/90 text-slate-700'
             }`}>
               <p className="text-[9px] font-mono uppercase tracking-widest text-blue-500 mb-1">Your location</p>
@@ -291,7 +302,7 @@ export default function Monitor() {
         </div>
 
         {/* SIDEBAR */}
-        <aside className={`w-[340px] flex-shrink-0 flex flex-col border-l overflow-y-auto ${
+        <aside className={`w-85 shrink-0 flex flex-col border-l overflow-y-auto ${
           darkMode ? 'bg-[#111a09] border-white/10' : 'bg-white border-slate-200'
         }`}>
           <div className="p-6 flex flex-col gap-5 flex-1">
@@ -334,9 +345,12 @@ export default function Monitor() {
                 <button className="text-xs text-[#4a5e1a] font-medium hover:underline">View Full Res</button>
               </div>
               <div className="relative rounded-2xl overflow-hidden h-44 bg-slate-200">
-                <img
+                <Image
                   src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/12/1994/1978"
                   alt="Satellite evidence"
+                  width={320}
+                  height={176}
+                  unoptimized
                   className="w-full h-full object-cover"
                 />
                 <span className="absolute bottom-2 right-2 text-[10px] bg-black/60 text-white px-2 py-1 rounded-lg">

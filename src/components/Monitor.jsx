@@ -361,7 +361,9 @@ export default function Monitor() {
 
             <div className="flex flex-col gap-3 mt-auto">
               <button className="w-full rounded-2xl bg-[#4a5e1a] text-white text-sm font-semibold py-4 hover:bg-[#3a4d12] transition">
+                <Link href="/report">
                 ⚡ Escalate to Local Authorities
+                </Link>
               </button>
               <button className={`w-full rounded-2xl border text-sm font-medium py-4 transition ${
                 darkMode ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-800 hover:bg-slate-50'

@@ -208,13 +208,13 @@ export default function Monitor() {
         </Link>
 
         <nav className="flex gap-8 text-sm">
-          {['Live Map', 'Reports', 'History'].map((n, i) => (
-            <a key={n} href="#" className={`pb-0.5 transition ${
-              i === 0
-                ? 'font-semibold text-[#4a5e1a] border-b-2 border-[#4a5e1a]'
-                : darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
-            }`}>{n}</a>
-          ))}
+          <a href="#" className="pb-0.5 transition font-semibold text-[#4a5e1a] border-b-2 border-[#4a5e1a]">Live Map</a>
+          <Link href="/reports" className={`pb-0.5 transition ${
+            darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
+          }`}>Reports</Link>
+          <Link href="/history" className={`pb-0.5 transition ${
+            darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
+          }`}>History</Link>
         </nav>
 
         <div className="flex items-center gap-4">

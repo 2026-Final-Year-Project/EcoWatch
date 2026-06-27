@@ -208,8 +208,8 @@ export default function Monitor() {
         </Link>
 
         <nav className="flex gap-8 text-sm">
-          <a href="#" className="pb-0.5 transition font-semibold text-[#4a5e1a] border-b-2 border-[#4a5e1a]">Live Map</a>
-          <Link href="/reports" className={`pb-0.5 transition ${
+          <Link href="/monitor" className="pb-0.5 transition font-semibold text-[#4a5e1a] border-b-2 border-[#4a5e1a]">Live Map</Link>
+          <Link href="/report" className={`pb-0.5 transition ${
             darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
           }`}>Reports</Link>
           <Link href="/history" className={`pb-0.5 transition ${

@@ -235,10 +235,10 @@ export default function History() {
           <Link href="/monitor" className={`pb-0.5 transition ${
             darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
           }`}>Live Map</Link>
-          <Link href="/history" className={`pb-0.5 transition ${
+          <Link href="/report" className={`pb-0.5 transition ${
             darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
           }`}>Reports</Link>
-          <a href="/reports" className="pb-0.5 transition font-semibold text-[#4a5e1a] border-b-2 border-[#4a5e1a]">History</a>
+          <Link href="/history" className="pb-0.5 transition font-semibold text-[#4a5e1a] border-b-2 border-[#4a5e1a]">History</Link>
         </nav>
 
         <div className="flex items-center gap-4">

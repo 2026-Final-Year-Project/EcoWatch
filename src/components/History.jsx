@@ -218,6 +218,13 @@ export default function History() {
     return icons[status] || '•'
   }
 
+    const downloadReport = () => {
+    const link = document.createElement("a");
+    link.href = "/historical-report.pdf";   // file location
+    link.download = "historical-report.pdf";
+    link.click();
+  };
+
   return (
     <div className={`min-h-screen font-sans transition-colors duration-300 ${
       darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-[#f6f7f1] text-slate-900'
@@ -543,10 +550,14 @@ export default function History() {
               darkMode 
                 ? 'border-white/20 text-white hover:bg-white/10' 
                 : 'border-slate-200 text-slate-800 hover:bg-slate-50'
-            }`}>
+            }`}
+            
+            >
               📊 Export Analytics
-            </button>
-            <button className="px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition">
+            </button >
+            <button 
+             onClick={() => downloadReport()}
+            className="px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition">
               📥 Download Historical Report
             </button>
           </div>

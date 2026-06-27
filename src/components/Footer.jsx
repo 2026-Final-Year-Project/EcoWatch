@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="max-w-sm">
             <p className="text-sm leading-relaxed text-white/45">
               AI-powered satellite surveillance platform for protecting forests,
-              ecosystems, and communities.
+              ecosystems, and communities.z
             </p>
 
             <Link

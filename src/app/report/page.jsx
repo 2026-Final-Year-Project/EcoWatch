@@ -1,4 +1,5 @@
 import Report from '@/components/Report'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Report | EcoWatch',
@@ -6,5 +7,12 @@ export const metadata = {
 }
 
 export default function ReportRoute() {
-  return <Report />
+  return (
+    <>
+      <Report />
+      
+
+      
+    </>
+  )
 }

@@ -1,32 +1,49 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-
-// Extended incident data for reports
-const INCIDENT_HISTORY = [
-  { id: 1, type: 'Mining', lat: 5.82, lng: -2.12, severity: 'critical', hectares: 4.6, confidence: 94.2, date: '2024-01-18', time: '14:32', coords: '5.8200° N, 2.1200° W', status: 'Escalated' },
-  { id: 2, type: 'Deforestation', lat: 5.78, lng: -2.09, severity: 'high', hectares: 2.1, confidence: 88.7, date: '2024-01-18', time: '14:00', coords: '5.7800° N, 2.0900° W', status: 'Reported' },
-  { id: 3, type: 'Mining', lat: 5.85, lng: -2.05, severity: 'high', hectares: 1.8, confidence: 91.3, date: '2024-01-17', time: '09:15', coords: '5.8500° N, 2.0500° W', status: 'Reported' },
-  { id: 4, type: 'Deforestation', lat: 5.75, lng: -2.15, severity: 'medium', hectares: 0.9, confidence: 76.5, date: '2024-01-16', time: '16:45', coords: '5.7500° N, 2.1500° W', status: 'Monitoring' },
-  { id: 5, type: 'Mining', lat: 5.88, lng: -2.08, severity: 'critical', hectares: 5.2, confidence: 96.1, date: '2024-01-15', time: '11:22', coords: '5.8800° N, 2.0800° W', status: 'Escalated' },
-  { id: 6, type: 'Deforestation', lat: 5.80, lng: -2.10, severity: 'high', hectares: 3.4, confidence: 89.9, date: '2024-01-14', time: '13:01', coords: '5.8000° N, 2.1000° W', status: 'Reported' },
-  { id: 7, type: 'Mining', lat: 5.79, lng: -2.11, severity: 'high', hectares: 2.3, confidence: 87.4, date: '2024-01-13', time: '10:30', coords: '5.7900° N, 2.1100° W', status: 'Monitoring' },
-  { id: 8, type: 'Deforestation', lat: 5.83, lng: -2.07, severity: 'medium', hectares: 1.5, confidence: 79.2, date: '2024-01-12', time: '15:18', coords: '5.8300° N, 2.0700° W', status: 'Monitoring' },
-]
+import { apiUrl, fetchJson } from '@/lib/api'
 
 export default function Reports() {
+  const [incidents, setIncidents] = useState([])
   const [darkMode, setDarkMode] = useState(false)
   const [typeFilter, setTypeFilter] = useState('all')
   const [severityFilter, setSeverityFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('all')
   const [sortBy, setSortBy] = useState('date-desc')
   const [dateRange, setDateRange] = useState('7d')
+  const [loading, setLoading] = useState(true)
+  const [apiError, setApiError] = useState(null)
+
+  // Load report incidents from the Express backend.
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadReports() {
+      try {
+        const data = await fetchJson('/incidents')
+        if (cancelled) return
+        setIncidents(data)
+        setApiError(null)
+      } catch (error) {
+        if (cancelled) return
+        setApiError(error.message)
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    loadReports()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   // Filter and sort logic
   const filteredIncidents = useMemo(() => {
-    let filtered = INCIDENT_HISTORY
+    let filtered = [...incidents]
 
     if (typeFilter !== 'all') {
       filtered = filtered.filter(inc => inc.type === typeFilter)
@@ -51,14 +68,16 @@ export default function Reports() {
     })
 
     return filtered
-  }, [typeFilter, severityFilter, statusFilter, sortBy])
+  }, [incidents, typeFilter, severityFilter, statusFilter, sortBy])
 
   // Statistics
   const stats = useMemo(() => {
     const total = filteredIncidents.length
     const critical = filteredIncidents.filter(i => i.severity === 'critical').length
     const totalHectares = filteredIncidents.reduce((sum, i) => sum + i.hectares, 0)
-    const avgConfidence = (filteredIncidents.reduce((sum, i) => sum + i.confidence, 0) / total).toFixed(1)
+    const avgConfidence = total
+      ? (filteredIncidents.reduce((sum, i) => sum + i.confidence, 0) / total).toFixed(1)
+      : '0.0'
     
     const byType = {}
     filteredIncidents.forEach(inc => {
@@ -127,6 +146,9 @@ export default function Reports() {
           <p className={`text-sm ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>
             Analyze detections, generate reports, and track response status across your region
           </p>
+          {apiError && (
+            <p className="mt-3 text-sm text-red-600">{apiError}</p>
+          )}
         </div>
 
         {/* Statistics Grid */}
@@ -284,6 +306,20 @@ export default function Reports() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/10">
+                {loading && (
+                  <tr>
+                    <td colSpan={8} className="px-6 py-8 text-center text-slate-500">
+                      Loading incidents from API...
+                    </td>
+                  </tr>
+                )}
+                {!loading && filteredIncidents.length === 0 && (
+                  <tr>
+                    <td colSpan={8} className="px-6 py-8 text-center text-slate-500">
+                      No incidents match the selected filters.
+                    </td>
+                  </tr>
+                )}
                 {filteredIncidents.map((incident) => (
                   <tr key={incident.id} className={`hover:bg-white/5 transition ${
                     darkMode ? 'border-white/5' : 'border-slate-100'
@@ -317,9 +353,9 @@ export default function Reports() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <button className="text-[#4a5e1a] hover:underline font-medium text-sm">
+                      <Link href={`/incidents/${incident.id}`} className="text-[#4a5e1a] hover:underline font-medium text-sm">
                         View →
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}
@@ -341,9 +377,12 @@ export default function Reports() {
             }`}>
               📥 Export CSV
             </button>
-            <button className="px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition">
+           <a
+                href={apiUrl('/reports/latest/pdf')}
+                className="inline-flex items-center px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition"
+              >
               📄 Generate Report (PDF)
-            </button>
+            </a>
           </div>
         </div>
 

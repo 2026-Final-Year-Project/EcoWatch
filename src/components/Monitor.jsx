@@ -4,45 +4,50 @@ import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import 'leaflet/dist/leaflet.css'
-
-const INCIDENTS = [
-  {
-    id: 1,
-    type: 'Mining',
-    lat: 5.82,
-    lng: -2.12,
-    severity: 'critical',
-    hectares: 4.6,
-    confidence: 94.2,
-    time: '12m ago',
-    coords: '5.8200° N, 2.1200° W',
-    color: '#f97316',
-  },
-  {
-    id: 2,
-    type: 'Deforestation',
-    lat: 5.78,
-    lng: -2.09,
-    severity: 'high',
-    hectares: 2.1,
-    confidence: 88.7,
-    time: '34m ago',
-    coords: '5.7800° N, 2.0900° W',
-    color: '#22c55e',
-  },
-]
+import { apiUrl, fetchJson } from '@/lib/api'
 
 export default function Monitor() {
   const mapRef         = useRef(null)
   const mapInstanceRef = useRef(null)
+  const markerLayerRef = useRef(null)
   const userMarkerRef  = useRef(null)
   const leafletRef     = useRef(null)
 
-  const [selected,    setSelected]    = useState(INCIDENTS[0])
+  const [incidents,   setIncidents]   = useState([])
+  const [selected,    setSelected]    = useState(null)
   const [darkMode,    setDarkMode]    = useState(false)
   const [locating,    setLocating]    = useState(false)
   const [locError,    setLocError]    = useState(null)
   const [userCoords,  setUserCoords]  = useState(null)
+  const [mapReady,    setMapReady]    = useState(false)
+  const [loading,     setLoading]     = useState(true)
+  const [apiError,    setApiError]    = useState(null)
+
+  // Load active incidents from the Express backend for the live map.
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadIncidents() {
+      try {
+        const data = await fetchJson('/incidents/live')
+        if (cancelled) return
+        setIncidents(data)
+        setSelected(data[0] || null)
+        setApiError(null)
+      } catch (error) {
+        if (cancelled) return
+        setApiError(error.message)
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    loadIncidents()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   // ── Init map ──────────────────────────────────────────────
   useEffect(() => {
@@ -75,31 +80,48 @@ export default function Monitor() {
 
       L.control.zoom({ position: 'bottomleft' }).addTo(map)
 
-      INCIDENTS.forEach((inc) => {
-        const icon = L.divIcon({
-          className: '',
-          html: `<div style="
-            width:14px;height:14px;border-radius:9999px;
-            background:${inc.color};border:2px solid white;
-            box-shadow:0 0 0 4px ${inc.color}44;
-          "></div>`,
-          iconSize: [14, 14],
-          iconAnchor: [7, 7],
-        })
-        L.marker([inc.lat, inc.lng], { icon })
-          .addTo(map)
-          .on('click', () => setSelected(inc))
-      })
+      markerLayerRef.current = L.layerGroup().addTo(map)
 
       mapInstanceRef.current = map
+      setMapReady(true)
     })
 
     return () => {
       cancelled = true
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
+      markerLayerRef.current = null
+      setMapReady(false)
     }
   }, [])
+
+  // Draw incident markers whenever backend data arrives.
+  useEffect(() => {
+    const map = mapInstanceRef.current
+    const markerLayer = markerLayerRef.current
+    const L = leafletRef.current
+
+    if (!mapReady || !map || !markerLayer || !L) return
+
+    markerLayer.clearLayers()
+
+    incidents.forEach((inc) => {
+      const icon = L.divIcon({
+        className: '',
+        html: `<div style="
+          width:14px;height:14px;border-radius:9999px;
+          background:${inc.color};border:2px solid white;
+          box-shadow:0 0 0 4px ${inc.color}44;
+        "></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      })
+
+      L.marker([inc.lat, inc.lng], { icon })
+        .addTo(markerLayer)
+        .on('click', () => setSelected(inc))
+    })
+  }, [incidents, mapReady])
 
   // ── Go to current location ────────────────────────────────
   const goToMyLocation = () => {
@@ -192,6 +214,11 @@ export default function Monitor() {
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     )
+  }
+
+  const downloadSelectedReport = () => {
+    if (!selected) return
+    window.location.href = apiUrl(`/reports/${selected.id}/pdf`)
   }
 
   return (
@@ -298,6 +325,13 @@ export default function Monitor() {
             </div>
           )}
 
+          {/* API error badge */}
+          {apiError && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-1000 bg-red-600 text-white text-xs px-4 py-2 rounded-xl shadow-lg max-w-xs text-center">
+              {apiError}
+            </div>
+          )}
+
           <div ref={mapRef} className="w-full h-full z-0" />
         </div>
 
@@ -315,6 +349,24 @@ export default function Monitor() {
               <button className="text-slate-400 text-lg">···</button>
             </div>
 
+            {loading && (
+              <div className={`rounded-2xl border p-5 text-sm ${
+                darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-slate-50 text-slate-500'
+              }`}>
+                Loading live detections...
+              </div>
+            )}
+
+            {!loading && !selected && (
+              <div className={`rounded-2xl border p-5 text-sm ${
+                darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-slate-50 text-slate-500'
+              }`}>
+                No active incidents available.
+              </div>
+            )}
+
+            {selected && (
+            <>
             <div className={`rounded-2xl border p-5 ${
               darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'
             }`}>
@@ -322,7 +374,7 @@ export default function Monitor() {
                 <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md bg-red-100 text-red-600">
                   {selected.severity === 'critical' ? 'Critical Alert' : 'High Alert'}
                 </span>
-                <span className="text-xs text-slate-400">{selected.time}</span>
+                <span className="text-xs text-slate-400">{selected.timeAgo || selected.time}</span>
               </div>
               <p className="text-lg font-bold">Illegal {selected.type} Detected</p>
               <p className="text-sm text-slate-500 mt-1">{selected.hectares} hectares affected</p>
@@ -365,12 +417,16 @@ export default function Monitor() {
                 ⚡ Escalate to Local Authorities
                 </Link>
               </button>
-              <button className={`w-full rounded-2xl border text-sm font-medium py-4 transition ${
+              <button
+                onClick={downloadSelectedReport}
+                className={`w-full rounded-2xl border text-sm font-medium py-4 transition ${
                 darkMode ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-800 hover:bg-slate-50'
               }`}>
                 Download Incident Report (PDF)
               </button>
             </div>
+            </>
+            )}
 
             <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 text-center pt-2">
               System: Online

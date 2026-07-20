@@ -1,154 +1,49 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-
-// Extended historical data with timestamps
-const HISTORY_DATA = [
-  {
-    id: 1,
-    type: 'Mining',
-    severity: 'critical',
-    hectares: 4.6,
-    confidence: 94.2,
-    date: '2024-01-18',
-    time: '14:32',
-    resolved: '2024-01-19',
-    status: 'Escalated',
-    coords: '5.8200° N, 2.1200° W',
-    notes: 'Illegal mining operation detected and reported to authorities.',
-  },
-  {
-    id: 2,
-    type: 'Deforestation',
-    severity: 'high',
-    hectares: 2.1,
-    confidence: 88.7,
-    date: '2024-01-18',
-    time: '14:00',
-    resolved: '2024-01-18',
-    status: 'Reported',
-    coords: '5.7800° N, 2.0900° W',
-    notes: 'Unauthorized forest clearing in protected area.',
-  },
-  {
-    id: 3,
-    type: 'Mining',
-    severity: 'high',
-    hectares: 1.8,
-    confidence: 91.3,
-    date: '2024-01-17',
-    time: '09:15',
-    resolved: '2024-01-17',
-    status: 'Reported',
-    coords: '5.8500° N, 2.0500° W',
-    notes: 'Small-scale mining detected near river.',
-  },
-  {
-    id: 4,
-    type: 'Deforestation',
-    severity: 'medium',
-    hectares: 0.9,
-    confidence: 76.5,
-    date: '2024-01-16',
-    time: '16:45',
-    resolved: '2024-01-20',
-    status: 'Monitoring',
-    coords: '5.7500° N, 2.1500° W',
-    notes: 'Low-level tree cutting, under observation.',
-  },
-  {
-    id: 5,
-    type: 'Mining',
-    severity: 'critical',
-    hectares: 5.2,
-    confidence: 96.1,
-    date: '2024-01-15',
-    time: '11:22',
-    resolved: '2024-01-16',
-    status: 'Escalated',
-    coords: '5.8800° N, 2.0800° W',
-    notes: 'Major mining operation with significant environmental impact.',
-  },
-  {
-    id: 6,
-    type: 'Deforestation',
-    severity: 'high',
-    hectares: 3.4,
-    confidence: 89.9,
-    date: '2024-01-14',
-    time: '13:01',
-    resolved: '2024-01-15',
-    status: 'Reported',
-    coords: '5.8000° N, 2.1000° W',
-    notes: 'Large-scale forest clearance detected.',
-  },
-  {
-    id: 7,
-    type: 'Mining',
-    severity: 'high',
-    hectares: 2.3,
-    confidence: 87.4,
-    date: '2024-01-13',
-    time: '10:30',
-    resolved: '2024-01-14',
-    status: 'Monitoring',
-    coords: '5.7900° N, 2.1100° W',
-    notes: 'Active mining site with ongoing operations.',
-  },
-  {
-    id: 8,
-    type: 'Deforestation',
-    severity: 'medium',
-    hectares: 1.5,
-    confidence: 79.2,
-    date: '2024-01-12',
-    time: '15:18',
-    resolved: '2024-01-18',
-    status: 'Monitoring',
-    coords: '5.8300° N, 2.0700° W',
-    notes: 'Minimal deforestation, likely agricultural clearance.',
-  },
-  {
-    id: 9,
-    type: 'Mining',
-    severity: 'medium',
-    hectares: 1.2,
-    confidence: 82.1,
-    date: '2024-01-11',
-    time: '08:45',
-    resolved: '2024-01-12',
-    status: 'Reported',
-    coords: '5.7700° N, 2.1300° W',
-    notes: 'Small mining activity detected.',
-  },
-  {
-    id: 10,
-    type: 'Deforestation',
-    severity: 'critical',
-    hectares: 6.8,
-    confidence: 95.3,
-    date: '2024-01-10',
-    time: '12:00',
-    resolved: '2024-01-11',
-    status: 'Escalated',
-    coords: '5.8600° N, 2.0600° W',
-    notes: 'Massive deforestation event requiring immediate intervention.',
-  },
-]
+import { apiUrl, fetchJson } from '@/lib/api'
 
 export default function History() {
+  const [historyData, setHistoryData] = useState([])
   const [darkMode, setDarkMode] = useState(false)
   const [typeFilter, setTypeFilter] = useState('all')
   const [severityFilter, setSeverityFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('all')
   const [sortBy, setSortBy] = useState('date-desc')
   const [viewMode, setViewMode] = useState('timeline') // timeline or list
+  const [loading, setLoading] = useState(true)
+  const [apiError, setApiError] = useState(null)
+
+  // Load historical incidents from the Express backend.
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadHistory() {
+      try {
+        const data = await fetchJson('/incidents')
+        if (cancelled) return
+        setHistoryData(data)
+        setApiError(null)
+      } catch (error) {
+        if (cancelled) return
+        setApiError(error.message)
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    loadHistory()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   // Filter and sort logic
   const filteredHistory = useMemo(() => {
-    let filtered = HISTORY_DATA
+    let filtered = [...historyData]
 
     if (typeFilter !== 'all') {
       filtered = filtered.filter(inc => inc.type === typeFilter)
@@ -172,7 +67,7 @@ export default function History() {
     })
 
     return filtered
-  }, [typeFilter, severityFilter, statusFilter, sortBy])
+  }, [historyData, typeFilter, severityFilter, statusFilter, sortBy])
 
   // Statistics
   const stats = useMemo(() => {
@@ -220,7 +115,7 @@ export default function History() {
 
     const downloadReport = () => {
     const link = document.createElement("a");
-    link.href = "/historical-report.pdf";   // file location
+    link.href = apiUrl("/reports/latest/pdf");   // backend generated report
     link.download = "historical-report.pdf";
     link.click();
   };
@@ -265,6 +160,9 @@ export default function History() {
           <p className={`text-sm ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>
             Review historical detections, track patterns, and analyze environmental changes over time
           </p>
+          {apiError && (
+            <p className="mt-3 text-sm text-red-600">{apiError}</p>
+          )}
         </div>
 
         {/* Statistics Grid */}
@@ -415,6 +313,20 @@ export default function History() {
         {/* Timeline View */}
         {viewMode === 'timeline' && (
           <div className="space-y-6 mb-8">
+            {loading && (
+              <div className={`rounded-2xl border p-6 text-sm ${
+                darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-white text-slate-500'
+              }`}>
+                Loading history from API...
+              </div>
+            )}
+            {!loading && filteredHistory.length === 0 && (
+              <div className={`rounded-2xl border p-6 text-sm ${
+                darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-white text-slate-500'
+              }`}>
+                No historical incidents match the selected filters.
+              </div>
+            )}
             {filteredHistory.map((incident, idx) => (
               <div key={incident.id} className={`rounded-2xl border p-6 ${
                 darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-white'
@@ -500,6 +412,20 @@ export default function History() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/10">
+                  {loading && (
+                    <tr>
+                      <td colSpan={7} className="px-6 py-8 text-center text-slate-500">
+                        Loading history from API...
+                      </td>
+                    </tr>
+                  )}
+                  {!loading && filteredHistory.length === 0 && (
+                    <tr>
+                      <td colSpan={7} className="px-6 py-8 text-center text-slate-500">
+                        No historical incidents match the selected filters.
+                      </td>
+                    </tr>
+                  )}
                   {filteredHistory.map((incident) => (
                     <tr key={incident.id} className={`hover:bg-white/5 transition ${
                       darkMode ? 'border-white/5' : 'border-slate-100'

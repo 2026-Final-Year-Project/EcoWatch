@@ -1,7 +1,7 @@
 // Import the configured Express application.
 import app from "./app.js";
 
-// Read the API port from the environment and fall back to the local dev port.
+// Read the API port from the environment and fall back to port 5000.
 const port = process.env.PORT || 5000;
 
 // Start the HTTP server for the EcoWatch API.

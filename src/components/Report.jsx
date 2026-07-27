@@ -3,8 +3,9 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { apiUrl, fetchJson } from '@/lib/api'
+import { fetchJson } from '@/lib/api'
 import { createIncidentCsvFilename, incidentsToCsv } from '@/utils/csv'
+import { buildIncidentReportPdf, createIncidentReportFilename } from '@/utils/incidentReportPdf'
 import { useTheme } from './ThemeProvider'
 
 export default function Reports() {
@@ -120,6 +121,12 @@ export default function Reports() {
     link.click()
     link.remove()
     URL.revokeObjectURL(downloadUrl)
+  }
+
+  const exportIncidentReport = () => {
+    const generatedAt = new Date()
+    const pdf = buildIncidentReportPdf(filteredIncidents, generatedAt)
+    pdf.save(createIncidentReportFilename(generatedAt))
   }
 
   return (
@@ -398,12 +405,14 @@ export default function Reports() {
             >
               📥 Export CSV
             </button>
-           <a
-                href={apiUrl('/reports/latest/pdf')}
-                className="inline-flex items-center px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition"
-              >
+            <button
+              type="button"
+              onClick={exportIncidentReport}
+              disabled={loading}
+              className="inline-flex items-center px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition disabled:cursor-not-allowed disabled:opacity-50"
+            >
               📄 Generate Report (PDF)
-            </a>
+            </button>
           </div>
         </div>
 

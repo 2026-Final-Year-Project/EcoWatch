@@ -3,7 +3,12 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { apiUrl, fetchJson } from '@/lib/api'
+import { fetchJson } from '@/lib/api'
+import {
+  buildHistoryAnalyticsPdf,
+  createHistoricalReportFilename,
+  createHistoryAnalyticsFilename,
+} from '@/utils/historyAnalyticsPdf'
 import { useTheme } from './ThemeProvider'
 
 export default function History() {
@@ -114,12 +119,21 @@ export default function History() {
     return icons[status] || '•'
   }
 
-    const downloadReport = () => {
-    const link = document.createElement("a");
-    link.href = apiUrl("/reports/latest/pdf");   // backend generated report
-    link.download = "historical-report.pdf";
-    link.click();
-  };
+  const exportAnalytics = () => {
+    const generatedAt = new Date()
+    const pdf = buildHistoryAnalyticsPdf(filteredHistory, generatedAt)
+    pdf.save(createHistoryAnalyticsFilename(generatedAt))
+  }
+
+  const downloadReport = () => {
+    const generatedAt = new Date()
+    const pdf = buildHistoryAnalyticsPdf(
+      filteredHistory,
+      generatedAt,
+      'EcoWatch Historical Incident Report'
+    )
+    pdf.save(createHistoricalReportFilename(generatedAt))
+  }
 
   return (
     <div className={`min-h-screen font-sans transition-colors duration-300 ${
@@ -473,18 +487,24 @@ export default function History() {
             Showing <span className="font-semibold">{filteredHistory.length}</span> incidents from history
           </p>
           <div className="flex gap-3">
-            <button className={`px-4 py-2 rounded-lg border text-sm font-medium transition ${
+            <button
+              type="button"
+              onClick={exportAnalytics}
+              disabled={loading}
+              className={`px-4 py-2 rounded-lg border text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50 ${
               darkMode 
                 ? 'border-white/20 text-white hover:bg-white/10' 
                 : 'border-slate-200 text-slate-800 hover:bg-slate-50'
             }`}
-            
             >
               📊 Export Analytics
-            </button >
-            <button 
-             onClick={() => downloadReport()}
-            className="px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition">
+            </button>
+            <button
+              type="button"
+              onClick={downloadReport}
+              disabled={loading}
+              className="px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition disabled:cursor-not-allowed disabled:opacity-50"
+            >
               📥 Download Historical Report
             </button>
           </div>

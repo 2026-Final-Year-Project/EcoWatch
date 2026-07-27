@@ -1,0 +1,366 @@
+ECOWATCH PROJECT WORKFLOW AND BACKEND AUDIT LOG
+Generated: 2026-07-26 (Africa/Accra)
+Workspace: /Users/kelvinankamahadjei/Downloads/EcoWatch
+
+========================================================================
+1. EXECUTIVE STATUS
+========================================================================
+
+Frontend:
+- Next.js 16.2.4 App Router application using React 19.2.4 and Tailwind CSS 4.
+- Production build passes.
+- Public routes are statically prerendered.
+- Dark mode now uses one root-level provider instead of disconnected page state.
+- Theme selection persists in localStorage under "ecowatch-theme".
+- Theme follows the operating-system preference when no saved choice exists.
+- The same theme is used by /, /monitor, /report, /history, /printable,
+  and the legacy redirect routes under /pages/*.
+- Printable content follows dark mode on screen but is forced to white/black
+  for printing and PDF readability.
+
+Backend:
+- Express 4.19.2 JSON API with CORS and JSON request parsing.
+- API modules cover health, authentication, authorities, incidents, reports,
+  generated PDF downloads, and aggregate statistics.
+- Runtime endpoint verification passed on port 5050.
+- Data is in-memory seed data. It is not persisted to a database or disk.
+- Creating/updating an incident lasts only until the backend process restarts.
+
+Important integration finding:
+- Port 5000 on this development machine is owned by macOS AirTunes and returns
+  HTTP 403 with "Server: AirTunes/925.5.1".
+- EcoWatch was therefore moved to port 5050 by default in both backend/src/server.js
+  and src/lib/api.js.
+- NEXT_PUBLIC_API_BASE_URL and PORT can still override the defaults.
+
+========================================================================
+2. HOW TO RUN THE COMPLETE PROJECT
+========================================================================
+
+Terminal 1 - backend:
+  cd /Users/kelvinankamahadjei/Downloads/EcoWatch/backend
+  npm start
+
+Expected backend address:
+  http://localhost:5050
+
+Terminal 2 - frontend:
+  cd /Users/kelvinankamahadjei/Downloads/EcoWatch
+  npm run dev
+
+Expected frontend address:
+  http://localhost:3000
+
+Optional environment configuration:
+  Backend PORT:                 PORT=5050
+  Allowed frontend origin:     CLIENT_ORIGIN=http://localhost:3000
+  Token signing secret:        AUTH_SECRET=<strong-secret>
+  Frontend API base:           NEXT_PUBLIC_API_BASE_URL=http://localhost:5050/api
+
+========================================================================
+3. FRONTEND ROUTING WORKFLOW
+========================================================================
+
+Request /
+  -> src/app/layout.js creates the root HTML/body.
+  -> ThemeProvider wraps the full route tree.
+  -> src/app/page.js renders Navbar, Hero, and Footer.
+  -> Navbar provides the global theme control and links to /monitor.
+
+Request /monitor
+  -> src/app/monitor/page.jsx renders the Monitor client component.
+  -> Monitor requests GET /api/incidents/live.
+  -> Leaflet is dynamically imported in the browser.
+  -> Esri satellite tiles are loaded into the map.
+  -> Incident coordinates are rendered as clickable markers.
+  -> Selecting a marker shows incident details.
+  -> "Download report" navigates to GET /api/reports/:id/pdf.
+  -> Browser geolocation can add a temporary user marker.
+
+Request /report
+  -> src/app/report/page.jsx renders the Report client component.
+  -> Report requests GET /api/incidents.
+  -> Filtering and sorting occur in the browser.
+  -> Statistics shown on this page are calculated from the filtered list.
+  -> A report PDF action navigates to GET /api/reports/:id/pdf.
+
+Request /history
+  -> src/app/history/page.jsx renders the History client component.
+  -> History requests GET /api/incidents.
+  -> Timeline/list filtering and sorting occur in the browser.
+  -> Historical summary values are derived from the returned incident list.
+
+Request /printable
+  -> PrintableReport concurrently requests:
+       GET /api/reports/latest
+       GET /api/authorities
+  -> The page displays the latest derived report.
+  -> GeneratePdfButton downloads GET /api/reports/latest/pdf.
+  -> Screen styling follows the selected theme.
+  -> Print media styling always uses a white paper background and dark text.
+
+Legacy routes:
+  /pages/Monitor -> redirects to /monitor
+  /pages/Report  -> redirects to /report
+  /pages/History -> redirects to /history
+
+========================================================================
+4. GLOBAL DARK-MODE WORKFLOW
+========================================================================
+
+Components:
+  src/components/ThemeProvider.jsx
+  src/components/ThemeToggle.jsx
+  src/app/globals.css
+
+On initial load:
+  1. ThemeProvider checks localStorage for "ecowatch-theme".
+  2. If no saved value exists, it checks prefers-color-scheme.
+  3. It applies/removes the "dark" class on the root <html> element.
+  4. It sets the browser color-scheme to dark or light.
+
+When the user toggles:
+  1. Shared React theme state changes.
+  2. Every active page/component receives the same darkMode value.
+  3. The root CSS class and native control color scheme update.
+  4. The selection is stored as "dark" or "light".
+  5. Client-side navigation retains the selection.
+  6. A later browser visit restores the selection.
+
+Theme surface coverage:
+  - Root body background and foreground
+  - Landing navigation and hero typography/borders
+  - Monitor header, controls, detail panel, and Leaflet zoom controls
+  - Reports header, cards, filters, table, and paging controls
+  - History header, cards, filters, timeline/table, and paging controls
+  - Printable page screen and print-specific color reset
+
+========================================================================
+5. BACKEND REQUEST PIPELINE
+========================================================================
+
+Every request enters backend/src/app.js:
+  1. CORS accepts CLIENT_ORIGIN (default http://localhost:3000).
+  2. express.json() parses JSON request bodies.
+  3. The request is routed under /api.
+  4. Validation/auth middleware runs where configured.
+  5. A controller translates HTTP input/output.
+  6. A service performs incident/auth/report logic.
+  7. Model helpers normalize response objects.
+  8. errorHandler returns a JSON error for thrown failures.
+
+Read workflow:
+  Browser -> route -> controller -> service -> in-memory seed array -> JSON response.
+
+Protected write workflow:
+  POST /api/auth/login
+  -> required email/password validation
+  -> authService compares demo credentials
+  -> signed 8-hour HMAC token returned
+  -> client sends Authorization: Bearer <token>
+  -> requireAuth verifies signature and expiry
+  -> requireRole allows "admin" or "authority"
+  -> requireFields validates the mutation body
+  -> incidentService mutates the in-memory array
+  -> controller returns the created/updated incident
+
+PDF workflow:
+  GET /api/reports/:id/pdf
+  -> incidentService finds the incident
+  -> Report model derives printable fields
+  -> reportPdfService creates a one-page PDF buffer
+  -> response uses Content-Type application/pdf
+  -> response uses attachment Content-Disposition
+
+========================================================================
+6. API ROUTE INVENTORY
+========================================================================
+
+GET  /api/health
+  Public. Returns service health.
+
+POST /api/auth/login
+  Public. Requires email and password.
+  Returns a signed token plus a safe user profile.
+
+GET  /api/authorities
+  Public. Returns escalation authority objects.
+
+GET  /api/incidents
+  Public. Optional query filters: type, severity, status.
+  Returns newest-first incident data.
+
+GET  /api/incidents/live
+  Public. Returns the first two newest incidents for the map.
+
+GET  /api/incidents/:id
+  Public. Returns one incident or HTTP 404.
+
+POST /api/incidents
+  Protected. Roles: admin, authority.
+  Required fields: type, lat, lng.
+  Creates an in-memory incident and returns HTTP 201.
+
+PATCH /api/incidents/:id/status
+  Protected. Roles: admin, authority.
+  Required field: status.
+  Updates an in-memory incident or returns HTTP 404.
+
+GET  /api/reports
+  Public. Derives report summaries from all incidents.
+
+GET  /api/reports/latest
+  Public. Derives a report from the newest incident.
+
+GET  /api/reports/:id
+  Public. Derives one report from an incident ID.
+
+GET  /api/reports/latest/pdf
+  Public. Downloads the newest report as a PDF.
+
+GET  /api/reports/:id/pdf
+  Public. Downloads one incident report as a PDF.
+
+GET  /api/stats
+  Public. Returns total incidents, critical count, affected hectares,
+  and average detection confidence.
+
+========================================================================
+7. VERIFIED BACKEND RESULTS (2026-07-26)
+========================================================================
+
+Runtime used:
+  PORT=5050 npm start
+
+GET /api/health:
+  PASS
+  {"status":"ok","service":"ecowatch-api"}
+
+GET /api/incidents/live:
+  PASS
+  Returned 2 current live-map incidents with numeric lat/lng, severity,
+  status, color, notes, recommendations, authorities, and timeAgo.
+
+GET /api/stats:
+  PASS
+  total=10
+  critical=3
+  totalHectares=29.8
+  avgConfidence=88.1
+
+GET /api/reports/latest:
+  PASS
+  Latest report ID=REP-001
+  Source incident ID=1
+  Type/title=Mining Incident
+  Status=Escalated
+
+POST /api/auth/login using the documented admin demo account:
+  PASS
+  Returned a signed token and user role "admin".
+  The token value is intentionally omitted from this stored log.
+
+Static backend syntax checks:
+  PASS
+  app.js, server.js, incidentService.js, and authService.js parse successfully.
+
+========================================================================
+8. BUILD AND QUALITY CHECKS
+========================================================================
+
+npm run build:
+  PASS
+  Next.js production compilation completed.
+  11 static pages were generated.
+
+Routes reported by the build:
+  /
+  /_not-found
+  /history
+  /monitor
+  /pages/History
+  /pages/Monitor
+  /pages/Report
+  /printable
+  /report
+
+npm run lint:
+  PASS
+  Initial check identified one React effect-state warning in ThemeProvider.
+  The initialization was changed to schedule the browser-derived state update,
+  and the final lint run completed with no errors or warnings.
+
+Automated backend tests:
+  No backend test framework or test suite currently exists.
+  Endpoint smoke testing and Node syntax checking were used for this audit.
+
+========================================================================
+9. CURRENT RISKS AND LIMITATIONS
+========================================================================
+
+Persistence:
+- backend/src/config/db.js explicitly reports mode "json-seed".
+- There is no MongoDB/PostgreSQL/file adapter.
+- All mutations disappear when the Node process exits.
+
+Authentication:
+- Demo passwords are stored as plain text in backend/src/data/users.js.
+- AUTH_SECRET has a hard-coded development fallback.
+- The custom token is HMAC-signed but is not a standard JWT.
+- Login has no rate limiting or account lockout.
+- Production must use hashed passwords, a strong external secret, HTTPS,
+  rate limiting, and preferably a mature authentication library.
+
+Authorization:
+- Incident creation and status mutation are protected.
+- Read endpoints and PDF downloads are public.
+- Confirm whether environmental reports should be public before production.
+
+Validation:
+- requireFields checks only presence, not allowed values, ranges, or types.
+- Latitude/longitude, severity, status, confidence, and hectares need schema
+  validation before accepting untrusted production input.
+
+PDF output:
+- The PDF generator uses compact hand-built PDF syntax.
+- Long descriptions do not wrap or paginate.
+- Unicode and complex formatting support are limited.
+
+Frontend data behavior:
+- Report/history filtering is client-side after downloading all incidents.
+- The Report dateRange state is displayed as a control but is not currently
+  applied to filteredIncidents.
+- The frontend does not currently expose login, incident creation, or status
+  update flows, although the backend supports them.
+- Live incidents are defined as the newest two items, not by an explicit
+  active/resolved rule.
+
+Operations:
+- There is no request logger, structured application logging, health dependency
+  check, automated backend test suite, or production deployment configuration.
+- CORS permits one configured origin only, which is appropriate for local use
+  but must be configured for each deployed frontend.
+
+========================================================================
+10. RECOMMENDED NEXT WORK
+========================================================================
+
+Priority 1:
+- Add PostgreSQL or MongoDB persistence and migrations/seed scripts.
+- Hash passwords and remove demo credentials from production.
+- Set AUTH_SECRET through environment management.
+- Add schema validation for all mutation payloads.
+
+Priority 2:
+- Add backend integration tests for success, validation, authentication,
+  authorization, not-found, filtering, and PDF response headers.
+- Add structured HTTP request logging with request IDs and redaction.
+- Implement frontend login and protected mutation workflows.
+
+Priority 3:
+- Move large report/history filtering to API query parameters.
+- Make dateRange functional.
+- Define live incidents using explicit lifecycle state.
+- Replace the minimal PDF writer with a wrapping/pagination-capable renderer.
+
+END OF LOG

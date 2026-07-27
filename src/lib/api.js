@@ -1,5 +1,5 @@
 // Centralize the backend URL so every frontend fetch uses the same API base.
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000/api";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5050/api";
 
 // Fetch JSON from the Express API and throw useful errors for the UI.
 export async function fetchJson(path, options = {}) {

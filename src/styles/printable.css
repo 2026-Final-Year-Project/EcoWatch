@@ -12,6 +12,12 @@
 
 }
 
+.dark #report {
+    background:#17220f;
+    color:#f4f7ef;
+    border-color:rgba(255,255,255,0.15);
+}
+
 h1{
 
     text-align:center;
@@ -22,4 +28,13 @@ h2{
 
     margin-top:30px;
 
+}
+
+@media print {
+    #report,
+    .dark #report {
+        background:white;
+        color:#171717;
+        border-color:#ddd;
+    }
 }

@@ -10,7 +10,8 @@ npm install
 npm run dev
 ```
 
-The API runs on `http://localhost:5000` by default.
+The API runs on `http://localhost:5050` by default. Override it with the `PORT`
+environment variable when needed.
 
 ## Demo Accounts
 

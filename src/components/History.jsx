@@ -4,10 +4,11 @@ import React, { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { apiUrl, fetchJson } from '@/lib/api'
+import { useTheme } from './ThemeProvider'
 
 export default function History() {
   const [historyData, setHistoryData] = useState([])
-  const [darkMode, setDarkMode] = useState(false)
+  const { darkMode, toggleTheme } = useTheme()
   const [typeFilter, setTypeFilter] = useState('all')
   const [severityFilter, setSeverityFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('all')
@@ -145,7 +146,7 @@ export default function History() {
 
         <div className="flex items-center gap-4">
           <button className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>🔍</button>
-          <button onClick={() => setDarkMode(!darkMode)} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
+          <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
             {darkMode ? '☀️' : '🌙'}
           </button>
         </div>

@@ -4,10 +4,12 @@ import React, { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { apiUrl, fetchJson } from '@/lib/api'
+import { createIncidentCsvFilename, incidentsToCsv } from '@/utils/csv'
+import { useTheme } from './ThemeProvider'
 
 export default function Reports() {
   const [incidents, setIncidents] = useState([])
-  const [darkMode, setDarkMode] = useState(false)
+  const { darkMode, toggleTheme } = useTheme()
   const [typeFilter, setTypeFilter] = useState('all')
   const [severityFilter, setSeverityFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('all')
@@ -106,6 +108,20 @@ export default function Reports() {
     return colors[status] || 'bg-slate-50 text-slate-600'
   }
 
+  const exportCsv = () => {
+    const csv = incidentsToCsv(filteredIncidents)
+    const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8' })
+    const downloadUrl = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+
+    link.href = downloadUrl
+    link.download = createIncidentCsvFilename()
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    URL.revokeObjectURL(downloadUrl)
+  }
+
   return (
     <div className={`min-h-screen font-sans transition-colors duration-300 ${
       darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-[#f6f7f1] text-slate-900'
@@ -131,7 +147,7 @@ export default function Reports() {
 
         <div className="flex items-center gap-4">
           <button className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>🔍</button>
-          <button onClick={() => setDarkMode(!darkMode)} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
+          <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
             {darkMode ? '☀️' : '🌙'}
           </button>
         </div>
@@ -370,11 +386,16 @@ export default function Reports() {
             Showing <span className="font-semibold">{filteredIncidents.length}</span> incidents
           </p>
           <div className="flex gap-3">
-            <button className={`px-4 py-2 rounded-lg border text-sm font-medium transition ${
+            <button
+              type="button"
+              onClick={exportCsv}
+              disabled={loading}
+              className={`px-4 py-2 rounded-lg border text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50 ${
               darkMode 
                 ? 'border-white/20 text-white hover:bg-white/10' 
                 : 'border-slate-200 text-slate-800 hover:bg-slate-50'
-            }`}>
+            }`}
+            >
               📥 Export CSV
             </button>
            <a

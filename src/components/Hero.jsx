@@ -116,13 +116,13 @@ const Hero = () => {
   }, [])
 
   return (
-    <div ref={containerRef} className="w-full min-h-screen flex flex-col items-center justify-start pt-20">
+    <div ref={containerRef} className="w-full min-h-screen flex flex-col items-center justify-start pt-20 bg-[var(--background)] text-[var(--foreground)]">
 
       <h1 className="hero-title text-center font-serif font-light text-[clamp(3rem,10vw,10rem)] leading-none">
         Protect the planet.
       </h1>
 
-      <p className="hero-subtitle text-center text-lg mt-6 max-w-2xl px-3 text-gray-600">
+      <p className="hero-subtitle text-center text-lg mt-6 max-w-2xl px-3 text-gray-600 dark:text-slate-300">
         EcoWatch provides real-time environmental monitoring through satellite imagery and AI, empowering
         NGOs and governments to track illegal mining activities, deforestation, and locate wildfires
       </p>
@@ -153,12 +153,12 @@ const Hero = () => {
             { icon: '/Chart-icon.png', title: 'Real-time analytics', desc: 'Live data processing provides actionable insights within seconds of satellite transmission' },
           ].map((item, i) => (
             <div key={i} className="benefit-card flex flex-col gap-4">
-              <div className="w-full border-t border-gray-200" />
+              <div className="w-full border-t border-gray-200 dark:border-white/15" />
               <div className="mt-2">
                 <Image src={item.icon} alt={item.title} width={24} height={24} className="object-contain" />
               </div>
-              <h3 className="text-base font-medium text-gray-900">{item.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+              <h3 className="text-base font-medium text-gray-900 dark:text-slate-100">{item.title}</h3>
+              <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -169,8 +169,8 @@ const Hero = () => {
 
       {/* How it works */}
       <div id="solution" className="w-full max-w-6xl px-6 mt-32 scroll-mt-24">
-        <h2 className="text-4xl font-serif font-light text-gray-900 mb-16">How it works</h2>
-        <div className="w-full border-t border-gray-200 mb-12" />
+        <h2 className="text-4xl font-serif font-light text-gray-900 dark:text-slate-100 mb-16">How it works</h2>
+        <div className="w-full border-t border-gray-200 dark:border-white/15 mb-12" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
           {[
             { number: '01', title: 'Setup', desc: "With our intuitive setup, you're up and running in minutes." },
@@ -178,10 +178,10 @@ const Hero = () => {
             { number: '03', title: 'Act', desc: 'Deploy resources with precision based on verified, real-time ground intelligence' },
           ].map((step, i) => (
             <div key={i} className="step-card flex flex-col gap-6">
-              <span className="text-7xl font-light leading-none" style={{ color: '#c8c8c8' }}>{step.number}</span>
+              <span className="text-7xl font-light leading-none text-[#c8c8c8] dark:text-white/25">{step.number}</span>
               <div className="flex flex-col gap-2">
-                <h3 className="text-sm font-semibold text-gray-900">{step.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-slate-100">{step.title}</h3>
+                <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed">{step.desc}</p>
               </div>
             </div>
           ))}
@@ -192,8 +192,8 @@ const Hero = () => {
       </div>
 
       {/* CTA */}
-      <div id="get-started" className="cta-section w-full mt-32 border-t border-b border-gray-200 py-20 flex flex-col items-center gap-8 scroll-mt-24">
-        <h2 className="text-5xl font-serif font-light text-gray-900">Get started here</h2>
+      <div id="get-started" className="cta-section w-full mt-32 border-t border-b border-gray-200 dark:border-white/15 py-20 flex flex-col items-center gap-8 scroll-mt-24">
+        <h2 className="text-5xl font-serif font-light text-gray-900 dark:text-slate-100">Get started here</h2>
         <Link href="/monitor" className="w-full max-w-xl text-center py-4 text-white text-sm font-medium rounded-full" style={{ backgroundColor: '#4a5e1a' }}>
           Get started ↗
         </Link>

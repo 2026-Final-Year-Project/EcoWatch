@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import 'leaflet/dist/leaflet.css'
 import { apiUrl, fetchJson } from '@/lib/api'
+import { useTheme } from './ThemeProvider'
 
 export default function Monitor() {
   const mapRef         = useRef(null)
@@ -15,7 +16,7 @@ export default function Monitor() {
 
   const [incidents,   setIncidents]   = useState([])
   const [selected,    setSelected]    = useState(null)
-  const [darkMode,    setDarkMode]    = useState(false)
+  const { darkMode, toggleTheme } = useTheme()
   const [locating,    setLocating]    = useState(false)
   const [locError,    setLocError]    = useState(null)
   const [userCoords,  setUserCoords]  = useState(null)
@@ -246,7 +247,7 @@ export default function Monitor() {
 
         <div className="flex items-center gap-4">
           <button className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>🔍</button>
-          <button onClick={() => setDarkMode(!darkMode)} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
+          <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
             {darkMode ? '☀️' : '🌙'}
           </button>
         </div>

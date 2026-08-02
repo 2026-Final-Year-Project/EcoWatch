@@ -6,6 +6,7 @@ import Image from 'next/image'
 import 'leaflet/dist/leaflet.css'
 import { apiUrl, fetchJson } from '@/lib/api'
 import { useTheme } from './ThemeProvider'
+import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
 export default function Monitor() {
   const mapRef         = useRef(null)
@@ -246,9 +247,9 @@ export default function Monitor() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>🔍</button>
-          <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
-            {darkMode ? '☀️' : '🌙'}
+          <button type="button" aria-label="Search" className={darkMode ? 'text-white/60' : 'text-slate-400'}><SearchIcon /></button>
+          <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={darkMode ? 'text-white/60' : 'text-slate-400'}>
+            {darkMode ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
       </header>

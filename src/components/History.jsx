@@ -10,6 +10,7 @@ import {
   createHistoryAnalyticsFilename,
 } from '@/utils/historyAnalyticsPdf'
 import { useTheme } from './ThemeProvider'
+import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
 export default function History() {
   const [historyData, setHistoryData] = useState([])
@@ -159,9 +160,9 @@ export default function History() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>🔍</button>
-          <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={`text-lg ${darkMode ? 'text-white/60' : 'text-slate-400'}`}>
-            {darkMode ? '☀️' : '🌙'}
+          <button type="button" aria-label="Search" className={darkMode ? 'text-white/60' : 'text-slate-400'}><SearchIcon /></button>
+          <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={darkMode ? 'text-white/60' : 'text-slate-400'}>
+            {darkMode ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
       </header>

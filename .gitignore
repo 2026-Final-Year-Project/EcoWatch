@@ -37,6 +37,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Local community account records contain password hashes and must not be committed.
+/backend/data/community-users.json
+/backend/data/prediction-history.json
+
 # vercel
 .vercel
 

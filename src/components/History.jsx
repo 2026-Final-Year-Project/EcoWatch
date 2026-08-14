@@ -1,130 +1,61 @@
 'use client'
 
-import React, { useEffect, useState, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { fetchJson } from '@/lib/api'
-import {
-  buildHistoryAnalyticsPdf,
-  createHistoricalReportFilename,
-  createHistoryAnalyticsFilename,
-} from '@/utils/historyAnalyticsPdf'
+import { buildHistoryAnalyticsPdf, createHistoricalReportFilename, createHistoryAnalyticsFilename } from '@/utils/historyAnalyticsPdf'
 import { useTheme } from './ThemeProvider'
 import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
+const formatCoordinates = (latitude, longitude) => `${latitude.toFixed(5)}°, ${longitude.toFixed(5)}°`
+const formatProbability = value => `${(value * 100).toFixed(2)}%`
+const formatArea = value => `${(value / 10_000).toFixed(3)} ha`
+const sourceLabel = source => source === 'community-report' ? 'Community report' : 'Map analysis'
+
 export default function History() {
-  const [historyData, setHistoryData] = useState([])
   const { darkMode, toggleTheme } = useTheme()
-  const [typeFilter, setTypeFilter] = useState('all')
-  const [severityFilter, setSeverityFilter] = useState('all')
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [sortBy, setSortBy] = useState('date-desc')
-  const [viewMode, setViewMode] = useState('timeline') // timeline or list
+  const [runs, setRuns] = useState([])
+  const [resultFilter, setResultFilter] = useState('all')
+  const [sourceFilter, setSourceFilter] = useState('all')
+  const [sortBy, setSortBy] = useState('newest')
+  const [viewMode, setViewMode] = useState('timeline')
   const [loading, setLoading] = useState(true)
   const [apiError, setApiError] = useState(null)
 
-  // Load historical incidents from the Express backend.
   useEffect(() => {
     let cancelled = false
-
-    async function loadHistory() {
-      try {
-        const data = await fetchJson('/incidents')
-        if (cancelled) return
-        setHistoryData(data)
-        setApiError(null)
-      } catch (error) {
-        if (cancelled) return
-        setApiError(error.message)
-      } finally {
-        if (!cancelled) setLoading(false)
-      }
-    }
-
-    loadHistory()
-
-    return () => {
-      cancelled = true
-    }
+    fetchJson('/predictions/history')
+      .then(data => { if (!cancelled) { setRuns(data.runs || []); setApiError(null) } })
+      .catch(error => { if (!cancelled) setApiError(error.message) })
+      .finally(() => { if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
   }, [])
 
-  // Filter and sort logic
-  const filteredHistory = useMemo(() => {
-    let filtered = [...historyData]
-
-    if (typeFilter !== 'all') {
-      filtered = filtered.filter(inc => inc.type === typeFilter)
-    }
-    if (severityFilter !== 'all') {
-      filtered = filtered.filter(inc => inc.severity === severityFilter)
-    }
-    if (statusFilter !== 'all') {
-      filtered = filtered.filter(inc => inc.status === statusFilter)
-    }
-
-    // Sort
-    filtered.sort((a, b) => {
-      if (sortBy === 'date-desc') return new Date(b.date + ' ' + b.time) - new Date(a.date + ' ' + a.time)
-      if (sortBy === 'date-asc') return new Date(a.date + ' ' + a.time) - new Date(b.date + ' ' + b.time)
-      if (sortBy === 'severity') {
-        const order = { critical: 0, high: 1, medium: 2, low: 3 }
-        return order[a.severity] - order[b.severity]
-      }
-      return 0
-    })
-
+  const filteredRuns = useMemo(() => {
+    const filtered = runs.filter(run => (
+      (resultFilter === 'all' || (resultFilter === 'detected' ? run.miningDetected : !run.miningDetected))
+      && (sourceFilter === 'all' || run.source === sourceFilter)
+    ))
+    filtered.sort((left, right) => sortBy === 'oldest'
+      ? new Date(left.analysedAt) - new Date(right.analysedAt)
+      : new Date(right.analysedAt) - new Date(left.analysedAt))
     return filtered
-  }, [historyData, typeFilter, severityFilter, statusFilter, sortBy])
+  }, [runs, resultFilter, sourceFilter, sortBy])
 
-  // Statistics
-  const stats = useMemo(() => {
-    const total = filteredHistory.length
-    const critical = filteredHistory.filter(i => i.severity === 'critical').length
-    const totalHectares = filteredHistory.reduce((sum, i) => sum + i.hectares, 0)
-    
-    const byType = {}
-    const byStatus = {}
-    filteredHistory.forEach(inc => {
-      byType[inc.type] = (byType[inc.type] || 0) + 1
-      byStatus[inc.status] = (byStatus[inc.status] || 0) + 1
-    })
+  const stats = useMemo(() => ({
+    total: filteredRuns.length,
+    detected: filteredRuns.filter(run => run.miningDetected).length,
+    areaHectares: filteredRuns.reduce((total, run) => total + run.affectedAreaM2, 0) / 10_000,
+    community: filteredRuns.filter(run => run.source === 'community-report').length,
+  }), [filteredRuns])
 
-    return { total, critical, totalHectares, byType, byStatus }
-  }, [filteredHistory])
-
-  const getSeverityColor = (severity) => {
-    const colors = {
-      critical: 'bg-red-100 text-red-700 border-red-200',
-      high: 'bg-orange-100 text-orange-700 border-orange-200',
-      medium: 'bg-yellow-100 text-yellow-700 border-yellow-200',
-      low: 'bg-green-100 text-green-700 border-green-200',
-    }
-    return colors[severity] || colors.low
-  }
-
-  const getStatusColor = (status) => {
-    const colors = {
-      'Escalated': 'bg-red-50 text-red-600',
-      'Reported': 'bg-blue-50 text-blue-600',
-      'Monitoring': 'bg-amber-50 text-amber-600',
-    }
-    return colors[status] || 'bg-slate-50 text-slate-600'
-  }
-
-  const getStatusIcon = (status) => {
-    const icons = {
-      'Escalated': '⚠️',
-      'Reported': '📋',
-      'Monitoring': '👁️',
-    }
-    return icons[status] || '•'
-  }
-
-  const exportAnalytics = () => {
+  const exportPdf = (title, filename) => {
     const generatedAt = new Date()
-    const pdf = buildHistoryAnalyticsPdf(filteredHistory, generatedAt)
-    pdf.save(createHistoryAnalyticsFilename(generatedAt))
+    buildHistoryAnalyticsPdf(filteredRuns, generatedAt, title).save(filename(generatedAt))
   }
+  const panel = darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-white'
+  const input = darkMode ? 'border-white/20 bg-white/10 text-white' : 'border-slate-200 bg-white text-slate-900'
 
   const downloadReport = () => {
     const generatedAt = new Date()
@@ -515,3 +446,8 @@ export default function History() {
     </div>
   )
 }
+
+function ResultBadge({ run }) { return <span className={`inline-flex min-h-7 items-center justify-center whitespace-nowrap rounded-full px-3 py-1 text-center text-xs font-semibold leading-none ${run.miningDetected ? 'bg-red-100 text-red-700 ring-1 ring-inset ring-red-200' : 'bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-200'}`}>{run.miningDetected ? 'Mining signal detected' : 'No mining detected'}</span> }
+function RunCard({ run, darkMode }) { return <article className={`rounded-2xl border p-6 ${darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-white'}`}><div className="flex flex-col gap-4 sm:flex-row sm:justify-between"><div><p className="text-xs font-mono uppercase tracking-widest text-slate-400">{sourceLabel(run.source)}</p><h2 className="mt-2 text-lg font-semibold">{new Date(run.analysedAt).toLocaleString()}</h2><p className="mt-1 font-mono text-sm text-slate-500">{formatCoordinates(run.latitude, run.longitude)}</p></div><ResultBadge run={run} /></div><div className="mt-5 grid gap-4 sm:grid-cols-4"><Metric label="Average tile probability" value={formatProbability(run.meanProbability)} /><Metric label="Affected area" value={formatArea(run.affectedAreaM2)} /><Metric label="Largest region" value={`${run.largestComponentPixels} px`} /><Metric label="Model version" value={run.modelVersion} /></div><p className="mt-5 text-xs text-slate-500">Inference window: {run.dateStart && run.dateEnd ? `${run.dateStart} to ${run.dateEnd}` : 'Latest available satellite scene'} · Detection level: {run.detectionLevel}</p></article> }
+function Metric({ label, value }) { return <div><p className="text-xs text-slate-500">{label}</p><p className="mt-1 font-semibold">{value}</p></div> }
+function RunTable({ runs, darkMode }) { return <div className={`overflow-x-auto rounded-2xl border ${darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-white'}`}><table className="w-full text-left text-sm"><thead className="border-b border-slate-200/20 text-xs text-slate-500"><tr><th className="px-5 py-4">Analysed</th><th className="px-5 py-4">Source</th><th className="px-5 py-4">Result</th><th className="px-5 py-4">Area</th><th className="px-5 py-4">Probability</th><th className="px-5 py-4">Coordinates</th></tr></thead><tbody className="divide-y divide-slate-200/20">{runs.map(run => <tr key={run.id}><td className="px-5 py-4">{new Date(run.analysedAt).toLocaleString()}</td><td className="px-5 py-4">{sourceLabel(run.source)}</td><td className="px-5 py-4"><ResultBadge run={run} /></td><td className="px-5 py-4">{formatArea(run.affectedAreaM2)}</td><td className="px-5 py-4">{formatProbability(run.meanProbability)}</td><td className="px-5 py-4 font-mono text-xs">{formatCoordinates(run.latitude, run.longitude)}</td></tr>)}</tbody></table></div> }

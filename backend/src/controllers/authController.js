@@ -1,5 +1,5 @@
 // Import the auth service used to verify credentials.
-import { loginUser } from "../services/authService.js";
+import { loginUser, registerCommunityUser } from "../services/authService.js";
 
 // Handle admin and authority login requests.
 export function login(req, res) {
@@ -14,4 +14,13 @@ export function login(req, res) {
 
   // Return the signed token and safe user profile.
   return res.json(session);
+}
+
+export function register(req, res) {
+  try {
+    const session = registerCommunityUser(req.body.name, req.body.email, req.body.password);
+    return res.status(201).json(session);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
 }

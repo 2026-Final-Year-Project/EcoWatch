@@ -1,0 +1,1937 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.03803736440269,
+          6.433027282748969
+        ]
+      },
+      "properties": {
+        "id": "smallmines-test-03",
+        "name": "Mining demo site 1",
+        "source": "SmallMinesDS held-out test mask; verified by deployed Earth Engine inference",
+        "label": "Labelled artisanal/small-scale mining region",
+        "component_pixels": 10185,
+        "area_m2": 1018500,
+        "color": "#dc2626",
+        "image_file": "IMG_GH_1588_2022.tif",
+        "mask_file": "MASK_GH_1588_2022.tif",
+        "year": 2022,
+        "crs": "EPSG:32630"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.971870708677857,
+          6.085249464029162
+        ]
+      },
+      "properties": {
+        "id": "smallmines-test-09",
+        "name": "Mining demo site 2",
+        "source": "SmallMinesDS held-out test mask; verified by deployed Earth Engine inference",
+        "label": "Labelled artisanal/small-scale mining region",
+        "component_pixels": 6207,
+        "area_m2": 620700,
+        "color": "#dc2626",
+        "image_file": "IMG_GH_0239_2022.tif",
+        "mask_file": "MASK_GH_0239_2022.tif",
+        "year": 2022,
+        "crs": "EPSG:32630"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.61096,
+          5.44923
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-0",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 2700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5875,
+          5.54214
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-2",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 9000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.55068,
+          5.59326
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-52",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 18800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.56004,
+          5.64491
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-56",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 9700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.56959,
+          5.66993
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-57",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3545,
+          5.84393
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-73",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 20300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.50447,
+          5.9034
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-86",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 5000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.27701,
+          4.9687
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-92",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 7400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.21242,
+          5.04284
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-95",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 5600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.22514,
+          5.04694
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-97",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 7300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.30898,
+          5.74418
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-126",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 31800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.26778,
+          5.81975
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-127",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 8500,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.28988,
+          5.9902
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-136",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.35007,
+          6.24656
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-148",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 2500,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.16637,
+          5.27186
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-175",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4900,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.13261,
+          6.2653
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-222",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 9100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.06759,
+          6.33185
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-252",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 28200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.05262,
+          5.75886
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-260",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 25100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.04785,
+          5.7693
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-261",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 6300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.04912,
+          6.32898
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-266",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 3500,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.05006,
+          6.58713
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-267",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 11400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.03472,
+          5.79024
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-271",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.02352,
+          6.63152
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-283",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 3700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.98526,
+          6.67012
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-315",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95851,
+          6.44961
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-324",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 20000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.97474,
+          6.68627
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-325",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 16800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96338,
+          6.69898
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-326",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 68300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95436,
+          5.76583
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-334",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94898,
+          6.71149
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-346",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 27900,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93534,
+          5.28977
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-350",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 11100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93217,
+          5.74756
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-354",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.91556,
+          6.30959
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-385",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 8700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.88241,
+          6.25507
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-406",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 3100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.88773,
+          6.78449
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-409",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.87677,
+          6.256
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-415",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 2600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.84755,
+          6.21683
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-422",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.85712,
+          6.23005
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-423",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 17500,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.86539,
+          6.51551
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-425",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 48600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.85733,
+          6.84429
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-429",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 8800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.8473,
+          6.50517
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-437",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 7700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.83635,
+          6.55078
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-439",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 42000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.82005,
+          6.30515
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-452",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4300,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.82476,
+          6.50858
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-454",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 40700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.80832,
+          6.30411
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-461",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 10000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.78505,
+          5.28526
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-465",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 5500,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.78677,
+          6.24556
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-476",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 12200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.77594,
+          6.25483
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-477",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 3200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.79015,
+          6.40984
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-480",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.74795,
+          6.04442
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-486",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 4800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59832,
+          5.3002
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-505",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 13400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.60273,
+          5.31672
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-506",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 36600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.60934,
+          5.33134
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-507",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 46400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.61962,
+          5.34735
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-508",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 69600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.62594,
+          5.35645
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-509",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 8200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.62709,
+          5.42968
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-511",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 16600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.64409,
+          5.5285
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-514",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 17800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59626,
+          5.53224
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-515",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 29000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59426,
+          5.70961
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-516",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 33100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59773,
+          5.72798
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-517",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 48500,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.70567,
+          6.07858
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-520",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 18100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.62871,
+          6.11525
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-525",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 9900,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71399,
+          6.16446
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-527",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 2600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.60671,
+          6.16625
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-528",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 58000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.67823,
+          6.28051
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-537",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 12400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.68254,
+          6.2927
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-539",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 5100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.7073,
+          6.37218
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-544",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 30200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.58907,
+          5.28022
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-550",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 16600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57766,
+          5.67439
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-554",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 43100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.58527,
+          5.72588
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-556",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 9200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57627,
+          5.77064
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-557",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 25800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57943,
+          5.79034
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-558",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 69600,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.53788,
+          5.85537
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-560",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 3000,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.50968,
+          5.89213
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-562",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 11800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.49233,
+          6.32539
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-569",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 23100,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.50124,
+          6.36441
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-571",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 26400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.51078,
+          6.36922
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-572",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 22800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.44122,
+          6.39104
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-575",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 11700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.48581,
+          6.41269
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-579",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 18700,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.53636,
+          6.4119
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-580",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 2800,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.81002,
+          6.14682
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-592",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 6200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.79467,
+          6.16794
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-593",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "high_confidence",
+        "affected_area_m2": 15400,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.80114,
+          6.20096
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-596",
+        "name": "EcoWatch model-verified mining site",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise reference candidate; verified by EcoWatch deployed model",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#dc2626",
+        "status": "ecowatch_verified",
+        "detection_level": "detected",
+        "affected_area_m2": 9200,
+        "date_start": "2022-01-01",
+        "date_end": "2023-01-01"
+      }
+    }
+  ]
+}

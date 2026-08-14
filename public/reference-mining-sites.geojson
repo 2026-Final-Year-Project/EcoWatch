@@ -1,0 +1,6201 @@
+{
+  "type": "FeatureCollection",
+  "name": "EcoWatch reference mining candidates",
+  "license_notice": "Derived from GalamseyWatch (MIT License, Copyright 2026 Samuel Donkor). Underlying Earthrise data retains its own terms.",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.61096,
+          5.44923
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-0",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5875,
+          5.54214
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-2",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.75496,
+          5.59408
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-4",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.76572,
+          5.59223
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-5",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.76134,
+          5.63173
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-8",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.72652,
+          5.65294
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-12",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.68506,
+          5.67723
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-15",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.81042,
+          5.6854
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-16",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.71108,
+          5.69242
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-17",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.68406,
+          5.69664
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-18",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.71876,
+          5.7106
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-19",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.77154,
+          5.71691
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-20",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.67564,
+          5.72917
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-23",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.62147,
+          5.75549
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-27",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.72067,
+          5.80785
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-32",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.86023,
+          5.85053
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-34",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.62571,
+          5.87362
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-35",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.96426,
+          6.14384
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-37",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.03128,
+          6.185
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-40",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.91225,
+          6.28142
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-42",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.88368,
+          6.29787
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-43",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.88343,
+          6.33893
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-44",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.09069,
+          6.3565
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-45",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.86862,
+          6.35104
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-46",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.80069,
+          6.6173
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-47",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.55068,
+          5.59326
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-52",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.54571,
+          5.60598
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-53",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.57809,
+          5.63063
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-54",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.56588,
+          5.63175
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-55",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.56004,
+          5.64491
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-56",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.56959,
+          5.66993
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-57",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.55689,
+          5.68618
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-58",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5588,
+          5.70391
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-59",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.52883,
+          5.78828
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-63",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.50559,
+          5.81946
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-64",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.37031,
+          5.81282
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-67",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.37677,
+          5.818
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-68",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.41528,
+          5.82698
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-70",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3545,
+          5.84393
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-73",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.426,
+          5.85097
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-74",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.47591,
+          5.8656
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-75",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.38941,
+          5.86165
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-77",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.41356,
+          5.87654
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-78",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.44636,
+          5.87606
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-79",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.35621,
+          5.88936
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-80",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.37212,
+          5.89001
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-81",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.41521,
+          5.89026
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-83",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.38671,
+          5.89698
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-84",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.39638,
+          5.90581
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-85",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.50447,
+          5.9034
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-86",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.48402,
+          5.9195
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-87",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.4498,
+          5.94758
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-89",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.27701,
+          4.9687
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-92",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.32426,
+          4.98145
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-93",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.21242,
+          5.04284
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-95",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.22514,
+          5.04694
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-97",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.23033,
+          5.06671
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-100",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.24627,
+          5.11721
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-103",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.21399,
+          5.15199
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-104",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.20777,
+          5.19478
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-105",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.30485,
+          5.25277
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-106",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2084,
+          5.30047
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-108",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2342,
+          5.38394
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-110",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.25053,
+          5.39523
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-111",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.21356,
+          5.62115
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-113",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.25611,
+          5.67142
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-118",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.24999,
+          5.6826
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-121",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.28791,
+          5.68641
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-123",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.30915,
+          5.73391
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-124",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.30898,
+          5.74418
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-126",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.26778,
+          5.81975
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-127",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.33263,
+          5.91211
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-129",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.26921,
+          5.91743
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-130",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.35781,
+          5.94433
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-131",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.33411,
+          5.94322
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-132",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.30802,
+          5.94824
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-133",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.28988,
+          5.9902
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-136",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.31772,
+          6.01704
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-137",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.25294,
+          6.02604
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-138",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.28407,
+          6.11922
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-143",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.22152,
+          6.15159
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-145",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.23079,
+          6.23158
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-146",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.21368,
+          6.23174
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-147",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.35007,
+          6.24656
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-148",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.26093,
+          6.28067
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-150",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.25856,
+          6.29242
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-151",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.32846,
+          6.79327
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-152",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.1942,
+          5.17255
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-156",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.20324,
+          5.25594
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-158",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.20669,
+          5.57123
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-160",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.18717,
+          5.6077
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-163",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.19948,
+          5.61642
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-164",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.19031,
+          5.64929
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-165",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.19095,
+          5.67039
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-166",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.19939,
+          5.76756
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-169",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.19228,
+          5.83694
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-170",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.16637,
+          5.27186
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-175",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.16668,
+          5.60749
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-178",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.16798,
+          5.88868
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-181",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.17786,
+          6.11377
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-187",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.15033,
+          5.25446
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-188",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.16328,
+          6.03836
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-191",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.15858,
+          6.14059
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-192",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.13127,
+          6.16972
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-193",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.10575,
+          5.16643
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-198",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.13296,
+          5.32378
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-201",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.11312,
+          5.43036
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-205",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.10464,
+          5.62201
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-207",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.12952,
+          5.69089
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-208",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.11643,
+          5.77159
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-212",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.11638,
+          5.80253
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-213",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.11483,
+          5.84953
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-214",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.11299,
+          5.88419
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-216",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.14085,
+          5.96176
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-220",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.13261,
+          6.2653
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-222",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.07765,
+          5.08933
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-226",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.06874,
+          5.29045
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-227",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0857,
+          5.5261
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-228",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.09324,
+          5.53594
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-229",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.08025,
+          5.53953
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-230",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0851,
+          5.59363
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-232",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.09642,
+          5.61016
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-235",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.08627,
+          5.79362
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-239",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0684,
+          5.86295
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-243",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0825,
+          5.8798
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-244",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.05941,
+          5.87822
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-245",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.06034,
+          5.91659
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-246",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.06759,
+          6.33185
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-252",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.92243,
+          6.27139
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-255",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.05378,
+          5.62514
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-258",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0467,
+          5.64666
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-259",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.05262,
+          5.75886
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-260",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.04785,
+          5.7693
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-261",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.04953,
+          6.31671
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-265",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.04912,
+          6.32898
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-266",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.05006,
+          6.58713
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-267",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.03281,
+          4.91534
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-268",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.03472,
+          5.79024
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-271",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.03057,
+          5.84487
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-273",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.03449,
+          5.92595
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-274",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.02547,
+          6.01088
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-276",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.03893,
+          6.28791
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-278",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.02529,
+          5.81468
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-281",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.02352,
+          6.63152
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-283",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.01967,
+          5.80573
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-284",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0166,
+          6.20876
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-288",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0129,
+          5.20501
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-289",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.98751,
+          5.72594
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-298",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.99428,
+          5.97014
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-301",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.00344,
+          6.01128
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-302",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.99073,
+          6.02349
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-303",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.00051,
+          6.05959
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-304",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.98031,
+          6.21179
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-307",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.99119,
+          6.27787
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-308",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.99092,
+          6.41629
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-312",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.98526,
+          6.67012
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-315",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.97967,
+          5.64466
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-317",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96883,
+          5.75927
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-318",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.97078,
+          5.88821
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-319",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96607,
+          5.98451
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-321",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.97965,
+          6.25306
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-323",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95851,
+          6.44961
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-324",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.97474,
+          6.68627
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-325",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96338,
+          6.69898
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-326",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94699,
+          5.00475
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-327",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95045,
+          5.69584
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-331",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96306,
+          5.7446
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-332",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95425,
+          5.74505
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-333",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95436,
+          5.76583
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-334",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95306,
+          5.88123
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-336",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94928,
+          5.89193
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-337",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96272,
+          5.99474
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-339",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96435,
+          6.3043
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-341",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95439,
+          6.36396
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-342",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.96173,
+          6.38095
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-343",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.95882,
+          6.61152
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-345",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94898,
+          6.71149
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-346",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93471,
+          5.00168
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-347",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93534,
+          5.28977
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-350",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94633,
+          5.70611
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-351",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93217,
+          5.74756
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-354",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94777,
+          5.74208
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-355",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94167,
+          5.77745
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-357",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93442,
+          5.79899
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-359",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94005,
+          5.80183
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-360",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93661,
+          5.88402
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-361",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.94223,
+          5.89286
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-362",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.9312,
+          6.3409
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-366",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93525,
+          6.37202
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-367",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.93787,
+          6.43358
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-368",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.92959,
+          6.53304
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-369",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.91839,
+          5.04656
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-373",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.91228,
+          5.21329
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-374",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.92543,
+          5.77016
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-375",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.89522,
+          5.85997
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-377",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.92605,
+          5.97753
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-380",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.91556,
+          6.30959
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-385",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.92957,
+          6.39148
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-386",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.91302,
+          6.3993
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-387",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.91829,
+          6.40998
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-388",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.90732,
+          5.00064
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-391",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.90515,
+          6.35617
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-395",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.89419,
+          5.22972
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-397",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.89902,
+          6.82559
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-400",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.88241,
+          6.25507
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-406",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.88107,
+          6.37157
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-407",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.89064,
+          6.57094
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-408",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.88773,
+          6.78449
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-409",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.88372,
+          6.79641
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-410",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.8643,
+          6.25684
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-414",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.87677,
+          6.256
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-415",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.87132,
+          6.34861
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-416",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.84821,
+          5.24895
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-419",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.86093,
+          6.04573
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-420",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.85045,
+          6.14377
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-421",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.84755,
+          6.21683
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-422",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.85712,
+          6.23005
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-423",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.84928,
+          6.4785
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-424",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.86539,
+          6.51551
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-425",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.86148,
+          6.80979
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-428",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.85733,
+          6.84429
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-429",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.84031,
+          6.16991
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-432",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.83286,
+          6.1804
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-433",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.82972,
+          6.26966
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-435",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.83047,
+          6.28021
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-436",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.8473,
+          6.50517
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-437",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.83695,
+          6.52407
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-438",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.83635,
+          6.55078
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-439",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.81613,
+          6.08744
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-446",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.82834,
+          6.09866
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-447",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.81626,
+          6.24986
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-451",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.82005,
+          6.30515
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-452",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.81459,
+          6.50124
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-453",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.82476,
+          6.50858
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-454",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.81598,
+          6.5241
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-455",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.81096,
+          5.25877
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-457",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.8012,
+          6.07672
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-459",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.80832,
+          6.30411
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-461",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.79731,
+          6.56675
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-463",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.78759,
+          5.26661
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-464",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.78505,
+          5.28526
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-465",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.77345,
+          5.90051
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-466",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.79986,
+          6.06673
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-468",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.78707,
+          6.11184
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-469",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.77624,
+          6.12441
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-470",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.77854,
+          6.14558
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-472",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.79303,
+          6.22474
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-474",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.78677,
+          6.24556
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-476",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.77594,
+          6.25483
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-477",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.79015,
+          6.40984
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-480",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.77083,
+          6.42662
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-481",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.74795,
+          6.04442
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-486",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.72818,
+          6.06444
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-487",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.7661,
+          6.08228
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-489",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.74642,
+          6.18294
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-492",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.76256,
+          6.19139
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-494",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71948,
+          6.26721
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-495",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.76034,
+          6.26857
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-496",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.73551,
+          6.30589
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-497",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71597,
+          6.31632
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-498",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.74387,
+          6.34765
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-499",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.73366,
+          6.35751
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-500",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.76148,
+          6.40743
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-501",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.75046,
+          6.47227
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-502",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.74741,
+          6.48417
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-503",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59832,
+          5.3002
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-505",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.60273,
+          5.31672
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-506",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.60934,
+          5.33134
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-507",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.61962,
+          5.34735
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-508",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.62594,
+          5.35645
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-509",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.63031,
+          5.36659
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-510",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.62709,
+          5.42968
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-511",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.64409,
+          5.5285
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-514",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59626,
+          5.53224
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-515",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59426,
+          5.70961
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-516",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.59773,
+          5.72798
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-517",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.64368,
+          5.9304
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-518",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.70567,
+          6.07858
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-520",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71252,
+          6.09334
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-521",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.69504,
+          6.11387
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-524",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.62871,
+          6.11525
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-525",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71374,
+          6.14819
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-526",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71399,
+          6.16446
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-527",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.60671,
+          6.16625
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-528",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.60269,
+          6.22562
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-531",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.61179,
+          6.22783
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-532",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.71901,
+          6.23936
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-533",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.70041,
+          6.24159
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-535",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.66707,
+          6.27338
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-536",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.67823,
+          6.28051
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-537",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.72148,
+          6.27728
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-538",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.68254,
+          6.2927
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-539",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.69663,
+          6.29571
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-540",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.67546,
+          6.30411
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-541",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.7073,
+          6.37218
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-544",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.66935,
+          6.40054
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-545",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.70349,
+          6.51559
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-546",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.58907,
+          5.28022
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-550",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.54639,
+          5.62262
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-551",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.54105,
+          5.64799
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-552",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57766,
+          5.67439
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-554",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.58527,
+          5.72588
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-556",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57627,
+          5.77064
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-557",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57943,
+          5.79034
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-558",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.57029,
+          5.80713
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-559",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.53788,
+          5.85537
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-560",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.50968,
+          5.89213
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-562",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.49233,
+          6.32539
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-569",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.50134,
+          6.32878
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-570",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.50124,
+          6.36441
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-571",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.51078,
+          6.36922
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-572",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.51665,
+          6.38384
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-573",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.53173,
+          6.38566
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-574",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.44122,
+          6.39104
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-575",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.50878,
+          6.39204
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-576",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.56337,
+          6.41877
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-578",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.48581,
+          6.41269
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-579",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.53636,
+          6.4119
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-580",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.83275,
+          6.07312
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-586",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.28292,
+          6.10112
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-589",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.27056,
+          6.10267
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-590",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.81002,
+          6.14682
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-592",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.79467,
+          6.16794
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-593",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.19403,
+          6.19823
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-595",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.80114,
+          6.20096
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-596",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.21318,
+          6.23349
+        ]
+      },
+      "properties": {
+        "id": "earthrise-reference-598",
+        "name": "Reference mining candidate",
+        "label": "Analyse with EcoWatch to verify this location",
+        "source": "Earthrise Ghana mining index; GalamseyWatch model-verified candidate",
+        "source_url": "https://github.com/apoa5/GalamseyWatch",
+        "color": "#d97706",
+        "status": "reference_candidate"
+      }
+    }
+  ]
+}

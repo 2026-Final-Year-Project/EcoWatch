@@ -1,156 +1,127 @@
 'use client'
 
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { fetchJson } from '@/lib/api'
-import { createIncidentCsvFilename, incidentsToCsv } from '@/utils/csv'
-import { buildIncidentReportPdf, createIncidentReportFilename } from '@/utils/incidentReportPdf'
+import { clearCommunitySession, getCommunitySession } from '@/lib/auth'
 import { useTheme } from './ThemeProvider'
 import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
-export default function Reports() {
-  const [incidents, setIncidents] = useState([])
+const formatCoordinates = (latitude, longitude) => `${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°`
+
+export default function Report() {
   const { darkMode, toggleTheme } = useTheme()
-  const [typeFilter, setTypeFilter] = useState('all')
-  const [severityFilter, setSeverityFilter] = useState('all')
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [sortBy, setSortBy] = useState('date-desc')
-  const [dateRange, setDateRange] = useState('7d')
-  const [loading, setLoading] = useState(true)
+  const [location, setLocation] = useState(null)
+  const [manualLatitude, setManualLatitude] = useState('')
+  const [manualLongitude, setManualLongitude] = useState('')
+  const [notes, setNotes] = useState('')
+  const [consent, setConsent] = useState(false)
+  const [gettingLocation, setGettingLocation] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [locationError, setLocationError] = useState(null)
   const [apiError, setApiError] = useState(null)
+  const [result, setResult] = useState(null)
+  const [sites, setSites] = useState([])
+  const [clusterRadius, setClusterRadius] = useState(250)
+  const [authModalOpen, setAuthModalOpen] = useState(false)
+  const [signOutModalOpen, setSignOutModalOpen] = useState(false)
+  const [session, setSession] = useState(null)
 
-  // Load report incidents from the Express backend.
+  const loadSites = async () => {
+    try {
+      const data = await fetchJson('/community-reports')
+      setSites(data.sites)
+      setClusterRadius(data.clusterRadiusMetres)
+      setApiError(null)
+    } catch (error) {
+      setApiError(error.message)
+    }
+  }
+
   useEffect(() => {
-    let cancelled = false
-
-    async function loadReports() {
+    const initialize = async () => {
+      setSession(getCommunitySession())
       try {
-        const data = await fetchJson('/incidents')
-        if (cancelled) return
-        setIncidents(data)
-        setApiError(null)
+        const data = await fetchJson('/community-reports')
+        setSites(data.sites)
+        setClusterRadius(data.clusterRadiusMetres)
       } catch (error) {
-        if (cancelled) return
         setApiError(error.message)
-      } finally {
-        if (!cancelled) setLoading(false)
       }
     }
-
-    loadReports()
-
-    return () => {
-      cancelled = true
-    }
+    initialize()
   }, [])
 
-  // Filter and sort logic
-  const filteredIncidents = useMemo(() => {
-    let filtered = [...incidents]
-
-    if (typeFilter !== 'all') {
-      filtered = filtered.filter(inc => inc.type === typeFilter)
+  const captureLocation = () => {
+    if (!navigator.geolocation) {
+      setLocationError('Your browser does not support location services.')
+      return
     }
-    if (severityFilter !== 'all') {
-      filtered = filtered.filter(inc => inc.severity === severityFilter)
-    }
-    if (statusFilter !== 'all') {
-      filtered = filtered.filter(inc => inc.status === statusFilter)
-    }
-
-    // Sort
-    filtered.sort((a, b) => {
-      if (sortBy === 'date-desc') return new Date(b.date + ' ' + b.time) - new Date(a.date + ' ' + a.time)
-      if (sortBy === 'date-asc') return new Date(a.date + ' ' + a.time) - new Date(b.date + ' ' + b.time)
-      if (sortBy === 'severity') {
-        const order = { critical: 0, high: 1, medium: 2, low: 3 }
-        return order[a.severity] - order[b.severity]
-      }
-      if (sortBy === 'confidence') return b.confidence - a.confidence
-      return 0
-    })
-
-    return filtered
-  }, [incidents, typeFilter, severityFilter, statusFilter, sortBy])
-
-  // Statistics
-  const stats = useMemo(() => {
-    const total = filteredIncidents.length
-    const critical = filteredIncidents.filter(i => i.severity === 'critical').length
-    const totalHectares = filteredIncidents.reduce((sum, i) => sum + i.hectares, 0)
-    const avgConfidence = total
-      ? (filteredIncidents.reduce((sum, i) => sum + i.confidence, 0) / total).toFixed(1)
-      : '0.0'
-    
-    const byType = {}
-    filteredIncidents.forEach(inc => {
-      byType[inc.type] = (byType[inc.type] || 0) + 1
-    })
-
-    return { total, critical, totalHectares, avgConfidence, byType }
-  }, [filteredIncidents])
-
-  const getSeverityColor = (severity) => {
-    const colors = {
-      critical: 'bg-red-100 text-red-700 border-red-200',
-      high: 'bg-orange-100 text-orange-700 border-orange-200',
-      medium: 'bg-yellow-100 text-yellow-700 border-yellow-200',
-      low: 'bg-green-100 text-green-700 border-green-200',
-    }
-    return colors[severity] || colors.low
+    setGettingLocation(true)
+    setLocationError(null)
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        setLocation({ latitude: coords.latitude, longitude: coords.longitude, accuracy: Math.round(coords.accuracy), source: 'device' })
+        setGettingLocation(false)
+      },
+      (error) => {
+        setGettingLocation(false)
+        setLocationError(error.code === error.PERMISSION_DENIED ? 'Location access was denied. Allow access and try again.' : 'Unable to obtain your current location. Try again outdoors with location services enabled.')
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
+    )
   }
 
-  const getStatusColor = (status) => {
-    const colors = {
-      'Escalated': 'bg-red-50 text-red-600',
-      'Reported': 'bg-blue-50 text-blue-600',
-      'Monitoring': 'bg-amber-50 text-amber-600',
+  const useManualLocation = () => {
+    const latitude = Number(manualLatitude)
+    const longitude = Number(manualLongitude)
+    if (!manualLatitude.trim() || !manualLongitude.trim() || !Number.isFinite(latitude) || !Number.isFinite(longitude) || latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
+      setLocationError('Enter a valid latitude (-90 to 90) and longitude (-180 to 180).')
+      return
     }
-    return colors[status] || 'bg-slate-50 text-slate-600'
+    setLocation({ latitude, longitude, accuracy: null, source: 'manual' })
+    setLocationError(null)
   }
 
-  const exportCsv = () => {
-    const csv = incidentsToCsv(filteredIncidents)
-    const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8' })
-    const downloadUrl = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-
-    link.href = downloadUrl
-    link.download = createIncidentCsvFilename()
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(downloadUrl)
+  const submitReport = async (event) => {
+    event.preventDefault()
+    if (!location || !consent || submitting) return
+    const activeSession = getCommunitySession()
+    if (!activeSession) {
+      setAuthModalOpen(true)
+      return
+    }
+    setSubmitting(true)
+    setApiError(null)
+    try {
+      const data = await fetchJson('/community-reports', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${activeSession.token}` },
+        body: JSON.stringify({ ...location, notes }),
+      })
+      setResult(data)
+      setNotes('')
+      setSites((previous) => [data.site, ...previous.filter((site) => site.id !== data.site.id)])
+    } catch (error) {
+      setApiError(error.message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
-  const exportIncidentReport = () => {
-    const generatedAt = new Date()
-    const pdf = buildIncidentReportPdf(filteredIncidents, generatedAt)
-    pdf.save(createIncidentReportFilename(generatedAt))
-  }
+  const panel = darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-white'
+  const mutedPanel = darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-slate-50 text-slate-600'
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${
-      darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-[#f6f7f1] text-slate-900'
-    }`}>
-
-      {/* NAVBAR */}
-      <header className={`flex items-center justify-between px-6 py-4 border-b ${
-        darkMode ? 'border-white/10 bg-[#111a09]' : 'border-black/5 bg-white'
-      }`}>
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-[#f6f7f1] text-slate-900'}`}>
+      <header className={`flex items-center justify-between border-b px-6 py-4 ${darkMode ? 'border-white/10 bg-[#111a09]' : 'border-black/5 bg-white'}`}>
         <Link href="/" className="flex items-center hover:opacity-80 transition" aria-label="Go to homepage">
           <Image src="/Area.png" alt="EcoWatch Logo" width={90} height={40} className="object-contain" priority />
         </Link>
-
         <nav className="flex gap-8 text-sm">
-          <Link href="/monitor" className={`pb-0.5 transition ${
-            darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
-          }`}>Live Map</Link>
-          <Link href="/report" className="pb-0.5 transition font-semibold text-[#4a5e1a] border-b-2 border-[#4a5e1a]">Reports</Link>
-          <Link href="/history" className={`pb-0.5 transition ${
-            darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'
-          }`}>History</Link>
+          <Link href="/monitor" className={darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'}>Live Map</Link>
+          <Link href="/report" className="border-b-2 border-[#4a5e1a] pb-0.5 font-semibold text-[#4a5e1a]">Reports</Link>
+          <Link href="/history" className={darkMode ? 'text-white/50 hover:text-white' : 'text-slate-500 hover:text-slate-800'}>History</Link>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -161,263 +132,108 @@ export default function Reports() {
         </div>
       </header>
 
-      {/* MAIN */}
-      <main className={`px-8 py-8 max-w-7xl mx-auto`}>
-
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">Incident Reports</h1>
-          <p className={`text-sm ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>
-            Analyze detections, generate reports, and track response status across your region
-          </p>
-          {apiError && (
-            <p className="mt-3 text-sm text-red-600">{apiError}</p>
-          )}
+      <main className="mx-auto max-w-6xl px-6 py-10">
+        <div className="mb-8 max-w-3xl">
+          <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-[#4a5e1a]">Community observations</p>
+          <h1 className="text-4xl font-bold tracking-tight">Report a possible mining site</h1>
+          <p className={`mt-3 leading-relaxed ${darkMode ? 'text-white/65' : 'text-slate-600'}`}>Share a location you have personally observed. Nearby reports are grouped within {clusterRadius} m, and EcoWatch runs a satellite-model check on the clustered location.</p>
         </div>
 
-        {/* Statistics Grid */}
-        <div className="grid grid-cols-4 gap-4 mb-8">
-          <div className={`rounded-2xl border p-6 ${
-            darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'
-          }`}>
-            <p className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">Total Incidents</p>
-            <p className="text-4xl font-bold text-[#4a5e1a]">{stats.total}</p>
-            <p className="text-xs text-slate-500 mt-2">in selected period</p>
-          </div>
-
-          <div className={`rounded-2xl border p-6 ${
-            darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'
-          }`}>
-            <p className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">Critical Alerts</p>
-            <p className="text-4xl font-bold text-red-600">{stats.critical}</p>
-            <p className="text-xs text-slate-500 mt-2">require immediate action</p>
-          </div>
-
-          <div className={`rounded-2xl border p-6 ${
-            darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'
-          }`}>
-            <p className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">Area Affected</p>
-            <p className="text-4xl font-bold text-orange-600">{stats.totalHectares.toFixed(1)}</p>
-            <p className="text-xs text-slate-500 mt-2">hectares</p>
-          </div>
-
-          <div className={`rounded-2xl border p-6 ${
-            darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'
-          }`}>
-            <p className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">Avg Confidence</p>
-            <p className="text-4xl font-bold text-[#4a5e1a]">{stats.avgConfidence}%</p>
-            <p className="text-xs text-slate-500 mt-2">detection accuracy</p>
-          </div>
-        </div>
-
-        {/* Filters and Controls */}
-        <div className={`rounded-2xl border p-6 mb-8 ${
-          darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'
-        }`}>
-          <div className="grid grid-cols-5 gap-4">
-            {/* Type Filter */}
-            <div>
-              <label className="text-xs font-mono uppercase tracking-widest text-slate-400 block mb-2">Type</label>
-              <select 
-                value={typeFilter}
-                onChange={(e) => setTypeFilter(e.target.value)}
-                className={`w-full px-3 py-2 rounded-lg border text-sm transition ${
-                  darkMode 
-                    ? 'bg-white/10 border-white/20 text-white' 
-                    : 'bg-white border-slate-200 text-slate-900'
-                }`}
-              >
-                <option value="all">All Types</option>
-                <option value="Mining">Mining</option>
-                <option value="Deforestation">Deforestation</option>
-              </select>
+        <div className="grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
+          <form onSubmit={submitReport} className={`rounded-3xl border p-6 shadow-sm ${panel}`}>
+            <div className="mb-6 flex items-start gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e2ebd2] text-[#4a5e1a]">1</span>
+              <div><h2 className="font-semibold">Capture your current location</h2><p className="mt-1 text-sm text-slate-500">EcoWatch only requests location after you choose the button below.</p></div>
             </div>
 
-            {/* Severity Filter */}
-            <div>
-              <label className="text-xs font-mono uppercase tracking-widest text-slate-400 block mb-2">Severity</label>
-              <select 
-                value={severityFilter}
-                onChange={(e) => setSeverityFilter(e.target.value)}
-                className={`w-full px-3 py-2 rounded-lg border text-sm transition ${
-                  darkMode 
-                    ? 'bg-white/10 border-white/20 text-white' 
-                    : 'bg-white border-slate-200 text-slate-900'
-                }`}
-              >
-                <option value="all">All Levels</option>
-                <option value="critical">Critical</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-              </select>
-            </div>
-
-            {/* Status Filter */}
-            <div>
-              <label className="text-xs font-mono uppercase tracking-widest text-slate-400 block mb-2">Status</label>
-              <select 
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className={`w-full px-3 py-2 rounded-lg border text-sm transition ${
-                  darkMode 
-                    ? 'bg-white/10 border-white/20 text-white' 
-                    : 'bg-white border-slate-200 text-slate-900'
-                }`}
-              >
-                <option value="all">All Statuses</option>
-                <option value="Escalated">Escalated</option>
-                <option value="Reported">Reported</option>
-                <option value="Monitoring">Monitoring</option>
-              </select>
-            </div>
-
-            {/* Sort By */}
-            <div>
-              <label className="text-xs font-mono uppercase tracking-widest text-slate-400 block mb-2">Sort By</label>
-              <select 
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className={`w-full px-3 py-2 rounded-lg border text-sm transition ${
-                  darkMode 
-                    ? 'bg-white/10 border-white/20 text-white' 
-                    : 'bg-white border-slate-200 text-slate-900'
-                }`}
-              >
-                <option value="date-desc">Newest First</option>
-                <option value="date-asc">Oldest First</option>
-                <option value="severity">Most Severe</option>
-                <option value="confidence">Confidence</option>
-              </select>
-            </div>
-
-            {/* Date Range */}
-            <div>
-              <label className="text-xs font-mono uppercase tracking-widest text-slate-400 block mb-2">Period</label>
-              <select 
-                value={dateRange}
-                onChange={(e) => setDateRange(e.target.value)}
-                className={`w-full px-3 py-2 rounded-lg border text-sm transition ${
-                  darkMode 
-                    ? 'bg-white/10 border-white/20 text-white' 
-                    : 'bg-white border-slate-200 text-slate-900'
-                }`}
-              >
-                <option value="24h">Last 24h</option>
-                <option value="7d">Last 7 Days</option>
-                <option value="30d">Last 30 Days</option>
-                <option value="all">All Time</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Table */}
-        <div className={`rounded-2xl border overflow-hidden ${
-          darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-white'
-        }`}>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className={`border-b ${darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'}`}>
-                <tr>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Date & Time</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Type</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Location</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Area</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Confidence</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Severity</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Status</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-300">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {loading && (
-                  <tr>
-                    <td colSpan={8} className="px-6 py-8 text-center text-slate-500">
-                      Loading incidents from API...
-                    </td>
-                  </tr>
-                )}
-                {!loading && filteredIncidents.length === 0 && (
-                  <tr>
-                    <td colSpan={8} className="px-6 py-8 text-center text-slate-500">
-                      No incidents match the selected filters.
-                    </td>
-                  </tr>
-                )}
-                {filteredIncidents.map((incident) => (
-                  <tr key={incident.id} className={`hover:bg-white/5 transition ${
-                    darkMode ? 'border-white/5' : 'border-slate-100'
-                  }`}>
-                    <td className="px-6 py-4 text-slate-700 dark:text-slate-300">
-                      <div className="font-medium">{incident.date}</div>
-                      <div className="text-xs text-slate-500">{incident.time}</div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="font-medium">{incident.type}</span>
-                    </td>
-                    <td className="px-6 py-4 text-xs font-mono text-slate-500">
-                      {incident.coords}
-                    </td>
-                    <td className="px-6 py-4 font-medium">
-                      {incident.hectares} ha
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex items-center px-2 py-1 rounded-lg bg-green-100/20 text-green-700 dark:text-green-400 text-xs font-medium">
-                        {incident.confidence}%
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`inline-flex items-center px-2 py-1 rounded-lg border text-xs font-medium ${getSeverityColor(incident.severity)}`}>
-                        {incident.severity.charAt(0).toUpperCase() + incident.severity.slice(1)}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium ${getStatusColor(incident.status)}`}>
-                        {incident.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <Link href={`/incidents/${incident.id}`} className="text-[#4a5e1a] hover:underline font-medium text-sm">
-                        View →
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Results Info */}
-        <div className="flex items-center justify-between mt-6">
-          <p className={`text-sm ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>
-            Showing <span className="font-semibold">{filteredIncidents.length}</span> incidents
-          </p>
-          <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={exportCsv}
-              disabled={loading}
-              className={`px-4 py-2 rounded-lg border text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50 ${
-              darkMode 
-                ? 'border-white/20 text-white hover:bg-white/10' 
-                : 'border-slate-200 text-slate-800 hover:bg-slate-50'
-            }`}
-            >
-              📥 Export CSV
+            <button type="button" onClick={captureLocation} disabled={gettingLocation} className="w-full rounded-2xl bg-[#4a5e1a] px-5 py-4 text-sm font-semibold text-white transition hover:bg-[#3a4d12] disabled:cursor-wait disabled:opacity-60">
+              {gettingLocation ? 'Locating you…' : location ? 'Update current location' : 'Use my current location'}
             </button>
-            <button
-              type="button"
-              onClick={exportIncidentReport}
-              disabled={loading}
-              className="inline-flex items-center px-4 py-2 rounded-lg bg-[#4a5e1a] text-white text-sm font-semibold hover:bg-[#3a4d12] transition disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              📄 Generate Report (PDF)
+            <div className="my-5 flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-slate-400"><span className="h-px flex-1 bg-slate-200/30" />or enter coordinates<span className="h-px flex-1 bg-slate-200/30" /></div>
+            <div className="grid grid-cols-2 gap-3">
+              <label className="text-xs font-medium">Latitude
+                <input type="number" step="any" value={manualLatitude} onChange={(event) => setManualLatitude(event.target.value)} placeholder="e.g. 6.4330" className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-white placeholder:text-slate-400'}`} />
+              </label>
+              <label className="text-xs font-medium">Longitude
+                <input type="number" step="any" value={manualLongitude} onChange={(event) => setManualLongitude(event.target.value)} placeholder="e.g. -2.0380" className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-white placeholder:text-slate-400'}`} />
+              </label>
+            </div>
+            <button type="button" onClick={useManualLocation} className={`mt-3 w-full rounded-xl border px-4 py-3 text-sm font-medium transition ${darkMode ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-700 hover:bg-slate-50'}`}>Use entered coordinates</button>
+            {locationError && <p className="mt-3 text-sm text-red-600">{locationError}</p>}
+            {location && <div className={`mt-4 rounded-2xl border p-4 ${mutedPanel}`}>
+              <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400">Location ready</p>
+              <p className="mt-1 font-mono text-sm">{formatCoordinates(location.latitude, location.longitude)}</p>
+              <p className="mt-1 text-xs text-slate-500">{location.source === 'manual' ? 'Entered coordinates' : `Estimated device accuracy: ±${location.accuracy} m`}</p>
+            </div>}
+
+            <div className="my-7 border-t border-slate-200/20" />
+            <label className="mb-2 block text-sm font-medium" htmlFor="report-notes">What did you observe? <span className="font-normal text-slate-400">Optional</span></label>
+            <textarea id="report-notes" value={notes} onChange={(event) => setNotes(event.target.value)} maxLength={500} rows={4} placeholder="For example: excavators, exposed soil, sediment in a nearby river…" className={`w-full resize-none rounded-2xl border px-4 py-3 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-white placeholder:text-slate-400'}`} />
+
+            <label className={`mt-5 flex cursor-pointer gap-3 rounded-2xl border p-4 text-sm ${mutedPanel}`}>
+              <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} className="mt-1 h-4 w-4 accent-[#4a5e1a]" />
+              <span>I confirm this is a good-faith observation. I understand that this location and report time will be stored, grouped with nearby reports, and used for environmental monitoring.</span>
+            </label>
+
+            <button type="submit" disabled={!location || !consent || submitting} className="mt-5 w-full rounded-2xl bg-[#1f3b17] px-5 py-4 text-sm font-semibold text-white transition hover:bg-[#162d10] disabled:cursor-not-allowed disabled:opacity-45">
+              {submitting ? 'Storing report and running satellite check…' : 'Submit report and run satellite check'}
             </button>
-          </div>
+            {apiError && <div role="alert" className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+              <p className="font-semibold">This report was not added</p>
+              <p className="mt-1 leading-relaxed">{apiError}</p>
+            </div>}
+            {session && <div className="mt-3 flex items-center justify-between text-xs text-slate-500"><span>Reporting as {session.user.name}</span><button type="button" onClick={() => setSignOutModalOpen(true)} className="font-medium text-[#4a5e1a] hover:underline">Sign out</button></div>}
+            <p className="mt-3 text-center text-xs text-slate-500">Do not use this tool for emergencies or to make accusations about individuals.</p>
+          </form>
+
+          <section className="space-y-5">
+            <div className={`rounded-3xl border p-6 ${panel}`}>
+              <p className="text-xs font-mono uppercase tracking-widest text-slate-400">How corroboration works</p>
+              <ol className="mt-5 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-white/70">
+                <li><strong className="text-[#4a5e1a]">01.</strong> A report creates or joins a site within {clusterRadius} m.</li>
+                <li><strong className="text-[#4a5e1a]">02.</strong> One account can contribute once per site. Independent account reports increase community corroboration, not model confidence.</li>
+                <li><strong className="text-[#4a5e1a]">03.</strong> EcoWatch runs its satellite segmentation model separately.</li>
+              </ol>
+            </div>
+
+            {result && <div className={`rounded-3xl border p-6 ${result.prediction?.mining_detected ? 'border-red-200 bg-red-50' : 'border-[#b9cb9d] bg-[#f3f7eb]'}`}>
+              <p className="text-xs font-mono uppercase tracking-widest text-slate-500">Report stored</p>
+              <h2 className="mt-2 text-lg font-semibold">{result.isNewSite ? 'New community site created' : 'Your report was added to an existing nearby site'}</h2>
+              <p className="mt-2 text-sm text-slate-600">{result.site.reportCount} report{result.site.reportCount === 1 ? '' : 's'} · community corroboration {result.site.communityCorroboration}%</p>
+              {result.prediction ? <p className="mt-3 text-sm font-medium">Model result: {result.prediction.mining_detected ? 'Mining signal detected' : 'No mining detected in the selected scene'}</p> : <p className="mt-3 text-sm text-slate-600">Report saved. Satellite check unavailable: {result.predictionError}</p>}
+            </div>}
+          </section>
         </div>
 
+        <section className="mt-10">
+          <div className="mb-4 flex items-end justify-between gap-4"><div><h2 className="text-2xl font-semibold">Recent community sites</h2><p className="mt-1 text-sm text-slate-500">Grouped locations, newest report first.</p></div><span className="rounded-full bg-[#e2ebd2] px-3 py-1 text-xs font-semibold text-[#4a5e1a]">{sites.length} site{sites.length === 1 ? '' : 's'}</span></div>
+          <div className={`overflow-hidden rounded-3xl border ${panel}`}>
+            {sites.length === 0 ? <p className="p-8 text-center text-sm text-slate-500">No community reports yet. The first good-faith report will create a site.</p> : <ul className="divide-y divide-slate-200/10">
+              {sites.slice(0, 12).map((site) => <li key={site.id} className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div><p className="font-mono text-sm">{formatCoordinates(site.latitude, site.longitude)}</p><p className="mt-1 text-xs text-slate-500">Last report: {new Date(site.lastReportedAt).toLocaleString()}</p></div>
+                <div className="flex items-center gap-3"><span className="rounded-full bg-[#e2ebd2] px-3 py-1 text-xs font-semibold text-[#4a5e1a]">{site.reportCount} report{site.reportCount === 1 ? '' : 's'}</span><span className="text-xs text-slate-500">Corroboration {site.communityCorroboration}%</span>{site.latestPrediction && <span className={`rounded-full px-3 py-1 text-xs font-semibold ${site.latestPrediction.mining_detected ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-600'}`}>{site.latestPrediction.mining_detected ? 'Model signal' : 'No model signal'}</span>}</div>
+              </li>)}
+            </ul>}
+          </div>
+        </section>
       </main>
+      {authModalOpen && <div role="dialog" aria-modal="true" aria-labelledby="account-required-title" className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/55 p-5" onMouseDown={() => setAuthModalOpen(false)}>
+        <div className="w-full max-w-md rounded-3xl bg-white p-7 text-slate-900 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#4a5e1a]">Account required</p>
+          <h2 id="account-required-title" className="mt-2 text-2xl font-bold">Create an account to submit a report</h2>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">EcoWatch keeps the map and satellite checks open to everyone. We ask for an account only when submitting a community report, so one person cannot repeatedly increase a site’s corroboration.</p>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">Your account is used to limit one contribution per nearby site; it does not make your name public on the map.</p>
+          <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><button type="button" onClick={() => setAuthModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium">Not now</button><Link href="/auth" className="rounded-xl bg-[#1f3b17] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[#162d10]">Continue to sign in</Link></div>
+        </div>
+      </div>}
+      {signOutModalOpen && <div role="dialog" aria-modal="true" aria-labelledby="sign-out-title" className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/55 p-5" onMouseDown={() => setSignOutModalOpen(false)}>
+        <div className="w-full max-w-md rounded-3xl bg-white p-7 text-slate-900 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#4a5e1a]">Confirm sign out</p>
+          <h2 id="sign-out-title" className="mt-2 text-2xl font-bold">Sign out of EcoWatch?</h2>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">You will need to sign in again before you can submit another community report. The reports you have already submitted will remain stored.</p>
+          <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><button type="button" onClick={() => setSignOutModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium">Stay signed in</button><button type="button" onClick={() => { clearCommunitySession(); setSession(null); setSignOutModalOpen(false) }} className="rounded-xl bg-red-700 px-4 py-3 text-sm font-semibold text-white hover:bg-red-800">Sign out</button></div>
+        </div>
+      </div>}
     </div>
   )
 }

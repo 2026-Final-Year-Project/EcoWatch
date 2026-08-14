@@ -10,6 +10,8 @@ import authorityRoutes from "./routes/authorityRoutes.js";
 import incidentRoutes from "./routes/incidentRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
 import statsRoutes from "./routes/statsRoutes.js";
+import predictionRoutes from "./routes/predictionRoutes.js";
+import communityReportRoutes from "./routes/communityReportRoutes.js";
 
 // Import the shared error handler used at the end of the middleware chain.
 import { errorHandler } from "./middleware/errorHandler.js";
@@ -43,6 +45,8 @@ app.use("/api/reports", reportRoutes);
 
 // Mount statistics endpoints for dashboard summaries.
 app.use("/api/stats", statsRoutes);
+app.use("/api/predictions", predictionRoutes);
+app.use("/api/community-reports", communityReportRoutes);
 
 // Convert thrown errors into consistent JSON responses.
 app.use(errorHandler);

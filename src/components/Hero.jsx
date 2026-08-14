@@ -123,8 +123,7 @@ const Hero = () => {
       </h1>
 
       <p className="hero-subtitle text-center text-lg mt-6 max-w-2xl px-3 text-gray-600 dark:text-slate-300">
-        EcoWatch provides real-time environmental monitoring through satellite imagery and AI, empowering
-        NGOs and governments to track illegal mining activities, deforestation, and locate wildfires
+        EcoWatch provides real-time environmental monitoring through satellite imagery and AI, empowering NGOs and governments to track illegal mining activities
       </p>
 
       <div className="hero-btn mt-8">
@@ -187,7 +186,7 @@ const Hero = () => {
           ))}
         </div>
         <div className="section-image mt-16 w-full rounded-3xl overflow-hidden" style={{ height: '480px' }}>
-          <Image src="/image.png" alt="Aerial landscape view" width={1200} height={480} className="object-cover w-full h-full" />
+          <Image src="/Image.png" alt="Aerial landscape view" width={1200} height={480} className="object-cover w-full h-full" />
         </div>
       </div>
 

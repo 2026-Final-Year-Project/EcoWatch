@@ -308,14 +308,15 @@ export default function Monitor() {
         {/* MAP */}
         <div className="relative flex-1">
 
-          {/* Legend */}
-          <div className={`absolute top-4 left-4 z-1000 rounded-2xl px-5 py-4 shadow-lg text-sm backdrop-blur ${
-            darkMode ? 'bg-[#1a2a10]/90 text-white' : 'bg-white/90 text-slate-700'
-          }`}>
-            <div className="mx-auto mb-5 h-12 w-12 rounded-full border-4 border-[#dbe7c9] border-t-[#4a5e1a] animate-spin" />
-            <h2 className="text-xl font-semibold">Analysing location</h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-500">Fetching Sentinel-2 imagery and running the illegal-mining segmentation model. This can take a moment.</p>
-          </div>
+          {predicting && (
+            <div className={`absolute left-1/2 top-1/2 z-[2000] w-[min(24rem,calc(100%-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-2xl px-5 py-5 text-center shadow-2xl backdrop-blur ${
+              darkMode ? 'bg-[#1a2a10]/95 text-white' : 'bg-white/95 text-slate-700'
+            }`}>
+              <div className="mx-auto mb-4 h-10 w-10 rounded-full border-4 border-[#dbe7c9] border-t-[#4a5e1a] animate-spin" />
+              <h2 className="text-lg font-semibold">Analysing location</h2>
+              <p className="mt-2 text-sm leading-relaxed text-slate-500">Fetching Sentinel-2 imagery and running the illegal-mining segmentation model. This can take a moment.</p>
+            </div>
+          )}
 
           {/* Legend */}
           <div className={`absolute top-4 left-4 z-1000 rounded-2xl px-5 py-4 shadow-lg text-sm backdrop-blur ${

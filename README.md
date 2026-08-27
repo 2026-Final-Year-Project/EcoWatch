@@ -52,27 +52,17 @@ Express API (/api)
 External imagery and segmentation model service
 ```
 
-The frontend centralizes API access in `src/lib/api.js`. By default, browser requests go to `http://localhost:5050/api`. Interactive App Router pages are client components because they use browser APIs such as geolocation and `localStorage`, plus React state and effects.
-
-Authentication returns an eight-hour HMAC-signed bearer token. The frontend stores the community session in browser `localStorage` and includes the token in protected requests.
-
-The browser never contacts the model service directly:
-
-- `POST /api/predictions/coordinate` proxies to `POST /v1/predict/coordinate` and records successful runs;
-- `POST /api/predictions/imagery/coordinate` proxies to `POST /v1/imagery/coordinate`;
-- a community submission is stored first, then triggers `/v1/predict/coordinate` and records the result when available.
-
-Express allows `http://localhost:3000` through CORS by default. Set `CLIENT_ORIGIN` when the frontend is hosted elsewhere.
-
 ## Technology
 
-- Next.js 16 App Router and React 19
-- Tailwind CSS 4
-- Leaflet with Esri satellite tiles
+- JavaScript
+- Next.js
+- React
+- Express
+- Tailwind CSS
+- Leaflet
 - GSAP
-- jsPDF and html2canvas
-- Express 4 and CORS
-- Node.js crypto and filesystem APIs
+- jsPDF
+- html2canvas
 
 ## Run locally
 
@@ -107,32 +97,6 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000). The API health check is at [http://localhost:5050/api/health](http://localhost:5050/api/health).
 
 Without the external model service, the landing page, authentication, community-site listing, seeded incidents, and printable reports still work. Live map analysis fails, while community reports are saved without a model result.
-
-## Configuration
-
-Create an uncommitted `.env.local` for Next.js as needed. Environment files are ignored by Git. The backend does not load `.env` files itself, so export its variables in the shell or provide them through your process manager.
-
-Frontend (`.env.local`):
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `NEXT_PUBLIC_API_BASE_URL` | `http://localhost:5050/api` | Browser API base URL; include `/api`. |
-
-Backend process environment:
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `PORT` | `5050` | Express listening port. |
-| `CLIENT_ORIGIN` | `http://localhost:3000` | Origin allowed by CORS. |
-| `MODEL_API_URL` | `http://localhost:8000` | External model-service base URL; omit `/v1`. |
-| `AUTH_SECRET` | `dev-ecowatch-secret` | Bearer-token signing secret. Set a long random value outside local development. |
-
-The model service must accept:
-
-- `POST /v1/predict/coordinate` with `latitude`, `longitude`, and optional `date_start`/`date_end`;
-- `POST /v1/imagery/coordinate` with the same coordinate and optional date fields.
-
-Predictions are expected to provide fields such as `mining_detected`, `detection_level`, `probability` or `mean_probability`, `mining_fraction`, `affected_area_m2`, `largest_component_pixels`, `threshold`, and `model_version`. Imagery responses provide image data used by the comparison UI.
 
 ## Routes
 
@@ -174,26 +138,6 @@ Express endpoints:
 
 Incident list filters are supplied as `type`, `severity`, and `status` query parameters.
 
-## Demo privileged accounts
-
-These seed accounts are intended only for local development and protected incident API calls:
-
-- Admin: `admin@ecowatch.local` / `admin123`
-- Authority: `authority@ecowatch.local` / `authority123`
-
-Community users register through `/auth` or `POST /api/auth/register`. Their passwords are salted and hashed with `scrypt` before storage.
-
-## Storage and production considerations
-
-The current persistence model is prototype-oriented:
-
-- `backend/data/community-reports.json` stores grouped sites and reports;
-- `backend/data/community-users.json` is created for registered users and ignored by Git;
-- `backend/data/prediction-history.json` stores up to 1,000 completed analyses and is ignored by Git;
-- incidents are seeded in source and mutations are not persisted across restarts.
-
-JSON updates use a temporary file followed by a rename, but the stores are not designed for multiple backend instances or concurrent production workloads. Before public deployment, use a managed database, remove demo credentials, set `AUTH_SECRET`, add rate limiting and account verification, review location-data retention and access controls, and serve both applications over HTTPS.
-
 ## Repository layout
 
 ```text
@@ -209,27 +153,6 @@ backend/src/data/        Seed incidents, authorities, and privileged users
 backend/data/            Runtime JSON stores
 scripts/                 Reference-site import tooling
 ```
-
-## Useful commands
-
-Frontend:
-
-```bash
-npm run dev
-npm run lint
-npm run build
-npm start
-```
-
-Backend:
-
-```bash
-cd backend
-npm run dev
-npm start
-```
-
-The frontend development and build scripts intentionally use webpack for this Next.js version.
 
 ## Reference-site attribution
 

@@ -9,6 +9,8 @@ import { useTheme } from './ThemeProvider'
 import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
 const MIN_SIDEBAR_WIDTH = 340
+const COMPARISON_YEARS = [2022, 2023, 2024, 2025, 2026]
+const TIMELAPSE_INTERVAL_MS = 1800
 
 export default function Monitor() {
   const mapRef         = useRef(null)
@@ -30,6 +32,9 @@ export default function Monitor() {
   const [comparisonLoading, setComparisonLoading] = useState(false)
   const [comparisonError, setComparisonError] = useState(null)
   const [fullPreview, setFullPreview] = useState(null)
+  const [timelineIndex, setTimelineIndex] = useState(0)
+  const [timelinePlaying, setTimelinePlaying] = useState(false)
+  const [timelineExpanded, setTimelineExpanded] = useState(false)
   const [sidebarWidth, setSidebarWidth] = useState(MIN_SIDEBAR_WIDTH)
   const [resizingSidebar, setResizingSidebar] = useState(false)
 
@@ -82,13 +87,25 @@ export default function Monitor() {
   }, [sidebarWidth])
 
   useEffect(() => {
-    if (!fullPreview) return undefined
+    if (!comparison?.length || !timelineExpanded || !timelinePlaying) return undefined
+    const timer = window.setInterval(() => {
+      setTimelineIndex((index) => (index + 1) % comparison.length)
+    }, TIMELAPSE_INTERVAL_MS)
+    return () => window.clearInterval(timer)
+  }, [comparison, timelineExpanded, timelinePlaying])
+
+  useEffect(() => {
+    if (!fullPreview && !timelineExpanded) return undefined
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setFullPreview(null)
+      if (event.key === 'Escape') {
+        setFullPreview(null)
+        setTimelineExpanded(false)
+        setTimelinePlaying(false)
+      }
     }
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
-  }, [fullPreview])
+  }, [fullPreview, timelineExpanded])
 
   // ── Init map ──────────────────────────────────────────────
   useEffect(() => {
@@ -127,17 +144,24 @@ export default function Monitor() {
         setComparisonLoading(true)
         setComparisonError(null)
         try {
-          const [before, current] = await Promise.all([
-            fetchJson('/predictions/imagery/coordinate', {
+          const yearlyImages = await Promise.all(COMPARISON_YEARS.map(async (year) => {
+            const image = await fetchJson('/predictions/imagery/coordinate', {
               method: 'POST', headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ latitude: latlng.lat, longitude: latlng.lng, date_start: '2016-01-01', date_end: '2017-01-01' }),
-            }),
-            fetchJson('/predictions/imagery/coordinate', {
-              method: 'POST', headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ latitude: latlng.lat, longitude: latlng.lng }),
-            }),
-          ])
-          if (comparisonRequestRef.current === requestId && !cancelled) setComparison({ before, current })
+              body: JSON.stringify({
+                latitude: latlng.lat,
+                longitude: latlng.lng,
+                date_start: `${year}-01-01`,
+                date_end: `${year + 1}-01-01`,
+              }),
+            })
+            return { ...image, year }
+          }))
+          if (comparisonRequestRef.current === requestId && !cancelled) {
+            setTimelineIndex(0)
+            setTimelinePlaying(false)
+            setTimelineExpanded(false)
+            setComparison(yearlyImages)
+          }
         } catch (error) {
           if (comparisonRequestRef.current === requestId && !cancelled) setComparisonError(error.message)
         } finally {
@@ -475,6 +499,61 @@ export default function Monitor() {
           </div>
         )}
 
+        {timelineExpanded && comparison?.length > 0 && (
+          <div onClick={() => {
+            setTimelineExpanded(false)
+            setTimelinePlaying(false)
+          }} className="fixed inset-0 z-[5000] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Annual satellite time-lapse">
+            <div onClick={(event) => event.stopPropagation()} className="flex max-h-[calc(100vh-2rem)] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-[#111a09] text-white shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                <div>
+                  <p className="text-sm font-semibold">Change over time · {comparison[timelineIndex].year}</p>
+                  <p className="mt-0.5 text-xs text-white/50">Sentinel-2 image captured {comparison[timelineIndex].captured_at}</p>
+                </div>
+                <button type="button" onClick={() => {
+                  setTimelineExpanded(false)
+                  setTimelinePlaying(false)
+                }} className="rounded-lg px-3 py-1.5 text-sm font-medium hover:bg-white/15" aria-label="Close annual time-lapse">Close ×</button>
+              </div>
+
+              <div className="relative flex min-h-0 flex-1 items-center justify-center bg-black p-3">
+                {comparison.map((image, index) => (
+                  <Image
+                    key={image.year}
+                    src={image.image_url}
+                    alt={`Sentinel-2 view captured in ${image.year}`}
+                    width={1024}
+                    height={1024}
+                    unoptimized
+                    className={`max-h-[calc(100vh-12rem)] w-auto max-w-full object-contain transition-opacity duration-700 ${index === timelineIndex ? 'relative opacity-100' : 'absolute opacity-0'}`}
+                  />
+                ))}
+                <span className="absolute left-6 top-6 rounded-lg bg-black/65 px-3 py-1.5 text-base font-semibold backdrop-blur">{comparison[timelineIndex].year}</span>
+              </div>
+
+              <div className="border-t border-white/10 px-4 py-4">
+                <div className="mx-auto flex max-w-2xl items-center gap-3">
+                  <button type="button" onClick={() => setTimelinePlaying((playing) => !playing)} className="min-w-24 rounded-lg bg-[#4a5e1a] px-4 py-2 text-sm font-semibold transition hover:bg-[#5b7222]" aria-label={timelinePlaying ? 'Pause annual time-lapse' : 'Play annual time-lapse'}>
+                    {timelinePlaying ? '❚❚ Pause' : '▶ Play'}
+                  </button>
+                  <div className="grid flex-1 grid-cols-5 gap-2" aria-label="Select a year">
+                    {comparison.map((image, index) => (
+                      <button key={image.year} type="button" onClick={() => {
+                        setTimelineIndex(index)
+                        setTimelinePlaying(false)
+                      }} aria-pressed={index === timelineIndex} className={`rounded-lg py-2 text-xs font-semibold transition ${
+                        index === timelineIndex ? 'bg-white text-[#354512]' : 'bg-white/10 text-white/70 hover:bg-white/20'
+                      }`}>
+                        {image.year}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* SIDEBAR */}
         <aside style={{ width: sidebarWidth }} className={`relative shrink-0 flex flex-col border-l overflow-y-auto ${
           darkMode ? 'bg-[#111a09] border-white/10' : 'bg-white border-slate-200'
@@ -587,7 +666,7 @@ export default function Monitor() {
               <p className="text-sm font-medium mb-2">Change over time</p>
               {comparisonLoading && (
                 <div className={`rounded-2xl border p-4 text-xs ${darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-slate-50 text-slate-500'}`}>
-                  Fetching matching Sentinel-2 views from 2016 and the latest available scene…
+                  Fetching five matching Sentinel-2 views from 2022–2026…
                 </div>
               )}
               {comparisonError && (
@@ -596,20 +675,17 @@ export default function Monitor() {
                 </div>
               )}
               {comparison && (
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: `Before · ${comparison.before.captured_at}`, image: comparison.before },
-                    { label: `Latest · ${comparison.current.captured_at}`, image: comparison.current },
-                  ].map(({ label, image }, index, allImages) => (
-                    <button key={label} type="button" onClick={() => setFullPreview({
-                      images: allImages.map(({ label: imageLabel, image: comparisonImage }) => ({ url: comparisonImage.image_url, title: imageLabel })),
-                      index,
-                      title: label,
-                    })} className="text-left group">
-                      <p className="mb-1 text-[10px] font-mono uppercase tracking-widest text-slate-400">{label}</p>
-                      <Image src={image.image_url} alt={`Sentinel-2 view: ${label}`} width={512} height={512} unoptimized className="aspect-square w-full rounded-xl object-cover ring-1 ring-transparent transition group-hover:ring-[#4a5e1a]" />
-                    </button>
-                  ))}
+                <div className="relative h-44 overflow-hidden rounded-2xl bg-slate-200">
+                  <Image src={comparison[0].image_url} alt="Preview of the 2022–2026 annual satellite time-lapse" width={640} height={360} unoptimized className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-black/15" />
+                  <button type="button" onClick={() => {
+                    setTimelineIndex(0)
+                    setTimelineExpanded(true)
+                    setTimelinePlaying(true)
+                  }} className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-black/65 pl-1 text-xl text-white shadow-xl transition hover:scale-105 hover:bg-[#4a5e1a] focus:outline-none focus:ring-4 focus:ring-white/50" aria-label="Open and play annual satellite time-lapse">
+                    ▶
+                  </button>
+                  <span className="pointer-events-none absolute bottom-2 left-2 rounded-lg bg-black/65 px-2 py-1 text-[10px] text-white">2022–2026 time-lapse</span>
                 </div>
               )}
             </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import 'leaflet/dist/leaflet.css'
@@ -8,8 +8,11 @@ import { apiUrl, fetchJson } from '@/lib/api'
 import { useTheme } from './ThemeProvider'
 import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
+const MIN_SIDEBAR_WIDTH = 340
+
 export default function Monitor() {
   const mapRef         = useRef(null)
+  const mainLayoutRef  = useRef(null)
   const mapInstanceRef = useRef(null)
   const demoSiteLayerRef = useRef(null)
   const userMarkerRef  = useRef(null)
@@ -27,6 +30,56 @@ export default function Monitor() {
   const [comparisonLoading, setComparisonLoading] = useState(false)
   const [comparisonError, setComparisonError] = useState(null)
   const [fullPreview, setFullPreview] = useState(null)
+  const [sidebarWidth, setSidebarWidth] = useState(MIN_SIDEBAR_WIDTH)
+  const [resizingSidebar, setResizingSidebar] = useState(false)
+
+  const clampSidebarWidth = useCallback((width) => {
+    const layoutWidth = mainLayoutRef.current?.getBoundingClientRect().width ?? window.innerWidth
+    const maximumWidth = Math.max(MIN_SIDEBAR_WIDTH, layoutWidth / 2)
+    return Math.min(Math.max(width, MIN_SIDEBAR_WIDTH), maximumWidth)
+  }, [])
+
+  const resizeSidebarAt = useCallback((clientX) => {
+    const layoutBounds = mainLayoutRef.current?.getBoundingClientRect()
+    if (!layoutBounds) return
+    setSidebarWidth(clampSidebarWidth(layoutBounds.right - clientX))
+  }, [clampSidebarWidth])
+
+  useEffect(() => {
+    if (!resizingSidebar) return undefined
+
+    const previousCursor = document.body.style.cursor
+    const previousUserSelect = document.body.style.userSelect
+    const handlePointerMove = (event) => {
+      event.preventDefault()
+      resizeSidebarAt(event.clientX)
+    }
+    const stopResizing = () => setResizingSidebar(false)
+
+    document.body.style.cursor = 'col-resize'
+    document.body.style.userSelect = 'none'
+    window.addEventListener('pointermove', handlePointerMove)
+    window.addEventListener('pointerup', stopResizing)
+    window.addEventListener('pointercancel', stopResizing)
+
+    return () => {
+      document.body.style.cursor = previousCursor
+      document.body.style.userSelect = previousUserSelect
+      window.removeEventListener('pointermove', handlePointerMove)
+      window.removeEventListener('pointerup', stopResizing)
+      window.removeEventListener('pointercancel', stopResizing)
+    }
+  }, [resizeSidebarAt, resizingSidebar])
+
+  useEffect(() => {
+    const keepSidebarWithinBounds = () => setSidebarWidth((width) => clampSidebarWidth(width))
+    window.addEventListener('resize', keepSidebarWithinBounds)
+    return () => window.removeEventListener('resize', keepSidebarWithinBounds)
+  }, [clampSidebarWidth])
+
+  useEffect(() => {
+    mapInstanceRef.current?.invalidateSize({ animate: false })
+  }, [sidebarWidth])
 
   useEffect(() => {
     if (!fullPreview) return undefined
@@ -303,7 +356,7 @@ export default function Monitor() {
       </header>
 
       {/* MAIN */}
-      <div className="flex h-[calc(100vh-73px)]">
+      <div ref={mainLayoutRef} className="flex h-[calc(100vh-73px)]">
 
         {/* MAP */}
         <div className="relative flex-1">
@@ -423,9 +476,38 @@ export default function Monitor() {
         )}
 
         {/* SIDEBAR */}
-        <aside className={`w-85 shrink-0 flex flex-col border-l overflow-y-auto ${
+        <aside style={{ width: sidebarWidth }} className={`relative shrink-0 flex flex-col border-l overflow-y-auto ${
           darkMode ? 'bg-[#111a09] border-white/10' : 'bg-white border-slate-200'
         }`}>
+          <div
+            role="separator"
+            aria-label="Resize detection panel"
+            aria-orientation="vertical"
+            aria-valuemin={MIN_SIDEBAR_WIDTH}
+            aria-valuenow={Math.round(sidebarWidth)}
+            aria-valuetext={`${Math.round(sidebarWidth)} pixels wide`}
+            tabIndex={0}
+            onPointerDown={(event) => {
+              if (event.button !== 0) return
+              resizeSidebarAt(event.clientX)
+              setResizingSidebar(true)
+            }}
+            onKeyDown={(event) => {
+              if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+              event.preventDefault()
+              const layoutWidth = mainLayoutRef.current?.getBoundingClientRect().width ?? window.innerWidth
+              if (event.key === 'Home') setSidebarWidth(MIN_SIDEBAR_WIDTH)
+              else if (event.key === 'End') setSidebarWidth(clampSidebarWidth(layoutWidth / 2))
+              else setSidebarWidth((width) => clampSidebarWidth(width + (event.key === 'ArrowLeft' ? 24 : -24)))
+            }}
+            className={`group absolute inset-y-0 left-0 z-[1100] w-3 -translate-x-1/2 cursor-col-resize touch-none outline-none ${
+              resizingSidebar ? 'bg-[#4a5e1a]/15' : ''
+            }`}
+          >
+            <span className={`absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 transition-colors group-hover:bg-[#4a5e1a] group-focus:bg-[#4a5e1a] ${
+              resizingSidebar ? 'bg-[#4a5e1a]' : 'bg-transparent'
+            }`} />
+          </div>
           <div className="p-6 flex flex-col gap-5 flex-1">
 
             <div className="flex items-start justify-between">

@@ -33369,11 +33369,11 @@
   },
   {
     "id": "215537f6-3d3d-496c-9f7a-3868e6a400f6",
-    "latitude": 6.672875121579692,
-    "longitude": -1.56719966321371,
-    "reportCount": 1,
+    "latitude": 6.672892560789846,
+    "longitude": -1.567069831606855,
+    "reportCount": 2,
     "firstReportedAt": "2026-08-14T08:23:52.895Z",
-    "lastReportedAt": "2026-08-14T08:23:52.895Z",
+    "lastReportedAt": "2026-09-03T13:26:08.635Z",
     "reports": [
       {
         "id": "507bb460-5317-4bde-966f-fd2f51d92db9",
@@ -33383,10 +33383,19 @@
         "accuracy": 63,
         "notes": null,
         "reportedAt": "2026-08-14T08:23:52.895Z"
+      },
+      {
+        "id": "b5afd9c1-d94b-471e-b28f-e7943966f738",
+        "reporterId": "12646513-9fc9-4930-ade3-4785420fcd3c",
+        "latitude": 6.67291,
+        "longitude": -1.56694,
+        "accuracy": 312,
+        "notes": null,
+        "reportedAt": "2026-09-03T13:26:08.635Z"
       }
     ],
     "latestPrediction": {
-      "probability": 0.000011682233889587224,
+      "probability": 0.000008163455277099274,
       "mining_detected": false,
       "detection_level": "none",
       "mining_fraction": 0,
@@ -50036,11 +50045,11 @@
       ],
       "threshold": 0.5,
       "model_version": "unet-epoch-25",
-      "latitude": 6.672875121579692,
-      "longitude": -1.56719966321371,
+      "latitude": 6.672892560789846,
+      "longitude": -1.567069831606855,
       "date_start": null,
       "date_end": null,
-      "analysedAt": "2026-08-14T08:23:58.635Z"
+      "analysedAt": "2026-09-03T13:26:15.438Z"
     }
   }
 ]

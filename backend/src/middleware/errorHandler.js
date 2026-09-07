@@ -5,6 +5,6 @@ export function errorHandler(err, _req, res, _next) {
 
   // Return the provided status code or a generic server error.
   res.status(err.status || 500).json({
-    message: err.message || "Unexpected server error.",
+    message: err.status && err.status < 500 ? err.message : "Unexpected server error.",
   });
 }

@@ -10,7 +10,7 @@ router.get("/history", (_req, res) => {
 
 router.post("/coordinate", async (req, res, next) => {
   const { latitude, longitude, date_start, date_end } = req.body;
-  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+  if (!Number.isFinite(latitude) || Math.abs(latitude) > 90 || !Number.isFinite(longitude) || Math.abs(longitude) > 180) {
     return res.status(400).json({ message: "latitude and longitude must be numbers." });
   }
   try {
@@ -26,8 +26,8 @@ router.post("/coordinate", async (req, res, next) => {
       body = { detail: rawBody || "The model service returned an invalid response." };
     }
     if (response.ok) {
-      recordPredictionRun({ latitude, longitude, dateStart: date_start, dateEnd: date_end, prediction: body, source: "map" });
-      return res.status(response.status).json(body);
+      const run = recordPredictionRun({ latitude, longitude, dateStart: date_start, dateEnd: date_end, prediction: body, source: "map" });
+      return res.status(response.status).json({ ...body, analysisId: run.id });
     }
     return res.status(response.status).json({ message: body.detail || "Prediction failed." });
   } catch (error) { return next(error); }
@@ -35,7 +35,7 @@ router.post("/coordinate", async (req, res, next) => {
 
 router.post("/imagery/coordinate", async (req, res, next) => {
   const { latitude, longitude, date_start, date_end } = req.body;
-  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+  if (!Number.isFinite(latitude) || Math.abs(latitude) > 90 || !Number.isFinite(longitude) || Math.abs(longitude) > 180) {
     return res.status(400).json({ message: "latitude and longitude must be numbers." });
   }
   try {

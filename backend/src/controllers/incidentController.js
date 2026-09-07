@@ -34,7 +34,7 @@ export function getIncident(req, res) {
 // Create a new incident from an authenticated request.
 export function postIncident(req, res) {
   // Store the incident through the service layer.
-  const incident = createIncident(req.body);
+  const incident = createIncident(req.body, req.user.sub);
 
   // Return the created incident with a 201 status.
   res.status(201).json(incident);

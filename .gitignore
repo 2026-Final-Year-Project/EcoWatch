@@ -48,3 +48,8 @@ CLAUDE.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SQLite database and journal files
+/backend/data/*.sqlite*
+/backend/data/*.db*
+!/backend/.env.example

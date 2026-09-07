@@ -31,7 +31,7 @@ export default function AuthPage() {
         body: JSON.stringify(mode === 'signup' ? { name, email, password } : { email, password }),
       })
       saveCommunitySession(data)
-      router.replace('/report')
+      router.replace(new URLSearchParams(window.location.search).get('from') === 'map' ? '/report?from=map' : '/report')
     } catch (requestError) {
       setError(requestError.message)
     } finally {
@@ -39,19 +39,19 @@ export default function AuthPage() {
     }
   }
 
-  const inputClass = 'mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm outline-none ring-[#4a5e1a] focus:ring-2'
+  const inputClass = 'mt-1.5 w-full rounded-xl border border-slate-200 bg-light-surface px-3 py-3 text-sm outline-none ring-[#4a5e1a] focus:ring-2'
   const passwordInputType = passwordVisible ? 'text' : 'password'
 
-  return <main className="flex min-h-screen items-center justify-center bg-[#f6f7f1] px-6 py-12 text-slate-900">
-    <section className="w-full max-w-md rounded-3xl border border-slate-100 bg-white p-7 shadow-xl shadow-slate-900/5">
+  return <main className="flex min-h-screen items-center justify-center bg-light-background px-6 py-12 text-slate-900">
+    <section className="w-full max-w-md rounded-3xl border border-slate-100 bg-light-surface p-7 shadow-xl shadow-slate-900/5">
       <Link href="/report" className="text-sm font-medium text-[#4a5e1a] hover:underline">← Back to reports</Link>
       <p className="mt-7 text-xs font-mono uppercase tracking-[0.2em] text-[#4a5e1a]">Community reporting</p>
       <h1 className="mt-2 text-3xl font-bold">{mode === 'signup' ? 'Create your account' : 'Sign in'}</h1>
       <p className="mt-3 text-sm leading-relaxed text-slate-600">An account lets EcoWatch count one contribution per person at a site, helping protect community reports from repeat submissions.</p>
 
       <div className="mt-6 grid grid-cols-2 rounded-xl bg-slate-100 p-1 text-sm font-medium">
-        <button type="button" onClick={() => { setMode('signup'); setError(null) }} className={`rounded-lg py-2 ${mode === 'signup' ? 'bg-white text-[#1f3b17] shadow-sm' : 'text-slate-500'}`}>Create account</button>
-        <button type="button" onClick={() => { setMode('signin'); setError(null) }} className={`rounded-lg py-2 ${mode === 'signin' ? 'bg-white text-[#1f3b17] shadow-sm' : 'text-slate-500'}`}>Sign in</button>
+        <button type="button" onClick={() => { setMode('signup'); setError(null) }} className={`rounded-lg py-2 ${mode === 'signup' ? 'bg-light-surface text-[#1f3b17] shadow-sm' : 'text-slate-500'}`}>Create account</button>
+        <button type="button" onClick={() => { setMode('signin'); setError(null) }} className={`rounded-lg py-2 ${mode === 'signin' ? 'bg-light-surface text-[#1f3b17] shadow-sm' : 'text-slate-500'}`}>Sign in</button>
       </div>
 
       <form className="mt-6 space-y-4" onSubmit={submit}>

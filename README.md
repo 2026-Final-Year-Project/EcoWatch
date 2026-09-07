@@ -31,9 +31,9 @@ The `/history` page retrieves completed model runs from Express. It supports fil
 
 ### Incident reports
 
-The `/printable` page loads the newest seeded incident and authority list from Express and renders a printable report. The backend also exposes generated PDF downloads for the latest report or an incident selected by ID.
+The `/printable` page loads the newest persisted incident and authority list from Express and renders a printable report. The backend also exposes generated PDF downloads for the latest report or an incident selected by ID.
 
-Incident endpoints support filtering, creation, and status updates. Creation and status changes require an admin or authority bearer token. Incident data starts in `backend/src/data/incidents.js`; API changes last only until the backend restarts.
+Incident endpoints support filtering, creation, and status updates. Creation and status changes require an admin or authority bearer token. Incidents, accounts, sessions, community reports and prediction history persist in SQLite across restarts. See [database.md](database.md) for setup, schema, normalization and backups.
 
 ## Architecture and data flow
 
@@ -43,9 +43,9 @@ Browser (Next.js client components)
   v
 Express API (/api)
   |-- authentication and authorization
-  |-- community report clustering and JSON-file storage
-  |-- prediction history JSON-file storage
-  |-- seeded, in-memory incidents and derived reports
+  |-- community report clustering and SQLite storage
+  |-- prediction history in SQLite
+  |-- persistent incidents, accounts, sessions and derived reports
   |
   |  MODEL_API_URL, server-to-server JSON over HTTP
   v
@@ -68,7 +68,7 @@ External imagery and segmentation model service
 
 ### Prerequisites
 
-- Node.js 18 or newer (the backend uses built-in `fetch` and `AbortSignal.timeout`)
+- Node.js 22.12 or newer (the backend uses built-in SQLite)
 - npm
 - a compatible imagery/model API if you want live analysis and imagery comparison
 
@@ -109,7 +109,7 @@ Frontend routes:
 | `/report` | Community reporting and grouped sites |
 | `/history` | Recorded model-analysis history |
 | `/auth` | Community sign-up and sign-in |
-| `/printable` | Latest printable seeded incident report |
+| `/printable` | Latest printable incident report |
 
 Express endpoints:
 
@@ -126,7 +126,7 @@ Express endpoints:
 | `GET /api/incidents` | List/filter incidents | Public |
 | `GET /api/incidents/live` | Return the newest live-map incident subset | Public |
 | `GET /api/incidents/:id` | Return one incident | Public |
-| `POST /api/incidents` | Create an in-memory incident | Admin/authority |
+| `POST /api/incidents` | Create a persisted incident | Admin/authority |
 | `PATCH /api/incidents/:id/status` | Change an incident status | Admin/authority |
 | `GET /api/reports` | List reports derived from incidents | Public |
 | `GET /api/reports/latest` | Return the newest report | Public |
@@ -150,7 +150,7 @@ backend/src/routes/      Express route definitions
 backend/src/controllers/ HTTP request handlers
 backend/src/services/    Auth, storage, incident, history, and PDF logic
 backend/src/data/        Seed incidents, authorities, and privileged users
-backend/data/            Runtime JSON stores
+backend/data/            SQLite database and legacy import source files
 scripts/                 Reference-site import tooling
 ```
 

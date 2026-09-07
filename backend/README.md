@@ -1,25 +1,24 @@
 # EcoWatch Backend
 
-Express API for EcoWatch incidents, history, reports, PDF downloads, and simple admin/authority authentication.
+Express API backed by SQLite for accounts, sessions, incidents, community reports, authorities and prediction history. Printable reports and statistics derive from persisted records.
 
-## Community reporting accounts
-
-`POST /api/auth/register` creates a community account with a salted `scrypt` password hash. Community submissions to `POST /api/community-reports` require its bearer token, and a single account can contribute only once to the same 250 m report cluster. Set `AUTH_SECRET` to a long random value (see `.env.example`) before deploying. Local accounts are persisted in `data/community-users.json`; replace this file store with a managed database and add email verification/rate limiting for a public deployment.
-
-## Run Locally
+Requires Node.js 22.12 or newer. From this directory:
 
 ```bash
-cd backend
 npm install
+cp .env.example .env
+npm run db:init
 npm run dev
 ```
 
-The API runs on `http://localhost:5050` by default. Override it with the `PORT`
-environment variable when needed.
+The API listens on `http://localhost:5050`. Startup automatically applies migrations and imports existing local JSON records once. The default database is `data/ecowatch.sqlite`; set `DATABASE_PATH` to use another durable location.
 
-## Demo Accounts
+Development databases seed `admin@ecowatch.local` / `admin123` and `authority@ecowatch.local` / `authority123`. Production disables demo seeding by default. Public registration creates community accounts. Authentication uses eight-hour database sessions and salted scrypt password hashes.
 
-- Admin: `admin@ecowatch.local` / `admin123`
-- Authority: `authority@ecowatch.local` / `authority123`
+```bash
+npm test
+npm run db:check
+npm run db:backup -- /absolute/path/new-backup.sqlite
+```
 
-Use `POST /api/auth/login` to get a bearer token for protected incident actions.
+See [database.md](../database.md) for the full schema, relationships, normalization, production setup, account provisioning, import rules, backups and operational limits.

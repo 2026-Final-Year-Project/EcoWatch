@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { fetchJson } from '@/lib/api'
 import { clearCommunitySession, getCommunitySession } from '@/lib/auth'
+import { readAnalysisReportDraft, clearAnalysisReportDraft } from '@/lib/analysisReportDraft'
 import { useTheme } from './ThemeProvider'
 import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
@@ -13,6 +14,7 @@ const formatCoordinates = (latitude, longitude) => `${latitude.toFixed(4)}°, ${
 export default function Report() {
   const { darkMode, toggleTheme } = useTheme()
   const [location, setLocation] = useState(null)
+  const [analysisDraft, setAnalysisDraft] = useState(null)
   const [manualLatitude, setManualLatitude] = useState('')
   const [manualLongitude, setManualLongitude] = useState('')
   const [notes, setNotes] = useState('')
@@ -42,6 +44,13 @@ export default function Report() {
   useEffect(() => {
     const initialize = async () => {
       setSession(getCommunitySession())
+      const draft = new URLSearchParams(window.location.search).get('from') === 'map' ? readAnalysisReportDraft() : null
+      if (draft) {
+        setAnalysisDraft(draft)
+        setManualLatitude(String(draft.latitude))
+        setManualLongitude(String(draft.longitude))
+        setLocation({ latitude: draft.latitude, longitude: draft.longitude, accuracy: null, source: 'map' })
+      }
       try {
         const data = await fetchJson('/community-reports')
         setSites(data.sites)
@@ -62,6 +71,8 @@ export default function Report() {
     setLocationError(null)
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
+        setAnalysisDraft(null)
+        clearAnalysisReportDraft()
         setLocation({ latitude: coords.latitude, longitude: coords.longitude, accuracy: Math.round(coords.accuracy), source: 'device' })
         setGettingLocation(false)
       },
@@ -81,6 +92,10 @@ export default function Report() {
       return
     }
     setLocation({ latitude, longitude, accuracy: null, source: 'manual' })
+    if (latitude !== analysisDraft?.latitude || longitude !== analysisDraft?.longitude) {
+      setAnalysisDraft(null)
+      clearAnalysisReportDraft()
+    }
     setLocationError(null)
   }
 
@@ -97,9 +112,11 @@ export default function Report() {
     try {
       const data = await fetchJson('/community-reports', {
         method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${activeSession.token}` },
-        body: JSON.stringify({ ...location, notes }),
+        body: JSON.stringify({ ...location, ...(analysisDraft ? { analysisId: analysisDraft.analysisId } : {}), notes: [analysisDraft?.summary, notes].filter(Boolean).join('\n\n') }),
       })
       setResult(data)
+      clearAnalysisReportDraft()
+      setAnalysisDraft(null)
       setNotes('')
       setSites((previous) => [data.site, ...previous.filter((site) => site.id !== data.site.id)])
     } catch (error) {
@@ -109,12 +126,12 @@ export default function Report() {
     }
   }
 
-  const panel = darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-white'
-  const mutedPanel = darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-slate-50 text-slate-600'
+  const panel = darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-light-surface'
+  const mutedPanel = darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-light-muted text-slate-600'
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-[#f6f7f1] text-slate-900'}`}>
-      <header className={`flex items-center justify-between border-b px-6 py-4 ${darkMode ? 'border-white/10 bg-[#111a09]' : 'border-black/5 bg-white'}`}>
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-light-background text-slate-900'}`}>
+      <header className={`flex items-center justify-between border-b px-6 py-4 ${darkMode ? 'border-white/10 bg-[#111a09]' : 'border-black/5 bg-light-surface'}`}>
         <Link href="/" className="flex items-center hover:opacity-80 transition" aria-label="Go to homepage">
           <Image src="/Area.png" alt="EcoWatch Logo" width={90} height={40} className="object-contain" priority />
         </Link>
@@ -136,7 +153,7 @@ export default function Report() {
         <div className="mb-8 max-w-3xl">
           <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-[#4a5e1a]">Community observations</p>
           <h1 className="text-4xl font-bold tracking-tight">Report a possible mining site</h1>
-          <p className={`mt-3 leading-relaxed ${darkMode ? 'text-white/65' : 'text-slate-600'}`}>Share a location you have personally observed. Nearby reports are grouped within {clusterRadius} m, and EcoWatch runs a satellite-model check on the clustered location.</p>
+          <p className={`mt-3 leading-relaxed ${darkMode ? 'text-white/65' : 'text-slate-600'}`}>Share a location you have personally observed. Nearby reports are grouped within {clusterRadius} m, and {analysisDraft ? 'your original map analysis is included with your report.' : 'EcoWatch runs a satellite-model check on the clustered location.'}</p>
         </div>
 
         <div className="grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
@@ -152,23 +169,23 @@ export default function Report() {
             <div className="my-5 flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-slate-400"><span className="h-px flex-1 bg-slate-200/30" />or enter coordinates<span className="h-px flex-1 bg-slate-200/30" /></div>
             <div className="grid grid-cols-2 gap-3">
               <label className="text-xs font-medium">Latitude
-                <input type="number" step="any" value={manualLatitude} onChange={(event) => setManualLatitude(event.target.value)} placeholder="e.g. 6.4330" className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-white placeholder:text-slate-400'}`} />
+                <input type="number" step="any" value={manualLatitude} onChange={(event) => setManualLatitude(event.target.value)} placeholder="e.g. 6.4330" className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-light-surface placeholder:text-slate-400'}`} />
               </label>
               <label className="text-xs font-medium">Longitude
-                <input type="number" step="any" value={manualLongitude} onChange={(event) => setManualLongitude(event.target.value)} placeholder="e.g. -2.0380" className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-white placeholder:text-slate-400'}`} />
+                <input type="number" step="any" value={manualLongitude} onChange={(event) => setManualLongitude(event.target.value)} placeholder="e.g. -2.0380" className={`mt-1.5 w-full rounded-xl border px-3 py-2.5 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-light-surface placeholder:text-slate-400'}`} />
               </label>
             </div>
-            <button type="button" onClick={useManualLocation} className={`mt-3 w-full rounded-xl border px-4 py-3 text-sm font-medium transition ${darkMode ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-700 hover:bg-slate-50'}`}>Use entered coordinates</button>
+            <button type="button" onClick={useManualLocation} className={`mt-3 w-full rounded-xl border px-4 py-3 text-sm font-medium transition ${darkMode ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-700 hover:bg-light-muted'}`}>Use entered coordinates</button>
             {locationError && <p className="mt-3 text-sm text-red-600">{locationError}</p>}
             {location && <div className={`mt-4 rounded-2xl border p-4 ${mutedPanel}`}>
               <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400">Location ready</p>
               <p className="mt-1 font-mono text-sm">{formatCoordinates(location.latitude, location.longitude)}</p>
-              <p className="mt-1 text-xs text-slate-500">{location.source === 'manual' ? 'Entered coordinates' : `Estimated device accuracy: ±${location.accuracy} m`}</p>
+              <p className="mt-1 text-xs text-slate-500">{location.source === 'map' ? 'Selected map analysis location' : location.source === 'manual' ? 'Entered coordinates' : `Estimated device accuracy: ±${location.accuracy} m`}</p>
             </div>}
 
             <div className="my-7 border-t border-slate-200/20" />
             <label className="mb-2 block text-sm font-medium" htmlFor="report-notes">What did you observe? <span className="font-normal text-slate-400">Optional</span></label>
-            <textarea id="report-notes" value={notes} onChange={(event) => setNotes(event.target.value)} maxLength={500} rows={4} placeholder="For example: excavators, exposed soil, sediment in a nearby river…" className={`w-full resize-none rounded-2xl border px-4 py-3 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-white placeholder:text-slate-400'}`} />
+            <textarea id="report-notes" value={notes} onChange={(event) => setNotes(event.target.value)} maxLength={500} rows={4} placeholder="For example: excavators, exposed soil, sediment in a nearby river…" className={`w-full resize-none rounded-2xl border px-4 py-3 text-sm outline-none ring-[#4a5e1a] focus:ring-2 ${darkMode ? 'border-white/15 bg-white/5 text-white placeholder:text-white/35' : 'border-slate-200 bg-light-surface placeholder:text-slate-400'}`} />
 
             <label className={`mt-5 flex cursor-pointer gap-3 rounded-2xl border p-4 text-sm ${mutedPanel}`}>
               <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} className="mt-1 h-4 w-4 accent-[#4a5e1a]" />
@@ -176,7 +193,7 @@ export default function Report() {
             </label>
 
             <button type="submit" disabled={!location || !consent || submitting} className="mt-5 w-full rounded-2xl bg-[#1f3b17] px-5 py-4 text-sm font-semibold text-white transition hover:bg-[#162d10] disabled:cursor-not-allowed disabled:opacity-45">
-              {submitting ? 'Storing report and running satellite check…' : 'Submit report and run satellite check'}
+              {submitting ? (analysisDraft ? 'Submitting report…' : 'Storing report and running satellite check…') : (analysisDraft ? 'Submit report' : 'Submit report and run satellite check')}
             </button>
             {apiError && <div role="alert" className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
               <p className="font-semibold">This report was not added</p>
@@ -187,16 +204,21 @@ export default function Report() {
           </form>
 
           <section className="space-y-5">
+            {analysisDraft && <div className={`rounded-3xl border p-6 ${panel}`}>
+              <h2 className="font-semibold">Analysis included with your report</h2>
+              <p className={`mt-3 whitespace-pre-line text-sm leading-relaxed ${darkMode ? 'text-white/80' : 'text-slate-700'}`}>{analysisDraft.summary}</p>
+              <p className={`mt-3 text-xs ${darkMode ? 'text-white/65' : 'text-slate-600'}`}>Review the location, add observations, and confirm below to submit. Your original map analysis will be saved with this report; no new satellite check will run.</p>
+            </div>}
             <div className={`rounded-3xl border p-6 ${panel}`}>
               <p className="text-xs font-mono uppercase tracking-widest text-slate-400">How corroboration works</p>
               <ol className="mt-5 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-white/70">
                 <li><strong className="text-[#4a5e1a]">01.</strong> A report creates or joins a site within {clusterRadius} m.</li>
                 <li><strong className="text-[#4a5e1a]">02.</strong> One account can contribute once per site. Independent account reports increase community corroboration, not model confidence.</li>
-                <li><strong className="text-[#4a5e1a]">03.</strong> EcoWatch runs its satellite segmentation model separately.</li>
+                <li><strong className="text-[#4a5e1a]">03.</strong> {analysisDraft ? 'EcoWatch reuses your saved map analysis without running the model again.' : 'EcoWatch runs its satellite segmentation model separately.'}</li>
               </ol>
             </div>
 
-            {result && <div className={`rounded-3xl border p-6 ${result.prediction?.mining_detected ? 'border-red-200 bg-red-50' : 'border-[#b9cb9d] bg-[#f3f7eb]'}`}>
+            {result && <div className={`rounded-3xl border p-6 text-slate-900 ${result.prediction?.mining_detected ? 'border-red-200 bg-red-50' : 'border-[#b9cb9d] bg-[#f3f7eb]'}`}>
               <p className="text-xs font-mono uppercase tracking-widest text-slate-500">Report stored</p>
               <h2 className="mt-2 text-lg font-semibold">{result.isNewSite ? 'New community site created' : 'Your report was added to an existing nearby site'}</h2>
               <p className="mt-2 text-sm text-slate-600">{result.site.reportCount} report{result.site.reportCount === 1 ? '' : 's'} · community corroboration {result.site.communityCorroboration}%</p>
@@ -218,20 +240,20 @@ export default function Report() {
         </section>
       </main>
       {authModalOpen && <div role="dialog" aria-modal="true" aria-labelledby="account-required-title" className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/55 p-5" onMouseDown={() => setAuthModalOpen(false)}>
-        <div className="w-full max-w-md rounded-3xl bg-white p-7 text-slate-900 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="w-full max-w-md rounded-3xl bg-light-surface p-7 text-slate-900 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}>
           <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#4a5e1a]">Account required</p>
           <h2 id="account-required-title" className="mt-2 text-2xl font-bold">Create an account to submit a report</h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">EcoWatch keeps the map and satellite checks open to everyone. We ask for an account only when submitting a community report, so one person cannot repeatedly increase a site’s corroboration.</p>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">Your account is used to limit one contribution per nearby site; it does not make your name public on the map.</p>
-          <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><button type="button" onClick={() => setAuthModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium">Not now</button><Link href="/auth" className="rounded-xl bg-[#1f3b17] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[#162d10]">Continue to sign in</Link></div>
+          <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><button type="button" onClick={() => setAuthModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium">Not now</button><Link href={analysisDraft ? "/auth?from=map" : "/auth"} className="rounded-xl bg-[#1f3b17] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[#162d10]">Continue to sign in</Link></div>
         </div>
       </div>}
       {signOutModalOpen && <div role="dialog" aria-modal="true" aria-labelledby="sign-out-title" className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/55 p-5" onMouseDown={() => setSignOutModalOpen(false)}>
-        <div className="w-full max-w-md rounded-3xl bg-white p-7 text-slate-900 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="w-full max-w-md rounded-3xl bg-light-surface p-7 text-slate-900 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}>
           <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#4a5e1a]">Confirm sign out</p>
           <h2 id="sign-out-title" className="mt-2 text-2xl font-bold">Sign out of EcoWatch?</h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">You will need to sign in again before you can submit another community report. The reports you have already submitted will remain stored.</p>
-          <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><button type="button" onClick={() => setSignOutModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium">Stay signed in</button><button type="button" onClick={() => { clearCommunitySession(); setSession(null); setSignOutModalOpen(false) }} className="rounded-xl bg-red-700 px-4 py-3 text-sm font-semibold text-white hover:bg-red-800">Sign out</button></div>
+          <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><button type="button" onClick={() => setSignOutModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium">Stay signed in</button><button type="button" onClick={async () => { try { await clearCommunitySession(); setSession(null); setSignOutModalOpen(false) } catch (error) { setApiError(error.message) } }} className="rounded-xl bg-red-700 px-4 py-3 text-sm font-semibold text-white hover:bg-red-800">Sign out</button></div>
         </div>
       </div>}
     </div>

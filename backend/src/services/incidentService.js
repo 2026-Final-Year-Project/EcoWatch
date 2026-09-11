@@ -1,71 +1,31 @@
-// Import the in-memory seed incident collection.
-import { incidents } from "../data/incidents.js";
-
-// Import the model factory used for new incidents.
-import { createIncidentModel } from "../models/Incident.js";
-
-// List incidents with optional filtering and sorting.
+import { db, transaction } from '../config/db.js';
+import { createIncidentModel } from '../models/Incident.js';
+import { insertIncident } from '../database/records.js';
+function hydrate(row) {
+ if (!row) return null;
+ const { created_by, ...incident } = row;
+ return { ...incident, coords: `${Math.abs(row.lat).toFixed(4)}° ${row.lat < 0 ? 'S' : 'N'}, ${Math.abs(row.lng).toFixed(4)}° ${row.lng < 0 ? 'W' : 'E'}`,
+ authorities: db.prepare('SELECT a.name FROM authorities a JOIN incident_authorities ia ON a.id=ia.authority_id WHERE ia.incident_id=? ORDER BY a.id').all(row.id).map(a => a.name) };
+}
 export function listIncidents(query = {}) {
-  // Copy the array so sorting never mutates the seed order unexpectedly.
-  let result = [...incidents];
-
-  // Filter by incident type when requested.
-  if (query.type && query.type !== "all") result = result.filter((item) => item.type === query.type);
-
-  // Filter by severity when requested.
-  if (query.severity && query.severity !== "all") result = result.filter((item) => item.severity === query.severity);
-
-  // Filter by status when requested.
-  if (query.status && query.status !== "all") result = result.filter((item) => item.status === query.status);
-
-  // Sort incidents by detection timestamp from newest to oldest by default.
-  result.sort((a, b) => new Date(`${b.date} ${b.time}`) - new Date(`${a.date} ${a.time}`));
-
-  // Return the filtered incident list.
-  return result;
+ const filters = ['type','severity','status'].filter(key => query[key] && query[key] !== 'all');
+ return db.prepare(`SELECT * FROM incidents ${filters.length ? 'WHERE ' + filters.map(key => `${key}=?`).join(' AND ') : ''} ORDER BY date DESC,time DESC,id DESC`).all(...filters.map(key => String(query[key]))).map(hydrate);
 }
-
-// Return active incidents suitable for the live map.
-export function listLiveIncidents() {
-  // Keep the live map focused on the newest active detections.
-  return listIncidents().slice(0, 2).map((incident) => ({
-    ...incident,
-    timeAgo: incident.timeAgo || "Recently detected",
-  }));
+export function listLiveIncidents() { return listIncidents().filter(i => i.status !== 'Resolved').slice(0,2).map(i => ({ ...i, timeAgo: 'Recently detected' })); }
+export function getIncidentById(id) { return hydrate(db.prepare('SELECT * FROM incidents WHERE id=?').get(Number(id))); }
+export function createIncident(payload, createdBy = null) {
+ const incident = createIncidentModel(payload);
+ const invalid = message => { throw Object.assign(new Error(message), { status: 400 }); };
+ if (typeof incident.type !== 'string' || !incident.type.trim()) invalid('type is required.');
+ if (!Number.isFinite(incident.lat) || !Number.isFinite(incident.lng) || Math.abs(incident.lat)>90 || Math.abs(incident.lng)>180) invalid('Invalid coordinates.');
+ if (!['low','medium','high','critical'].includes(incident.severity) || !Number.isFinite(incident.hectares) || incident.hectares < 0 || !Number.isFinite(incident.confidence) || incident.confidence < 0 || incident.confidence > 100) invalid('Invalid severity, hectares or confidence.');
+ if (!Array.isArray(incident.authorities) || incident.authorities.some(a => typeof a !== 'string')) invalid('authorities must be a list of names.');
+ validateStatus(incident.status);
+ return transaction(() => getIncidentById(insertIncident(db, incident, createdBy)));
 }
-
-// Find a single incident by numeric ID.
-export function getIncidentById(id) {
-  // Convert route params to numbers for consistent matching.
-  return incidents.find((incident) => incident.id === Number(id));
-}
-
-// Create and store a new incident in the in-memory collection.
-export function createIncident(payload) {
-  // Calculate the next integer ID from the current collection.
-  const nextId = Math.max(...incidents.map((incident) => incident.id)) + 1;
-
-  // Normalize the submitted payload through the incident model.
-  const incident = createIncidentModel(payload, nextId);
-
-  // Store the incident for the lifetime of the running server.
-  incidents.unshift(incident);
-
-  // Return the newly created incident to the caller.
-  return incident;
-}
-
-// Update the status of an existing incident.
+function validateStatus(status) { if (!['Monitoring','Reported','Escalated','Resolved'].includes(status)) throw Object.assign(new Error('Invalid incident status.'), { status: 400 }); }
 export function updateIncidentStatus(id, status) {
-  // Locate the incident by ID.
-  const incident = getIncidentById(id);
-
-  // Return null when no incident exists.
-  if (!incident) return null;
-
-  // Save the new response status.
-  incident.status = status;
-
-  // Return the updated incident.
-  return incident;
+ validateStatus(status);
+ db.prepare('UPDATE incidents SET status=?,resolved=? WHERE id=?').run(status, status === 'Resolved' ? new Date().toISOString().slice(0,10) : null, Number(id));
+ return getIncidentById(id);
 }

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import 'leaflet/dist/leaflet.css'
 import { apiUrl, fetchJson } from '@/lib/api'
+import { saveAnalysisReportDraft } from '@/lib/analysisReportDraft'
 import { useTheme } from './ThemeProvider'
 import { MoonIcon, SearchIcon, SunIcon } from './Icons'
 
@@ -16,17 +17,24 @@ export default function Monitor() {
   const mapRef         = useRef(null)
   const mainLayoutRef  = useRef(null)
   const mapInstanceRef = useRef(null)
+  const boundariesLayerRef = useRef(null)
   const demoSiteLayerRef = useRef(null)
   const userMarkerRef  = useRef(null)
   const leafletRef     = useRef(null)
   const comparisonRequestRef = useRef(0)
+  const analysisControllerRef = useRef(null)
+  const analyseLocationRef = useRef(null)
+  const searchButtonRef = useRef(null)
 
   const { darkMode, toggleTheme } = useTheme()
+  const [showBoundaries, setShowBoundaries] = useState(false)
   const [locating,    setLocating]    = useState(false)
   const [locError,    setLocError]    = useState(null)
   const [userCoords,  setUserCoords]  = useState(null)
   const [apiError,    setApiError]    = useState(null)
   const [prediction,  setPrediction]  = useState(null)
+  const [downloading, setDownloading] = useState(false)
+  const [downloadError, setDownloadError] = useState(null)
   const [predicting,  setPredicting]  = useState(false)
   const [comparison, setComparison] = useState(null)
   const [comparisonLoading, setComparisonLoading] = useState(false)
@@ -37,6 +45,10 @@ export default function Monitor() {
   const [timelineExpanded, setTimelineExpanded] = useState(false)
   const [sidebarWidth, setSidebarWidth] = useState(MIN_SIDEBAR_WIDTH)
   const [resizingSidebar, setResizingSidebar] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchLatitude, setSearchLatitude] = useState('')
+  const [searchLongitude, setSearchLongitude] = useState('')
+  const [searchError, setSearchError] = useState(null)
 
   const clampSidebarWidth = useCallback((width) => {
     const layoutWidth = mainLayoutRef.current?.getBoundingClientRect().width ?? window.innerWidth
@@ -136,16 +148,34 @@ export default function Monitor() {
         { attribution: 'Esri', maxZoom: 19 }
       ).addTo(map)
 
+      boundariesLayerRef.current = L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+        {
+          attribution: 'Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS user community',
+          maxZoom: 19,
+          zIndex: 2,
+        }
+      )
+
       L.control.zoom({ position: 'bottomleft' }).addTo(map)
 
       demoSiteLayerRef.current = L.layerGroup().addTo(map)
 
-      const loadComparison = async (latlng, requestId) => {
+      const analysisIcon = L.divIcon({
+        className: '',
+        html: '<div role="img" aria-label="Selected analysis location" style="box-sizing:border-box;width:26px;height:26px;border:3px solid white;border-radius:50%;background:#f59e0b;box-shadow:0 0 0 2px #78350f,0 2px 8px #0009;display:grid;place-items:center;"><span style="width:6px;height:6px;border-radius:50%;background:#78350f;"></span></div>',
+        iconSize: [26, 26],
+        iconAnchor: [13, 13],
+      })
+      let analysisMarker = null
+
+      const loadComparison = async (latlng, requestId, signal) => {
         setComparisonLoading(true)
         setComparisonError(null)
         try {
           const yearlyImages = await Promise.all(COMPARISON_YEARS.map(async (year) => {
             const image = await fetchJson('/predictions/imagery/coordinate', {
+              signal,
               method: 'POST', headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 latitude: latlng.lat,
@@ -163,37 +193,61 @@ export default function Monitor() {
             setComparison(yearlyImages)
           }
         } catch (error) {
-          if (comparisonRequestRef.current === requestId && !cancelled) setComparisonError(error.message)
+          if (comparisonRequestRef.current === requestId && !cancelled && !signal.aborted) setComparisonError(error.message)
         } finally {
           if (comparisonRequestRef.current === requestId && !cancelled) setComparisonLoading(false)
         }
       }
 
       const analyseLocation = async (latlng, dateRange = {}) => {
+        if (analysisMarker) {
+          analysisMarker.setLatLng(latlng)
+        } else {
+          analysisMarker = L.marker(latlng, {
+            icon: analysisIcon,
+            interactive: false,
+            keyboard: false,
+            zIndexOffset: 1000,
+          })
+            .addTo(map)
+            .bindTooltip('Selected analysis location', {
+              permanent: true,
+              direction: 'top',
+              offset: [0, -16],
+            })
+        }
         const requestId = ++comparisonRequestRef.current
+        analysisControllerRef.current?.abort()
+        const controller = new AbortController()
+        analysisControllerRef.current = controller
+        const isCurrent = () => !cancelled && !controller.signal.aborted && comparisonRequestRef.current === requestId
         setPredicting(true)
+        setApiError(null)
         setPrediction(null)
         setComparison(null)
+        setComparisonLoading(false)
         setComparisonError(null)
         try {
           const result = await fetchJson('/predictions/coordinate', {
+            signal: controller.signal,
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ latitude: latlng.lat, longitude: latlng.lng, ...dateRange }),
           })
-          if (!cancelled) {
+          if (isCurrent()) {
             const delta = 0.006
             const bbox = [latlng.lng - delta, latlng.lat - delta, latlng.lng + delta, latlng.lat + delta].join(',')
             const previewUrl = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${bbox}&bboxSR=4326&imageSR=4326&size=640,360&format=png&f=image`
             setPrediction({ ...result, previewUrl })
-            void loadComparison(latlng, requestId)
+            void loadComparison(latlng, requestId, controller.signal)
           }
         } catch (error) {
-          if (!cancelled) setApiError(error.message)
+          if (isCurrent()) setApiError(error.message)
         } finally {
-          if (!cancelled) setPredicting(false)
+          if (isCurrent()) setPredicting(false)
         }
       }
 
+      analyseLocationRef.current = analyseLocation
       map.on('click', ({ latlng }) => analyseLocation(latlng))
 
       fetch('/demo-sites.geojson')
@@ -238,11 +292,61 @@ export default function Monitor() {
 
     return () => {
       cancelled = true
+      analysisControllerRef.current?.abort()
+      analysisControllerRef.current = null
+      analyseLocationRef.current = null
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
+      boundariesLayerRef.current = null
       demoSiteLayerRef.current = null
     }
   }, [])
+
+  const closeSearch = () => {
+    setSearchOpen(false)
+    searchButtonRef.current?.focus()
+  }
+
+  const searchLocation = (event) => {
+    event.preventDefault()
+    const lat = Number(searchLatitude)
+    const lng = Number(searchLongitude)
+    if (!searchLatitude.trim() || !searchLongitude.trim() ||
+        !Number.isFinite(lat) || !Number.isFinite(lng) ||
+        lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+      setSearchError('Enter a latitude between -90 and 90 and a longitude between -180 and 180.')
+      return
+    }
+    const map = mapInstanceRef.current
+    if (!map || !analyseLocationRef.current) {
+      setSearchError('The map is still loading. Please try again in a moment.')
+      return
+    }
+    setSearchError(null)
+    map.flyTo([lat, lng], 14, { animate: true, duration: 1.5 })
+    void analyseLocationRef.current({ lat, lng })
+    closeSearch()
+  }
+
+  const cancelAnalysis = () => {
+    ++comparisonRequestRef.current
+    analysisControllerRef.current?.abort()
+    analysisControllerRef.current = null
+    setPredicting(false)
+    setComparisonLoading(false)
+    setApiError(null)
+    setComparisonError(null)
+  }
+
+  const toggleMapView = () => {
+    const map = mapInstanceRef.current
+    const boundaries = boundariesLayerRef.current
+    if (!map || !boundaries) return
+    const visible = map.hasLayer(boundaries)
+    if (visible) map.removeLayer(boundaries)
+    else boundaries.addTo(map)
+    setShowBoundaries(!visible)
+  }
 
   // ── Go to current location ────────────────────────────────
   const goToMyLocation = () => {
@@ -337,25 +441,31 @@ export default function Monitor() {
     )
   }
 
-  const downloadPrediction = () => {
-    if (!prediction) return
-    const file = new Blob([JSON.stringify(prediction, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(file)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `ecowatch-analysis-${prediction.latitude.toFixed(5)}-${prediction.longitude.toFixed(5)}.json`
-    link.click()
-    URL.revokeObjectURL(url)
+  const downloadReady = Boolean(prediction && comparison?.length === COMPARISON_YEARS.length && !comparisonLoading && !downloading)
+
+  const downloadPrediction = async () => {
+    if (!downloadReady) return
+    setDownloading(true)
+    setDownloadError(null)
+    try {
+      const { buildAnalysisPdf } = await import('@/utils/analysisPdf')
+      const doc = await buildAnalysisPdf(prediction, comparison)
+      doc.save(`ecowatch-analysis-${prediction.latitude.toFixed(5)}-${prediction.longitude.toFixed(5)}.pdf`)
+    } catch (error) {
+      setDownloadError(error.message || 'Unable to create the PDF. Please try again.')
+    } finally {
+      setDownloading(false)
+    }
   }
 
   return (
     <div className={`min-h-screen font-sans transition-colors duration-300 ${
-      darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-[#f6f7f1] text-slate-900'
+      darkMode ? 'bg-[#0f1a0a] text-white' : 'bg-light-background text-slate-900'
     }`}>
 
       {/* NAVBAR */}
-      <header className={`flex items-center justify-between px-6 py-4 border-b ${
-        darkMode ? 'border-white/10 bg-[#111a09]' : 'border-black/5 bg-white'
+      <header className={`relative z-[3000] flex items-center justify-between px-6 py-4 border-b ${
+        darkMode ? 'border-white/10 bg-[#111a09]' : 'border-black/5 bg-light-surface'
       }`}>
         <Link href="/" className="flex items-center hover:opacity-80 transition" aria-label="Go to homepage">
           <Image src="/Area.png" alt="EcoWatch Logo" width={90} height={40} className="object-contain" priority />
@@ -372,11 +482,35 @@ export default function Monitor() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button type="button" aria-label="Search" className={darkMode ? 'text-white/60' : 'text-slate-400'}><SearchIcon /></button>
+          <button ref={searchButtonRef} type="button" aria-label="Search coordinates" aria-expanded={searchOpen} aria-controls="coordinate-search" onClick={() => { setSearchOpen(!searchOpen); setSearchError(null) }} className={darkMode ? 'text-white/60' : 'text-slate-400'}><SearchIcon /></button>
           <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={darkMode ? 'text-white/60' : 'text-slate-400'}>
             {darkMode ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
+        {searchOpen && (
+          <form id="coordinate-search" aria-label="Search coordinates" onSubmit={searchLocation} onKeyDown={(event) => {
+            if (event.key === 'Escape') {
+              event.preventDefault()
+              closeSearch()
+            }
+          }} className={`absolute right-4 top-full mt-2 w-[min(24rem,calc(100vw-2rem))] rounded-2xl border p-5 shadow-2xl ${darkMode ? 'border-white/15 bg-[#111a09]' : 'border-slate-200 bg-light-surface'}`}>
+            <div className="flex items-center justify-between gap-4">
+              <h2 className="font-semibold">Analyze coordinates</h2>
+              <button type="button" onClick={closeSearch} aria-label="Close coordinate search" className="rounded px-2 py-1 text-sm">Close ×</button>
+            </div>
+            <p className={`mt-2 text-sm ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>Enter decimal degrees to view and analyze a location.</p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <label className="text-sm font-medium">Latitude
+                <input autoFocus required type="number" step="any" min="-90" max="90" value={searchLatitude} onChange={(event) => { setSearchLatitude(event.target.value); setSearchError(null) }} placeholder="e.g. 6.4330" aria-describedby={searchError ? 'coordinate-search-error' : undefined} className={`mt-1.5 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4a5e1a] ${darkMode ? 'border-white/20 bg-white/5' : 'border-slate-300 bg-light-surface'}`} />
+              </label>
+              <label className="text-sm font-medium">Longitude
+                <input required type="number" step="any" min="-180" max="180" value={searchLongitude} onChange={(event) => { setSearchLongitude(event.target.value); setSearchError(null) }} placeholder="e.g. -2.0380" aria-describedby={searchError ? 'coordinate-search-error' : undefined} className={`mt-1.5 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4a5e1a] ${darkMode ? 'border-white/20 bg-white/5' : 'border-slate-300 bg-light-surface'}`} />
+              </label>
+            </div>
+            {searchError && <p id="coordinate-search-error" role="alert" className={`mt-3 text-sm ${darkMode ? 'text-red-300' : 'text-red-700'}`}>{searchError}</p>}
+            <button type="submit" className="mt-4 w-full rounded-xl bg-[#4a5e1a] px-4 py-3 text-sm font-semibold text-white hover:bg-[#3a4d12]">Analyze location</button>
+          </form>
+        )}
       </header>
 
       {/* MAIN */}
@@ -387,17 +521,27 @@ export default function Monitor() {
 
           {predicting && (
             <div className={`absolute left-1/2 top-1/2 z-[2000] w-[min(24rem,calc(100%-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-2xl px-5 py-5 text-center shadow-2xl backdrop-blur ${
-              darkMode ? 'bg-[#1a2a10]/95 text-white' : 'bg-white/95 text-slate-700'
+              darkMode ? 'bg-[#1a2a10]/95 text-white' : 'bg-light-surface/95 text-slate-700'
             }`}>
               <div className="mx-auto mb-4 h-10 w-10 rounded-full border-4 border-[#dbe7c9] border-t-[#4a5e1a] animate-spin" />
               <h2 className="text-lg font-semibold">Analysing location</h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-500">Fetching Sentinel-2 imagery and running the illegal-mining segmentation model. This can take a moment.</p>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  cancelAnalysis()
+                }}
+                className={`mt-4 rounded-lg border px-3 py-1.5 text-xs font-semibold transition ${darkMode ? 'border-white/25 text-white hover:bg-white/10' : 'border-slate-300 text-slate-700 hover:bg-light-hover'}`}
+              >
+                Cancel analysis
+              </button>
             </div>
           )}
 
           {/* Legend */}
           <div className={`absolute top-4 left-4 z-1000 rounded-2xl px-5 py-4 shadow-lg text-sm backdrop-blur ${
-            darkMode ? 'bg-[#1a2a10]/90 text-white' : 'bg-white/90 text-slate-700'
+            darkMode ? 'bg-[#1a2a10]/90 text-white' : 'bg-light-surface/90 text-slate-700'
           }`}>
             <p className="text-[10px] font-mono uppercase tracking-widest mb-3 text-slate-400">Legend</p>
             {[
@@ -411,6 +555,23 @@ export default function Monitor() {
             ))}
           </div>
 
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation()
+              toggleMapView()
+            }}
+            aria-label="Satellite + borders"
+            aria-pressed={showBoundaries}
+            title={showBoundaries ? 'Switch to satellite only' : 'Show country and regional borders'}
+            className={`absolute bottom-4 right-4 z-1000 rounded-xl px-4 py-3 text-sm font-semibold shadow-lg transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5e1a] ${
+              darkMode ? 'bg-[#1a2a10] text-white hover:bg-[#263d18]' : 'bg-light-surface text-slate-800 hover:bg-light-hover'
+            }`}
+          >
+            {showBoundaries ? 'Satellite + borders' : 'Satellite view'}
+            <span aria-hidden="true" className="ml-2">⇄</span>
+          </button>
+
           {/* My Location button */}
           <div className="absolute bottom-24 left-4 z-1000 flex flex-col gap-2">
             <button
@@ -421,7 +582,7 @@ export default function Monitor() {
                 locating
                   ? 'opacity-60 cursor-wait'
                   : 'hover:scale-105 active:scale-95'
-              } ${darkMode ? 'bg-[#1a2a10] text-white' : 'bg-white text-slate-700'}`}
+              } ${darkMode ? 'bg-[#1a2a10] text-white' : 'bg-light-surface text-slate-700'}`}
             >
               {locating ? (
                 <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -435,10 +596,6 @@ export default function Monitor() {
                 </svg>
               )}
             </button>
-
-            <button className={`w-10 h-10 rounded-xl flex items-center justify-center shadow ${
-              darkMode ? 'bg-[#1a2a10] text-white' : 'bg-white text-slate-700'
-            }`}>◈</button>
           </div>
 
           {/* Error toast */}
@@ -452,7 +609,7 @@ export default function Monitor() {
           {/* User coords badge */}
           {userCoords && (
             <div className={`absolute top-4 right-4 z-1000 rounded-2xl px-4 py-3 shadow-lg text-xs backdrop-blur ${
-              darkMode ? 'bg-[#1a2a10]/90 text-white' : 'bg-white/90 text-slate-700'
+              darkMode ? 'bg-[#1a2a10]/90 text-white' : 'bg-light-surface/90 text-slate-700'
             }`}>
               <p className="text-[9px] font-mono uppercase tracking-widest text-blue-500 mb-1">Your location</p>
               <p className="font-mono">{userCoords.lat}° N, {userCoords.lng}°</p>
@@ -556,7 +713,7 @@ export default function Monitor() {
 
         {/* SIDEBAR */}
         <aside style={{ width: sidebarWidth }} className={`relative shrink-0 flex flex-col border-l overflow-y-auto ${
-          darkMode ? 'bg-[#111a09] border-white/10' : 'bg-white border-slate-200'
+          darkMode ? 'bg-[#111a09] border-white/10' : 'bg-light-surface border-slate-200'
         }`}>
           <div
             role="separator"
@@ -599,7 +756,7 @@ export default function Monitor() {
 
             {!prediction && (
               <div className={`rounded-2xl border p-5 text-sm ${
-                darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-slate-50 text-slate-500'
+                darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-light-muted text-slate-500'
               }`}>
                 Click anywhere on the map to analyse that location for illegal mining.
               </div>
@@ -608,7 +765,7 @@ export default function Monitor() {
             {prediction && (
             <>
             <div className={`rounded-2xl border p-5 ${
-              darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50'
+              darkMode ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-light-muted'
             }`}>
               <div className="flex items-center justify-between mb-3">
                 <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md ${
@@ -665,7 +822,7 @@ export default function Monitor() {
             <div>
               <p className="text-sm font-medium mb-2">Change over time</p>
               {comparisonLoading && (
-                <div className={`rounded-2xl border p-4 text-xs ${darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-slate-50 text-slate-500'}`}>
+                <div className={`rounded-2xl border p-4 text-xs ${darkMode ? 'border-white/10 bg-white/5 text-white/70' : 'border-slate-100 bg-light-muted text-slate-500'}`}>
                   Fetching five matching Sentinel-2 views from 2022–2026…
                 </div>
               )}
@@ -695,11 +852,19 @@ export default function Monitor() {
             )}
 
             <div className="flex flex-col gap-3 mt-auto">
-              <Link href="/report" aria-disabled={!prediction} className={`w-full rounded-2xl text-center text-sm font-semibold py-4 transition ${prediction ? 'bg-[#4a5e1a] text-white hover:bg-[#3a4d12]' : 'pointer-events-none bg-slate-200 text-slate-400'}`}>
-                ⚡ Escalate to Local Authorities
+              {downloadError && <p role="alert" className={darkMode ? 'text-sm text-red-300' : 'text-sm text-red-700'}>{downloadError}</p>}
+              {prediction && comparisonError && <p className={darkMode ? 'text-xs text-white/70' : 'text-xs text-slate-600'}>PDF download requires all five Sentinel images. Run the analysis again to retry loading them.</p>}
+              <Link href="/report?from=map" aria-disabled={!prediction} tabIndex={prediction ? 0 : -1} onClick={(event) => {
+                if (!prediction) { event.preventDefault(); return }
+                try { saveAnalysisReportDraft(prediction) } catch (error) {
+                  event.preventDefault()
+                  setApiError(error.message || 'Unable to prepare the report. Allow browser session storage and try again.')
+                }
+              }} className={`w-full rounded-2xl text-center text-sm font-semibold py-4 transition ${prediction ? 'bg-[#4a5e1a] text-white hover:bg-[#3a4d12]' : 'pointer-events-none bg-slate-200 text-slate-400'}`}>
+                Report to Ecowatch
               </Link>
-              <button onClick={downloadPrediction} disabled={!prediction} className={`w-full rounded-2xl border text-sm font-medium py-4 transition ${prediction ? (darkMode ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-800 hover:bg-slate-50') : 'cursor-not-allowed border-slate-100 text-slate-400'}`}>
-                Download Analysis (JSON)
+              <button onClick={downloadPrediction} disabled={!downloadReady} className={`w-full rounded-2xl border text-sm font-medium py-4 transition ${downloadReady ? (darkMode ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-800 hover:bg-light-muted') : 'cursor-not-allowed border-slate-100 text-slate-400'}`}>
+                {downloading ? 'Preparing PDF…' : comparisonLoading ? 'Waiting for Sentinel images…' : 'Download Analysis (PDF)'}
               </button>
             </div>
 

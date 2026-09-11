@@ -1,21 +1,7 @@
-import { readFileSync, renameSync, writeFileSync } from "node:fs";
-import { randomUUID } from "node:crypto";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-
-const moduleDirectory = dirname(fileURLToPath(import.meta.url));
-const storePath = resolve(moduleDirectory, "../../data/community-reports.json");
+import { randomUUID } from 'node:crypto';
+import { db, transaction } from '../config/db.js';
+import { recordPredictionRun } from './predictionHistoryService.js';
 export const CLUSTER_RADIUS_METRES = 250;
-
-function readSites() {
-  return JSON.parse(readFileSync(storePath, "utf8"));
-}
-
-function writeSites(sites) {
-  const temporaryPath = `${storePath}.tmp`;
-  writeFileSync(temporaryPath, JSON.stringify(sites, null, 2));
-  renameSync(temporaryPath, storePath);
-}
 
 function distanceMetres(latitudeA, longitudeA, latitudeB, longitudeB) {
   const earthRadius = 6_371_000;
@@ -32,50 +18,40 @@ function communityCorroboration(reportCount) {
   return Math.round(100 * (1 - Math.exp(-reportCount / 4)));
 }
 
+function hydrate(site) {
+ const latest = db.prepare('SELECT result_json,analysed_at FROM prediction_runs WHERE site_id=? ORDER BY analysed_at DESC,rowid DESC LIMIT 1').get(site.id);
+ return { ...site,
+  reports: db.prepare('SELECT id,reporter_id AS reporterId,latitude,longitude,accuracy,notes,reported_at AS reportedAt FROM community_reports WHERE site_id=? ORDER BY reported_at,id').all(site.id),
+  latestPrediction: latest ? { ...JSON.parse(latest.result_json || '{}'), analysedAt: latest.analysed_at } : null,
+  communityCorroboration: communityCorroboration(site.reportCount) };
+}
 export function listCommunitySites() {
-  return readSites()
-    .map((site) => ({ ...site, communityCorroboration: communityCorroboration(site.reportCount) }))
-    .sort((left, right) => new Date(right.lastReportedAt) - new Date(left.lastReportedAt));
+ return db.prepare('SELECT * FROM community_site_summary ORDER BY lastReportedAt DESC,id').all().map(hydrate);
 }
-
 export function addCommunityReport({ latitude, longitude, accuracy, notes, reporterId }) {
-  const sites = readSites();
-  const now = new Date().toISOString();
-  const report = { id: randomUUID(), reporterId, latitude, longitude, accuracy: accuracy || null, notes: notes?.trim() || null, reportedAt: now };
-  const site = sites.find((candidate) => distanceMetres(latitude, longitude, candidate.latitude, candidate.longitude) <= CLUSTER_RADIUS_METRES);
-
-  if (site) {
-    if (site.reports.some((existingReport) => existingReport.reporterId === reporterId)) {
-      const error = new Error("You have already reported this site. Additional reports from the same account do not increase corroboration.");
-      error.status = 409;
-      throw error;
-    }
-    const priorReportCount = site.reports.length;
-    // Keep the cluster marker and model query centred on all observations,
-    // instead of permanently anchoring a site to its first reporter.
-    site.latitude = (site.latitude * priorReportCount + latitude) / (priorReportCount + 1);
-    site.longitude = (site.longitude * priorReportCount + longitude) / (priorReportCount + 1);
-    site.reports.push(report);
-    site.reportCount = site.reports.length;
-    site.lastReportedAt = now;
-    writeSites(sites);
-    return { site, isNewSite: false };
+ if (!Number.isFinite(latitude) || Math.abs(latitude)>90 || !Number.isFinite(longitude) || Math.abs(longitude)>180
+  || (accuracy != null && (!Number.isFinite(accuracy) || accuracy < 0))
+  || (notes != null && (typeof notes !== 'string' || notes.length > 5000))) {
+  throw Object.assign(new Error('Invalid coordinates, accuracy or notes (maximum 5000 characters).'), { status: 400 });
+ }
+ if (!reporterId) throw Object.assign(new Error('Authentication required.'), { status: 401 });
+ return transaction(() => {
+  const sites = db.prepare('SELECT * FROM community_site_summary ORDER BY firstReportedAt,id').all();
+  const site = sites.find(candidate => distanceMetres(latitude,longitude,candidate.latitude,candidate.longitude) <= CLUSTER_RADIUS_METRES);
+  if (site && db.prepare('SELECT 1 FROM community_reports WHERE site_id=? AND reporter_id=?').get(site.id,String(reporterId))) {
+   throw Object.assign(new Error('You have already reported this site. Additional reports from the same account do not increase corroboration.'), { status: 409 });
   }
-
-  const newSite = {
-    id: randomUUID(), latitude, longitude, reportCount: 1,
-    firstReportedAt: now, lastReportedAt: now, reports: [report], latestPrediction: null,
-  };
-  sites.push(newSite);
-  writeSites(sites);
-  return { site: newSite, isNewSite: true };
+  const id = site?.id || randomUUID();
+  if (!site) db.prepare('INSERT INTO community_sites VALUES (?)').run(id);
+  db.prepare('INSERT INTO community_reports VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),id,String(reporterId),latitude,longitude,accuracy ?? null,notes?.trim() || null,new Date().toISOString());
+  return { site: hydrate(db.prepare('SELECT * FROM community_site_summary WHERE id=?').get(id)), isNewSite: !site };
+ });
 }
-
-export function saveSitePrediction(siteId, prediction) {
-  const sites = readSites();
-  const site = sites.find((candidate) => candidate.id === siteId);
-  if (!site) return null;
-  site.latestPrediction = { ...prediction, analysedAt: new Date().toISOString() };
-  writeSites(sites);
-  return site;
+export function saveSitePrediction(siteId, prediction, coordinates = {}) {
+ const site = db.prepare('SELECT * FROM community_site_summary WHERE id=?').get(siteId);
+ if (!site) return null;
+ recordPredictionRun({ latitude: coordinates.latitude ?? site.latitude, longitude: coordinates.longitude ?? site.longitude,
+  dateStart: coordinates.dateStart, dateEnd: coordinates.dateEnd,
+  prediction, source: 'community-report', siteId });
+ return hydrate(site);
 }

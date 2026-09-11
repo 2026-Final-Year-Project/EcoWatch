@@ -19,6 +19,7 @@ export function getLatestReport(_req, res) {
   const [incident] = listIncidents();
 
   // Return the derived latest report.
+  if (!incident) return res.status(404).json({ message: "Report not found." });
   res.json(createReportFromIncident(incident));
 }
 

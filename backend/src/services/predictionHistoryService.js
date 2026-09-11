@@ -1,47 +1,24 @@
-import { existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
-import { randomUUID } from "node:crypto";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-
-const moduleDirectory = dirname(fileURLToPath(import.meta.url));
-const storePath = resolve(moduleDirectory, "../../data/prediction-history.json");
-const MAX_HISTORY_RECORDS = 1_000;
-
-function readHistory() {
-  if (!existsSync(storePath)) return [];
-  return JSON.parse(readFileSync(storePath, "utf8"));
-}
-
-function writeHistory(history) {
-  const temporaryPath = `${storePath}.tmp`;
-  writeFileSync(temporaryPath, JSON.stringify(history, null, 2));
-  renameSync(temporaryPath, storePath);
-}
-
+import { randomUUID } from 'node:crypto';
+import { db } from '../config/db.js';
+import { insertPrediction, predictionRecord } from '../database/records.js';
 export function listPredictionHistory() {
-  return readHistory().sort((left, right) => new Date(right.analysedAt) - new Date(left.analysedAt));
+ return db.prepare(`SELECT id, analysed_at AS analysedAt, source, latitude, longitude,
+ date_start AS dateStart,date_end AS dateEnd,mining_detected AS miningDetected,
+ detection_level AS detectionLevel,mean_probability AS meanProbability,mining_fraction AS miningFraction,
+ affected_area_m2 AS affectedAreaM2,largest_component_pixels AS largestComponentPixels,
+ threshold,model_version AS modelVersion FROM prediction_runs ORDER BY analysed_at DESC,rowid DESC`).all()
+ .map(row => ({ ...row, miningDetected: Boolean(row.miningDetected) }));
+}
+export function recordPredictionRun(input) {
+ const record = predictionRecord({ ...input, id: randomUUID(), analysedAt: new Date().toISOString() });
+ insertPrediction(db, record, input.siteId || null, input.prediction);
+ return record;
 }
 
-export function recordPredictionRun({ latitude, longitude, dateStart, dateEnd, prediction, source }) {
-  const history = readHistory();
-  const record = {
-    id: randomUUID(),
-    analysedAt: new Date().toISOString(),
-    source,
-    latitude,
-    longitude,
-    dateStart: dateStart || null,
-    dateEnd: dateEnd || null,
-    miningDetected: Boolean(prediction.mining_detected),
-    detectionLevel: prediction.detection_level || "none",
-    meanProbability: Number(prediction.probability ?? prediction.mean_probability ?? 0),
-    miningFraction: Number(prediction.mining_fraction || 0),
-    affectedAreaM2: Number(prediction.affected_area_m2 || 0),
-    largestComponentPixels: Number(prediction.largest_component_pixels || 0),
-    threshold: Number(prediction.threshold || 0),
-    modelVersion: prediction.model_version || "unknown",
-  };
-  history.unshift(record);
-  writeHistory(history.slice(0, MAX_HISTORY_RECORDS));
-  return record;
+export function getMapPredictionRun(id, latitude, longitude) {
+ const run = typeof id === 'string' ? db.prepare("SELECT * FROM prediction_runs WHERE id=? AND source='map'").get(id) : null;
+ if (!run || run.latitude !== latitude || run.longitude !== longitude || !run.result_json) {
+  throw Object.assign(new Error('The original map analysis could not be matched to this location. Run the map analysis again before reporting.'), { status: 400 });
+ }
+ return { prediction: JSON.parse(run.result_json), latitude: run.latitude, longitude: run.longitude, dateStart: run.date_start, dateEnd: run.date_end };
 }

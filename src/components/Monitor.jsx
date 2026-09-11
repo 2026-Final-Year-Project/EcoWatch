@@ -23,6 +23,8 @@ export default function Monitor() {
   const leafletRef     = useRef(null)
   const comparisonRequestRef = useRef(0)
   const analysisControllerRef = useRef(null)
+  const analyseLocationRef = useRef(null)
+  const searchButtonRef = useRef(null)
 
   const { darkMode, toggleTheme } = useTheme()
   const [showBoundaries, setShowBoundaries] = useState(false)
@@ -43,6 +45,10 @@ export default function Monitor() {
   const [timelineExpanded, setTimelineExpanded] = useState(false)
   const [sidebarWidth, setSidebarWidth] = useState(MIN_SIDEBAR_WIDTH)
   const [resizingSidebar, setResizingSidebar] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchLatitude, setSearchLatitude] = useState('')
+  const [searchLongitude, setSearchLongitude] = useState('')
+  const [searchError, setSearchError] = useState(null)
 
   const clampSidebarWidth = useCallback((width) => {
     const layoutWidth = mainLayoutRef.current?.getBoundingClientRect().width ?? window.innerWidth
@@ -155,6 +161,14 @@ export default function Monitor() {
 
       demoSiteLayerRef.current = L.layerGroup().addTo(map)
 
+      const analysisIcon = L.divIcon({
+        className: '',
+        html: '<div role="img" aria-label="Selected analysis location" style="box-sizing:border-box;width:26px;height:26px;border:3px solid white;border-radius:50%;background:#f59e0b;box-shadow:0 0 0 2px #78350f,0 2px 8px #0009;display:grid;place-items:center;"><span style="width:6px;height:6px;border-radius:50%;background:#78350f;"></span></div>',
+        iconSize: [26, 26],
+        iconAnchor: [13, 13],
+      })
+      let analysisMarker = null
+
       const loadComparison = async (latlng, requestId, signal) => {
         setComparisonLoading(true)
         setComparisonError(null)
@@ -186,6 +200,22 @@ export default function Monitor() {
       }
 
       const analyseLocation = async (latlng, dateRange = {}) => {
+        if (analysisMarker) {
+          analysisMarker.setLatLng(latlng)
+        } else {
+          analysisMarker = L.marker(latlng, {
+            icon: analysisIcon,
+            interactive: false,
+            keyboard: false,
+            zIndexOffset: 1000,
+          })
+            .addTo(map)
+            .bindTooltip('Selected analysis location', {
+              permanent: true,
+              direction: 'top',
+              offset: [0, -16],
+            })
+        }
         const requestId = ++comparisonRequestRef.current
         analysisControllerRef.current?.abort()
         const controller = new AbortController()
@@ -217,6 +247,7 @@ export default function Monitor() {
         }
       }
 
+      analyseLocationRef.current = analyseLocation
       map.on('click', ({ latlng }) => analyseLocation(latlng))
 
       fetch('/demo-sites.geojson')
@@ -263,12 +294,39 @@ export default function Monitor() {
       cancelled = true
       analysisControllerRef.current?.abort()
       analysisControllerRef.current = null
+      analyseLocationRef.current = null
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
       boundariesLayerRef.current = null
       demoSiteLayerRef.current = null
     }
   }, [])
+
+  const closeSearch = () => {
+    setSearchOpen(false)
+    searchButtonRef.current?.focus()
+  }
+
+  const searchLocation = (event) => {
+    event.preventDefault()
+    const lat = Number(searchLatitude)
+    const lng = Number(searchLongitude)
+    if (!searchLatitude.trim() || !searchLongitude.trim() ||
+        !Number.isFinite(lat) || !Number.isFinite(lng) ||
+        lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+      setSearchError('Enter a latitude between -90 and 90 and a longitude between -180 and 180.')
+      return
+    }
+    const map = mapInstanceRef.current
+    if (!map || !analyseLocationRef.current) {
+      setSearchError('The map is still loading. Please try again in a moment.')
+      return
+    }
+    setSearchError(null)
+    map.flyTo([lat, lng], 14, { animate: true, duration: 1.5 })
+    void analyseLocationRef.current({ lat, lng })
+    closeSearch()
+  }
 
   const cancelAnalysis = () => {
     ++comparisonRequestRef.current
@@ -406,7 +464,7 @@ export default function Monitor() {
     }`}>
 
       {/* NAVBAR */}
-      <header className={`flex items-center justify-between px-6 py-4 border-b ${
+      <header className={`relative z-[3000] flex items-center justify-between px-6 py-4 border-b ${
         darkMode ? 'border-white/10 bg-[#111a09]' : 'border-black/5 bg-light-surface'
       }`}>
         <Link href="/" className="flex items-center hover:opacity-80 transition" aria-label="Go to homepage">
@@ -424,11 +482,35 @@ export default function Monitor() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button type="button" aria-label="Search" className={darkMode ? 'text-white/60' : 'text-slate-400'}><SearchIcon /></button>
+          <button ref={searchButtonRef} type="button" aria-label="Search coordinates" aria-expanded={searchOpen} aria-controls="coordinate-search" onClick={() => { setSearchOpen(!searchOpen); setSearchError(null) }} className={darkMode ? 'text-white/60' : 'text-slate-400'}><SearchIcon /></button>
           <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} className={darkMode ? 'text-white/60' : 'text-slate-400'}>
             {darkMode ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
+        {searchOpen && (
+          <form id="coordinate-search" aria-label="Search coordinates" onSubmit={searchLocation} onKeyDown={(event) => {
+            if (event.key === 'Escape') {
+              event.preventDefault()
+              closeSearch()
+            }
+          }} className={`absolute right-4 top-full mt-2 w-[min(24rem,calc(100vw-2rem))] rounded-2xl border p-5 shadow-2xl ${darkMode ? 'border-white/15 bg-[#111a09]' : 'border-slate-200 bg-light-surface'}`}>
+            <div className="flex items-center justify-between gap-4">
+              <h2 className="font-semibold">Analyze coordinates</h2>
+              <button type="button" onClick={closeSearch} aria-label="Close coordinate search" className="rounded px-2 py-1 text-sm">Close ×</button>
+            </div>
+            <p className={`mt-2 text-sm ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>Enter decimal degrees to view and analyze a location.</p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <label className="text-sm font-medium">Latitude
+                <input autoFocus required type="number" step="any" min="-90" max="90" value={searchLatitude} onChange={(event) => { setSearchLatitude(event.target.value); setSearchError(null) }} placeholder="e.g. 6.4330" aria-describedby={searchError ? 'coordinate-search-error' : undefined} className={`mt-1.5 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4a5e1a] ${darkMode ? 'border-white/20 bg-white/5' : 'border-slate-300 bg-light-surface'}`} />
+              </label>
+              <label className="text-sm font-medium">Longitude
+                <input required type="number" step="any" min="-180" max="180" value={searchLongitude} onChange={(event) => { setSearchLongitude(event.target.value); setSearchError(null) }} placeholder="e.g. -2.0380" aria-describedby={searchError ? 'coordinate-search-error' : undefined} className={`mt-1.5 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4a5e1a] ${darkMode ? 'border-white/20 bg-white/5' : 'border-slate-300 bg-light-surface'}`} />
+              </label>
+            </div>
+            {searchError && <p id="coordinate-search-error" role="alert" className={`mt-3 text-sm ${darkMode ? 'text-red-300' : 'text-red-700'}`}>{searchError}</p>}
+            <button type="submit" className="mt-4 w-full rounded-xl bg-[#4a5e1a] px-4 py-3 text-sm font-semibold text-white hover:bg-[#3a4d12]">Analyze location</button>
+          </form>
+        )}
       </header>
 
       {/* MAIN */}
